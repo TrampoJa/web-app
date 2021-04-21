@@ -1,0 +1,14 @@
+<main>
+    <div class="containerfont">
+        <div class="row justify-content-center">
+            <div class="text-center color-link">
+                <h2>Minha avalição</h2>
+                <h1 *ngIf="avaliacao">{{avaliacao | format}}</h1>
+                <div *ngIf="group === 'Freelancer'">
+                    <h2>Trampos finalizados</h2>
+                    <h1 *ngIf="trampos">{{trampos}}</h1>
+                </div>
+            </div>
+        </div><br>
+    </div>
+</main><br><br>

@@ -1,0 +1,65 @@
+<main>
+    <div class="container-fluid font text-light">
+        <div class="text-center">
+            <h2 *ngIf="group === 'Freelancer' || group === 'noGroupFreelancer'">Meus interesses</h2>
+            <h2 *ngIf="group === 'Estabelecimento' || group === 'noGroupEstabelecimento'">Freelancers interessados</h2>
+            <h2 *ngIf="group === ''">Interesses</h2>
+        </div>
+        <div *ngIf="!interesses?.length" class="text-center" style="margin-top: 10em;">
+            <h1 class="color-link">Você não possui nenhum interesse</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6" *ngFor="let interesse of interesses">
+                <div class="backgroud shadow card bg-dark text-light mb-4">
+                    <div class="card-body body">
+                        <a
+                        class="text-light"
+                        [routerLink]="['/detalhes-do-trampo', interesse.oferta]">
+                        <strong>{{interesse?.oferta_nome}}</strong>
+                        <span class="color-link small stretched-link detail">Ver detalhes</span>
+                        </a>
+                        <div class="card-body">
+                            <strong>{{interesse?.oferta_valor| real}}</strong> por hora<br>
+                            Início às {{interesse?.oferta_hora | time}} <br>
+                            No dia {{interesse?.oferta_data | date:"dd/MM"}}
+                        </div>
+                        <div *ngIf="group === 'Estabelecimento'" class="card-body">
+                            <span>Nome: {{interesse?.freelancer_nome}}</span> <span> {{interesse?.freelancer_sobrenome}} </span> <br>
+                            Telefone: {{interesse?.freelancer_telefone| fone}} <br>
+                            <strong>Nota:</strong> {{interesse?.avaliacao | format}}<br><br>
+                            Trampos: {{interesse?.trampos}} <a *ngIf="interesse?.trampos != 0" class="color-link historico" [routerLink]="['/historico', interesse?.freelancer_owner]">Ver histórico</a>
+                        </div>
+                    </div>
+                    <a *ngIf="group === 'Freelancer'" [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link small stretched-link" *ngIf="interesse?.estabelecimento_id" [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">{{interesse?.estabelecimento}}</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <span *ngIf="group === 'Estabelecimento'">
+                    <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link stretched-link" *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">Ver perfil</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    </span>
+                    <a *ngIf="group === 'Freelancer'" href="#">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a href="#" class="color-link small stretched-link">Visualizar termo</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false" class="create-confirmado"
+                        (mouseover)="confirm(interesse?.oferta, interesse?.freelancer)">
+                        <app-create-confirmado
+                            *ngIf="interesse?.oferta_status==true"
+                            [oferta]="oferta"
+                            [freelancer]="freelancer">
+                        </app-create-confirmado>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</main>

@@ -1,0 +1,48 @@
+.bar{
+    margin-top: 1em;
+}
+
+.avaliar{
+    cursor: pointer;
+}
+
+.detail{
+    position: absolute;
+    right: 10px;
+}
+
+.btn-cancelar {
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+}
+
+.cancelar{
+    position: absolute;
+    right: 35%;
+    left: 35%;
+}
+
+.historico {
+    position: absolute;
+    right: 10px;
+}
+
+.status{
+    position: absolute;
+    right: 0.4em;
+}
+
+.footer-cancelar {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+.footer-cancelar:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+

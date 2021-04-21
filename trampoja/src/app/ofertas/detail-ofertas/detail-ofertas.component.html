@@ -1,0 +1,126 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row main">
+                <div class="col-xl-12">
+                    <div class="card mb-4 bg-dark text-light font shadow backgroud">
+                        <div class="card-header header text-center">
+                            <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                            {{oferta?.nome}}
+                            <button *ngIf="oferta===editOferta" (click)="cancelEdit()" class="cancel shadow btn-dark"><i class="fas fa-window-close"></i></button>
+                            <div *ngIf="userService.ownerValue.owner == oferta?.owner">
+                                <span *ngIf="oferta?.status==true">
+                                    <button *ngIf="oferta!==editOferta" (click)="delete()" class="trash shadow btn-dark"><i class="fas fa-trash"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body body text-center">
+                            <form #ofertaForm="ngForm">
+                                <p>
+                                    <strong *ngIf="oferta!==editOferta">  {{oferta?.valor | real}} por hora</strong>
+                                    <span *ngIf="oferta===editOferta">
+                                        <label for="valor">*Valor:</label>
+                                        <input class="col-md-6 offset-md-3 form-control inputs" name="valor"
+                                            id="valor"
+                                            [(ngModel)]="oferta.valor"
+                                            value="{{oferta.valor}}"
+                                            #valor="ngModel"
+                                            required>
+                                        <div [hidden]="valor.valid || valor.pristine"
+                                            class="col-md-6 offset-md-3 alert alert-danger">
+                                            Campo obrigatório, valor mínimo R$10,00.
+                                       </div>
+                                    </span>
+                                    <span *ngIf="oferta?.edit===true">
+                                        <span *ngIf="owner == oferta?.owner">
+                                            <span *ngIf="oferta?.status==true">
+                                                <button *ngIf="oferta!==editOferta" 
+                                                    (click)="edit(oferta)" class="pencil shadow btn-dark"><i class="fas fa-pencil-alt"></i>
+                                                </button>
+                                            </span>
+                                        </span>
+                                    </span>    
+                                </p>
+                                <p>
+                                    <br>
+                                    <span *ngIf="oferta!==editOferta">Início às {{oferta?.time | time}} </span>
+                                    <span *ngIf="oferta===editOferta">
+                                        <label for="hora">*Que horas começa?:</label>
+                                        <input class="col-md-6 offset-md-3 form-control inputs" name="hora"
+                                            id="hora"
+                                            [(ngModel)]="oferta.time"
+                                            type="time"
+                                            value="{{oferta.time}}"
+                                            #hora="ngModel"
+                                            required>
+                                        <div [hidden]="hora.valid || hora.pristine"
+                                            class="col-md-6 offset-md-3 alert alert-danger">
+                                            Campo obrigatório!
+                                       </div>
+                                    </span>
+                                    <br>
+                                    <span *ngIf="oferta!==editOferta">Pode ir até às {{oferta?.time_final | time}} </span>
+                                    <span *ngIf="oferta===editOferta">
+                                        <label for="hora">*Até que horas pode ir?:</label>
+                                        <input class="col-md-6 offset-md-3 form-control inputs" name="horaf"
+                                            id="horaf"
+                                            [(ngModel)]="oferta.time_final"
+                                            type="time"
+                                            value="{{oferta.time_final}}"
+                                            #hora="ngModel"
+                                            required>
+                                    </span>
+                                    <br>
+                                    <span *ngIf="oferta!==editOferta">No dia {{oferta?.date_inicial | date:"dd/MM"}}</span>
+                                    <span *ngIf="oferta===editOferta">
+                                        <label for="data">*Data:</label>
+                                        <input class="col-md-6 offset-md-3 form-control inputs" name="data"
+                                            id="data"
+                                            [(ngModel)]="oferta.date_inicial"
+                                            value="{{oferta.date_inicial}}"
+                                            #data="ngModel"
+                                            type="date"
+                                            required>
+                                        <div [hidden]="data.valid || data.pristine"
+                                            class="col-md-6 offset-md-3 alert alert-danger">
+                                            Campo obrigatório!
+                                       </div>
+                                    </span>
+                                </p>
+                                <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs}}</p>
+                                <span *ngIf="oferta===editOferta">
+                                    <label for="obs">Observações:</label>
+                                    <textarea class="col-md-6 offset-md-3 form-control inputs" name="obs"
+                                        rows="10" cols="40" maxlength="500"
+                                        id="obs"
+                                        [(ngModel)]="oferta.obs"
+                                        value="{{oferta.obs}}">
+                                    </textarea><br>
+                                </span>
+                                <p><strong>
+                                    <a class="text-light">
+                                    {{oferta?.estabelecimento}}</a>
+                                </strong></p>
+                                <p *ngIf="oferta!==editOferta">
+                                    <strong>
+                                        <span>{{oferta?.telefone | fone}} - </span>
+                                        <span>{{oferta?.cidade}} - </span>
+                                        <span>{{oferta?.rua}} - </span>
+                                        <span>nº{{oferta?.numero}} - </span>
+                                        <span>{{oferta?.bairro}}</span>
+                                    </strong>
+                                </p><br>
+                                <button *ngIf="oferta===editOferta" (click)="update()" class="confirm btn-submit col-md-6 offset-md-3 form-control btn-dark">Feito</button>
+                                <div *ngIf="group == 'Freelancer' || group == 'noGroupFreelancer'">
+                                    <app-create-interesse *ngIf="oferta?.status==true"></app-create-interesse>
+                                </div>
+                                <span *ngIf="oferta?.status==false" class="alert alert-danger" role="alert">Vaga já preenchida</span>
+                            </form>
+                            <!--<iframe *ngIf="oferta!==editOferta" class="maps" src="https://www.google.com/maps/embed?pb=!4v1585696120600!6m8!1m7!1sueO0fPEyaRC3YNN7JTvU3A!2m2!1d-27.09325880867042!2d-52.6196593940781!3f202.82831029300146!4f-0.6925473653574414!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

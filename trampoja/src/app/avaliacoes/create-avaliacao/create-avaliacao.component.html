@@ -1,0 +1,27 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-header header text-center">
+                        <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                        <h4>Deixe sua avaliação</h4>
+                    </div>
+                    <div class="card-body body text-center">
+                        <ul class="estrelas">
+                            <li *ngFor="let nota of notas">
+                                <img
+                                    (click)="confirm(nota)"
+                                    class="estrela"
+                                    width="50px"
+                                    src="../../../assets/img/estrela.svg"
+                                    alt=""
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

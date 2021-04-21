@@ -1,0 +1,11 @@
+input[type="file"] {
+    display: none;
+}
+
+.foto {
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    background-color: #181a1b;
+    color: white;
+}

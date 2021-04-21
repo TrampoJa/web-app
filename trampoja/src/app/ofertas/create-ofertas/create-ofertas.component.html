@@ -1,0 +1,90 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row main">
+                <div class="col-xl-12">
+                    <div class="card  bg-dark text-light mb-4 shadow font backgroud">
+                        <div class="card-header header text-center">
+                            <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                            <h2>Simples e Fácil!</h2>
+                        </div>
+                        <div class="card-body body text-center">
+                            <form #ofertaForm="ngForm" (ngSubmit)="onSubmit()">
+                                <label for="nome">Nome da vaga:</label>
+                                <select class="col-md-6 offset-md-3 form-control inputs" name="nome"
+                                    id="nome"
+                                    [(ngModel)]="model['nome']"
+                                    #nome="ngModel"                               
+                                    required>
+                                    <option *ngFor="let op of options" [value]="op">{{op}}</option>
+                                </select>
+                                <br>
+                                <label for="freelancers">Quantas pessoas vai precisar?</label>
+                                <input class="col-md-6 offset-md-3 form-control inputs" name="freelancers"
+                                    [(ngModel)]="model['freelancers']"
+                                    #freelancers="ngModel"
+                                    id="freelancers"
+                                    type="number"
+                                    required>
+                                <br>
+                                <label for="valor">Quanto pretende pagar por hora?</label>
+                                <input class="col-md-6 offset-md-3 form-control inputs" name="valor"
+                                    type="number"
+                                    id="valor"
+                                    [(ngModel)]="model['valor']"
+                                    #valor="ngModel"
+                                    required>
+                                    <div [hidden]="valor.valid"
+                                        class="col-md-6 offset-md-3 alert alert-danger">
+                                        Valor mínimo R$10,00.
+                                    </div>
+                                    <div *ngIf="!valorIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-danger">
+                                        Valor mínimo R$10,00.
+                                    </div>
+                                <label for="hora">Que horas começa?</label>
+                                <input class="col-md-6 offset-md-3 form-control inputs" name="hora"
+                                    [(ngModel)]="model['time']"
+                                    #hora="ngModel"
+                                    type="time"
+                                    id="hora"
+                                    required><br>
+                                <label for="data">Até que horas pode ir?</label>
+                                <input class="col-md-6 offset-md-3 form-control inputs" name="data"
+                                    [(ngModel)]="model['time_final']"
+                                    #data="ngModel"
+                                    id="horaf"
+                                    type="time"
+                                    required>
+                                <br>
+                                <label for="data">Data:</label>
+                                <input class="col-md-6 offset-md-3 form-control inputs" name="data"
+                                    [(ngModel)]="model['date_inicial']"
+                                    #data="ngModel"
+                                    id="data"
+                                    type="date"
+                                    required>
+                                <br>
+                                <label for="obs">Observações:</label>
+                                <textarea class="col-md-6 offset-md-3 form-control inputs" name="obs"
+                                    [(ngModel)]="model['obs']"
+                                    placeholder="Quanto mais informações adicionais você preecher aqui maiores as chances de encontrar a pessoa certa!"
+                                    #obs="ngModel"
+                                    rows="10" cols="40" maxlength="500"
+                                    type=""
+                                    id="obs"
+                                    required>
+                                </textarea>
+                                <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
+                                    (click)="submit()"
+                                    [disabled]="!ofertaForm.form.valid" >
+                                    Pronto
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

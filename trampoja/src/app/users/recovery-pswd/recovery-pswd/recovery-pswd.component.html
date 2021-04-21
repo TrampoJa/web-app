@@ -1,0 +1,41 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-header header text-center">
+                        <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                        <h4>Recupere sua senha</h4>
+                    </div>
+                    <div class="card-body body">
+                        <span>
+                            Você receberá uma senha provisória no seu email.
+                        </span>
+                        <form #recoveryForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <br>
+                                <label class="small mb-1" for="email">Email</label>
+                                <br>
+                                <input class="form-control py-4 inputs" 
+                                    id="email"
+                                    name="email"
+                                    type="email" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Entre com seu e-mail"
+                                    [(ngModel)]="model['email']"
+                                    #email="ngModel">
+                            </div>
+                            <div>
+                                <button class="btn-submit form-control btn-dark"
+                                    (click)="submit()"
+                                    [disabled]="!recoveryForm.form.valid">
+                                    Pronto
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

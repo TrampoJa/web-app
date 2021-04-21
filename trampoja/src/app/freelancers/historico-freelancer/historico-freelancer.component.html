@@ -1,0 +1,25 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row main">
+                <div class="col-xl-12">
+                    <div class="card bg-dark text-light mb-4 font shadow backgroud">
+                        <div class="card-header header text-center">
+                            <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                            Histórico
+                        </div>
+                        <div class="card-body body text-center">
+                            <div *ngFor="let historico of historicos">
+                                <strong>{{historico?.estabelecimento}}</strong>
+                                <br>
+                                {{historico?.vaga}} 
+                                <br><br><hr>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,116 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-mobile card-header header text-center">
+                        <img src="../../../assets/img/logo.png" alt="" class="logo" width="180px">
+                        <h3 class="text-center font-weight-light my-4">Crie sua conta</h3>
+                    </div>
+                    <div class="card-mobile card-body body">
+                        <form  #userForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="first_name">Nome</label>
+                                        <input class="form-control py-4 inputs"
+                                            name="first_name"
+                                            id="first_name"
+                                            type="text" 
+                                            placeholder="Entre com seu nome"
+                                            [(ngModel)]="model['first_name']"
+                                            #first_name="ngModel"
+                                            required>
+                                            <div *ngIf="!firt_nameIsValid" 
+                                                class="alert alert-danger">
+                                                Seu nome precisa conter mais de 1 caractere!
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="last_name">Sobrenome</label>
+                                        <input class="form-control py-4 inputs" 
+                                            id="last_name"
+                                            name="last_name"
+                                            type="text" 
+                                            placeholder="Entre com seu sobrenome"
+                                            [(ngModel)]="model['last_name']"
+                                            #last_name="ngModel"
+                                            required>
+                                            <div *ngIf="!last_nameIsValid" 
+                                                class="alert alert-danger">
+                                                Seu sobrenome precisa conter mais de 1 caractere!
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="email">Email</label>
+                                <input class="form-control py-4 inputs" 
+                                    id="email"
+                                    name="email"
+                                    type="email" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Entre com seu e-mail"
+                                    [(ngModel)]="model['email']"
+                                    #email="ngModel"
+                                    required>
+                                    <div *ngIf="!emailIsValid" 
+                                        class="alert alert-danger">
+                                        Insira um endereço de email valido!
+                                    </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="password">Senha</label>
+                                        <input class="form-control py-4 inputs" 
+                                            id="password"
+                                            name="password"
+                                            type="password" 
+                                            placeholder="Entre com sua senha"
+                                            [(ngModel)]="model['password']"
+                                            #password="ngModel"
+                                            required>
+                                            <div *ngIf="!passwordIsValid" 
+                                                class="alert alert-danger">
+                                                Sua senha precisa conter pelo menos 6 caracteres!
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="confirm_password">Confirme sua senha</label>
+                                        <input class="form-control py-4 inputs" 
+                                            id="confirm_password"
+                                            name="confirm_password"
+                                            type="password" 
+                                            placeholder="Entre com sua senha"
+                                            [(ngModel)]="model['confirm_password']"
+                                            #confirm_password="ngModel"
+                                            required>
+                                            <div *ngIf="!confirm_passwordIsValid" 
+                                                class="alert alert-danger">
+                                                Suas senhas nao sao iguais!
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 mb-0">
+                                <button class="btn-submit btn-block shadow form-control btn-dark"
+                                    (click)="submit()"
+                                    [disabled]="!userForm.form.valid">
+                                    Pronto
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-mobile card-footer footer text-center">
+                        <div><a class="small color-link" routerLink="/login">Já tem uma conta? Faça login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</main>

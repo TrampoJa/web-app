@@ -1,0 +1,35 @@
+<main>
+    <div class="container-fluid font">
+        <div class="text-center text-light">
+            <h2>Trampos</h2>
+        </div>
+        <div *ngIf="!ofertas?.length" class="text-center" style="margin-top: 10em;">
+            <h1 class="color-link">Infelizmente não encontramos nenhum trampo para você</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 col-xm-0" *ngFor="let oferta of ofertas">
+                <div class="backgroud shadow card bg-dark text-light mb-4">
+                    <div class="card-body body"><strong>{{oferta?.nome}}</strong>
+                        <p>{{oferta?.valor | real}} por hora.</p> <br>
+                        <p>
+                            <strong>
+                                <a class="text-light" *ngIf="oferta?.estabelecimento_id" [routerLink]="['/detalhes-do-estabelecimento', oferta?.estabelecimento_id]">
+                                    {{oferta?.estabelecimento}}
+                                </a>
+                            </strong>
+                            <br><span class="small">Nota: {{oferta?.avaliacao | format}}</span>
+                        </p>
+                        <span *ngIf="oferta?.status==true" class="status alert-success" role="alert">Disponível</span>
+                        <span *ngIf="oferta?.status==false" class="status alert-danger" role="alert">Indisponível</span>
+                    </div>
+                    <a [routerLink]="['/detalhes-do-trampo', oferta?.id]">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link small stretched-link">Ver detalhes</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>         
+    </div>
+</main>

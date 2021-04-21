@@ -1,0 +1,37 @@
+<main>
+    <div class="container-fluid font text-light">
+        <div class="text-center">
+            <h2 >Cancelados</h2>
+        </div>
+        <div *ngIf="!cancelados?.length" class="text-center" style="margin-top: 10em;">
+            <h1 class="color-link">Você não possui nenhum trampo cancelado</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6" *ngFor="let cancelado of cancelados">
+                <div class="backgroud shadow card bg-dark text-light mb-4">
+                    <div class="card-body body">
+                        <a
+                        class="text-light"
+                        [routerLink]="['/detalhes-do-trampo', cancelado?.oferta]">
+                        <strong>{{cancelado?.oferta_nome}}</strong>
+                        <span class="color-link small stretched-link detail">Ver detalhes</span>
+                        </a>
+                        <div class="card-body">
+                            <strong>{{cancelado?.oferta_valor| real}}</strong> por hora<br>
+                            No dia {{cancelado?.oferta_data | date:"dd/MM"}}
+                            <span *ngIf="group === 'Estabelecimento'">
+                                <br><br>
+                                <a [routerLink]="['/detalhes-do-freelancer', cancelado?.freelancer]">
+                                    {{cancelado?.freelancer_nome}} {{cancelado?.freelancer_sobrenome}}
+                                </a>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <strong>Justificativa: {{cancelado?.justificativa}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</main>

@@ -1,0 +1,37 @@
+.form {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.freelancer {
+    border-radius: 300px;
+}
+
+.maps{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.confirm{
+    position: absolute;
+    top: 0.5em;
+    right: 4em;
+    border-radius: 5px;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.foto {
+    margin: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: white;
+}

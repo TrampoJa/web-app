@@ -1,0 +1,89 @@
+    <div class="sb-nav-fixed">
+        <mat-toolbar *ngIf="activated==true" class="color-nav-1 sb-topnav navbar navbar-expand navbar-dark">
+            <button
+                (click)="sidenav.toggle()"
+                class="btn btn-link btn-dark btn-sm" id="sidebarToggle">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <a class="navbar-nav w-100 justify-content-center"
+                (click)="opened=false"
+                routerLink="dashboard">
+                <img height="40px"
+                src="../assets/img/favicon.png" alt="">
+            </a>
+            <!-- Navbar-->
+            <ul class="navbar-nav d-md-inline-block ml-auto">
+                <li class="nav-item dropdown color-nav-1">
+                    <a style="border-radius: 5px;" class="nav-link" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="config" src="../assets/img/config.png" alt="" width="34px" style="margin-right: -12px;">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right body-list" aria-labelledby="userDropdown">
+                        <a *ngIf='group == "Estabelecimento" || group == "noGroupEstabelecimento"' class="dropdown-item" (click)="opened=false" routerLink="/profile">Minha conta</a>
+                        <a *ngIf='group == "Freelancer" || group == "noGroupFreelancer"' class="dropdown-item" (click)="opened=false" routerLink="/perfil">Minha conta</a>
+                        <a class="dropdown-item" (click)="opened=false" routerLink="/configuracoes" href="#">Configurações</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()" routerLink="/login">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </mat-toolbar>
+        <mat-sidenav-container id="layoutSidenav">
+            <mat-sidenav #sidenav mode="over" [(opened)]="opened" id="layoutSidenav_nav">
+                <nav class="color-nav-2 sb-sidenav accordion" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a *ngIf='group == "Freelancer" || group == "noGroupFreelancer"' class="nav-link color-link border-link" (click)="opened=false" routerLink="/trampos"
+                                ><div class="sb-nav-link-icon"><i style="margin-right: 10px;" class="fas fa-comment-dollar fa-lg"></i></div>
+                                Trampos</a
+                            >
+                            <a *ngIf='group == "Estabelecimento" || group == "noGroupEstabelecimento"' class="nav-link color-link border-link" (click)="opened=false" routerLink="/meus-trampos"
+                                ><div class="sb-nav-link-icon"><i style="margin-right: 10px;" class="fas fa-comment-dollar fa-lg"></i></div>
+                                Trampos</a
+                            >
+                            <a class="nav-link color-link border-link" (click)="opened=false" routerLink="/interesses"
+                                ><div class="sb-nav-link-icon"><i style="margin-right: 8px;" class="fas fa-comments-dollar fa-lg"></i></div>
+                                Interesses</a
+                            >
+                            <a class="nav-link color-link border-link" (click)="opened=false" routerLink="/confirmados"
+                                ><div class="sb-nav-link-icon"><i style="margin-right: 10px;" class="fas fa-clipboard-check fa-lg"></i></div>
+                                <span style="margin-left: 5px;">Confirmados</span></a
+                            >
+                            <a class="nav-link color-link border-link" (click)="opened=false" routerLink="/cancelados"
+                                ><div class="sb-nav-link-icon"><i style="margin-right: 10px;" class="fas fa-window-close fa-lg"></i></div>
+                                Cancelados</a
+                            >
+                            <button *ngIf='group == "Estabelecimento" || group == "noGroupEstabelecimento"' class="btn-novo-trampo btn-ligth">
+                                <a (click)="opened=false" class="nav-link text-center" routerLink="/novo-trampo">
+                                    NOVO TRAMPO
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-plus-circle"></i></div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="container-fluid">
+                            <div class="side-footer d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; TrampoJá 2020</div>
+                                <div>
+                                    <a href="#">Privacy Policy</a>
+                                    &middot;
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </mat-sidenav>
+            <mat-sidenav-content id="layoutSidenav_content">
+                
+                <router-outlet></router-outlet>
+                
+                <div style="margin-top: 50px;">
+                    <footer style="position: relative; bottom: 40px; float: right; background-color: transparent;" class="py-4 mt-auto">
+                        <div class="container-fluid">
+                        </div>
+                    </footer>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>

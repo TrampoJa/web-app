@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import { Confirmado } from '../confirmado';
+import { ConfirmadoService } from '../confirmado.service';
+import { UserService } from '../../../app/users/user.service';
+
+@Component({
+  selector: 'app-confirmados',
+  templateUrl: './confirmados.component.html',
+  styleUrls: ['./confirmados.component.css']
+})
+export class ConfirmadosComponent implements OnInit {
+  confirmados: Confirmado[];
+  oferta: number;
+  owner: number;
+  freelancer: number;
+  confirmado: number;
+  group  = this.userService.groupValue?.group;
+  habilitarAvaliacao = false;
+  habilitarCancelamento = false;
+
+  constructor(
+    private userService: UserService,
+    private service: ConfirmadoService,
+  ) { }
+
+  ngOnInit(): void {
+    this.userService.profile().subscribe(
+      (user) => {
+        this.group = user.last_name;
+        if (this.group == "Freelancer") {
+          this.listF();
+        }
+        else {
+          this.listE();
+        }
+      }
+    );
+    return;
+  }
+
+  listE(): void {
+    this.service.listE()
+      .subscribe(confirmados => (this.confirmados = confirmados));
+    return;
+  }
+
+  listF(): void {
+    this.service.listF()
+      .subscribe(confirmados => (this.confirmados = confirmados));
+    return;
+  }
+
+  avaliar(oferta: number, owner: number): void {
+    this.habilitarAvaliacao = true;
+    this.oferta = oferta;
+    this.owner = owner;
+  }
+
+  cancelar(oferta: number, freelancer: number, confirmado: number): void {
+    this.habilitarCancelamento = true;
+    this.oferta = oferta;
+    this.freelancer = freelancer;
+    this.confirmado = confirmado;
+  }
+}

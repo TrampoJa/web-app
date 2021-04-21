@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  background-color: #1b1d1e;
+}
+
+a {
+  color:#EBEBEB !important;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #58686A !important;
+  text-decoration: none;
+}
+
+.color-nav-1{
+  background-color: #303436;
+}
+
+.color-nav-1 img {
+  background-color: transparent;
+}
+
+.body-list{
+  background-color: #2c2f31 !important;
+}
+
+.body-list a {
+  color: #EBEBEB !important;
+}
+
+.color-nav-2{
+  background-color: #151718;
+}
+
+.color-nav-2 a {
+  color: #EBEBEB;
+  font-size: larger;
+}
+
+.btn-novo-trampo{
+  margin: 5%;
+  margin-top: 8%;
+  border-radius: 25px;
+  border: 1px solid #303436;
+  box-shadow: 3px 5px 10px black;
+}
+
+.side-footer {
+  margin-bottom: 5em;
+}

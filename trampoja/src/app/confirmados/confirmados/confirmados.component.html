@@ -1,0 +1,81 @@
+<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false">
+    <div class="container-fluid font">
+        <div class="text-center text-light">
+            <h2>Confirmados</h2>
+        </div>
+        <div *ngIf="!confirmados?.length" class="text-center" style="margin-top: 10em;">
+            <h1 class="color-link">Você não possui nenhum trampo confirmado</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6" *ngFor="let confirmado of confirmados">
+                <div class="backgroud shadow card bg-dark text-light mb-4">
+                    <div class="card-body body">
+                        <a
+                        class="text-light"
+                        [routerLink]="['/detalhes-do-trampo', confirmado.oferta]">
+                        <strong>{{confirmado?.oferta_nome}}</strong>
+                        <span class="color-link small stretched-link detail">Ver detalhes</span>
+                        </a>
+                        <div class="card-body">
+                            <strong>{{confirmado?.oferta_valor | real}}</strong> por hora<br>
+                            Início às {{confirmado?.oferta_hora | time}} <br>
+                            No dia {{confirmado?.oferta_data | date:"dd/MM"}}
+                        </div>
+                        <div *ngIf="group === 'Estabelecimento'" class="card-body">
+                            <span>Freelancer: {{confirmado?.freelancer_nome}}</span> <span> {{confirmado?.freelancer_sobrenome}} </span> <br>
+                            <strong>Nota:</strong> {{confirmado?.avaliacao | format}}<br><br>
+                            Trampos: {{confirmado?.trampos}} <a *ngIf="confirmado?.trampos != 0" class="color-link historico" [routerLink]="['/historico', confirmado?.freelancer_owner]">Ver histórico</a>
+                        </div>
+                        <span *ngIf="confirmado?.oferta_closed==false" class="status alert-warning" role="alert">Aberto</span>
+                        <span *ngIf="confirmado?.oferta_closed==true" class="status alert-primary" role="alert">Finalizado</span>
+                    </div>
+                    <a *ngIf="group === 'Freelancer'" [routerLink]="['/detalhes-do-estabelecimento', confirmado?.estabelecimento_id]">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link small stretched-link">{{confirmado?.estabelecimento}}</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <a *ngIf="group === 'Estabelecimento'" [routerLink]="['/detalhes-do-freelancer', confirmado?.freelancer]">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link small stretched-link">{{confirmado?.freelancer_nome}}</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <a *ngIf="group === 'Freelancer'" (click)="avaliar(confirmado?.oferta, confirmado?.estabelecimento_owner)" class="avaliar">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link">Avaliar</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <a *ngIf="group === 'Estabelecimento'" (click)="avaliar(confirmado?.oferta, confirmado?.freelancer_owner)" class="avaliar">
+                        <div class="card-footer footer d-flex align-items-center justify-content-between">
+                            <a class="color-link">Avaliar</a>
+                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </a>
+                    <div>
+                        <button
+                            *ngIf="confirmado?.oferta_closed === false"
+                            (click)="cancelar(confirmado?.oferta, confirmado?.freelancer, confirmado?.id)"
+                            class="btn btn-cancelar btn-danger font">
+                            <div class="footer-cancelar card-footer d-flex align-items-center justify-content-between">
+                                <span class="text-center cancelar">Cancelar</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</main>
+<app-create-avaliacao
+    [oferta]="oferta"
+    [owner]="owner"
+    *ngIf="habilitarAvaliacao==true">
+</app-create-avaliacao>
+<app-cancelar
+    [oferta]="oferta"
+    [freelancer]="freelancer"
+    [confirmado]="confirmado"
+    *ngIf="habilitarCancelamento==true">
+</app-cancelar>

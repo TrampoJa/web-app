@@ -1,0 +1,29 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row main">
+                <div class="col-xl-12">
+                    <div class="card bg-dark text-light mb-4 font shadow backgroud">
+                        <div class="card-header header text-center">
+                            <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                            {{freelancer?.nome}} {{freelancer?.sobrenome}}
+                        </div>
+                        <div class="card-body body text-center">
+                            <img class="freelancer" width="250px" [src]="imageURL" alt="">
+                            <br><br>
+                            <p>
+                                Bio: {{freelancer?.bio}}
+                            </p>
+                            <p>Telefone: {{freelancer?.telefone | fone}}</p>
+                            <p>Data de nascimento: {{freelancer?.nascimento | date:"dd/MM/yyyy"}}</p>
+                            <p>Idade: {{freelancer?.nascimento | age}}</p>
+                            <p>Cidade: {{freelancer?.cidade}}</p>
+                            <p>Bairro: {{freelancer?.bairro}}</p>
+                            <p>Rua: {{freelancer?.rua}} nº{{freelancer?.numero}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

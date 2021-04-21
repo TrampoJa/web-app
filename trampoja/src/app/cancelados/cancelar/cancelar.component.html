@@ -1,0 +1,40 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-header header text-center">
+                        <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                        <h4>Deixe sua justificativa</h4>
+                    </div>
+                    <div class="card-body body">
+                        <form  #canceladoForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <textarea class="form-control inputs" name="justificativa"
+                                            [(ngModel)]="model['justificativa']"
+                                            #justificativa="ngModel"
+                                            rows="10" cols="40" maxlength="500"
+                                            type=""
+                                            id="justificativa"
+                                            required>
+                                        </textarea>
+                                        <div class="form-group mt-4 mb-0">
+                                            <button
+                                                [disabled]="!canceladoForm.form.valid"
+                                                (click)="create()"
+                                                class="btn-danger btn-confirmado btn-block shadow form-control">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

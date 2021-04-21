@@ -1,0 +1,15 @@
+.form {
+    width: 100%;
+}
+
+.btn-cancelar {
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+}
+
+.cancelar{
+    position: absolute;
+    right: 35%;
+    left: 35%;
+}

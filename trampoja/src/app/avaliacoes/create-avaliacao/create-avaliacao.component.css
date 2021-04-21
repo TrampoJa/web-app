@@ -1,0 +1,15 @@
+.estrelas{
+    margin: 0px;
+    padding: 0px;
+}
+
+.estrelas li{
+    list-style: none;
+    display: inline;
+    font-size: 38px;
+}
+
+.estrela{
+    cursor: pointer;
+    padding: 10px
+}
