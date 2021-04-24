@@ -186,11 +186,9 @@ export class UserService {
                 finalize(() => {
                     if (res) {
                         localStorage.setItem('TOKEN', JSON.stringify(res));
-                        setTimeout(() => {
-                            while (!this.tokenValue) {
-                                this.tokenSubject.next(res);
-                            }
-                        });
+                        while (!this.tokenValue) {
+                            this.tokenSubject.next(res);
+                        }
                     }   
                 }),
                 catchError(this.handleError<User>('tokenUser')
