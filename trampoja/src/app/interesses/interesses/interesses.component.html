@@ -24,7 +24,7 @@
                             No dia {{interesse?.oferta_data | date:"dd/MM"}}
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
-                            <span>Nome: {{interesse?.freelancer_nome}}</span> <span> {{interesse?.freelancer_sobrenome}} </span> <br>
+                            <span>Nome: {{interesse?.freelancer_nome | titlecase}}</span> <span> {{interesse?.freelancer_sobrenome | titlecase}} </span> <br>
                             Telefone: {{interesse?.freelancer_telefone| fone}} <br>
                             <strong>Nota:</strong> {{interesse?.avaliacao | format}}<br><br>
                             Trampos: {{interesse?.trampos}} <a *ngIf="interesse?.trampos != 0" class="color-link historico" [routerLink]="['/historico', interesse?.freelancer_owner]">Ver histórico</a>
@@ -32,14 +32,22 @@
                     </div>
                     <a *ngIf="group === 'Freelancer'" [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">
                         <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link small stretched-link" *ngIf="interesse?.estabelecimento_id" [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">{{interesse?.estabelecimento}}</a>
+                            <a class="color-link small stretched-link"
+                                *ngIf="interesse?.estabelecimento_id"
+                                [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">
+                                {{interesse?.estabelecimento | titlecase}}
+                            </a>
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
                     <span *ngIf="group === 'Estabelecimento'">
                     <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
                         <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link stretched-link" *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">Ver perfil</a>
+                            <a class="color-link stretched-link"
+                                *ngIf="interesse?.freelancer"
+                                [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
+                                Ver perfil
+                            </a>
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>

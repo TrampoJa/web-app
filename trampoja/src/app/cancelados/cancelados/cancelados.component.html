@@ -22,12 +22,12 @@
                             <span *ngIf="group === 'Estabelecimento'">
                                 <br><br>
                                 <a [routerLink]="['/detalhes-do-freelancer', cancelado?.freelancer]">
-                                    {{cancelado?.freelancer_nome}} {{cancelado?.freelancer_sobrenome}}
+                                    {{cancelado?.freelancer_nome | titlecase}} {{cancelado?.freelancer_sobrenome | titlecase}}
                                 </a>
                             </span>
                         </div>
                         <div class="card-body">
-                            <strong>Justificativa: {{cancelado?.justificativa}}</strong>
+                            <strong>Justificativa: {{cancelado?.justificativa | titlecase}}</strong>
                         </div>
                     </div>
                 </div>
