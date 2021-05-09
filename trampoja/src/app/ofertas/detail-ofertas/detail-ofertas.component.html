@@ -87,7 +87,7 @@
                                        </div>
                                     </span>
                                 </p>
-                                <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs}}</p>
+                                <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs | titlecase}}</p>
                                 <span *ngIf="oferta===editOferta">
                                     <label for="obs">Observações:</label>
                                     <textarea class="col-md-6 offset-md-3 form-control inputs" name="obs"
@@ -99,18 +99,22 @@
                                 </span>
                                 <p><strong>
                                     <a class="text-light">
-                                    {{oferta?.estabelecimento}}</a>
+                                    {{oferta?.estabelecimento | titlecase}}</a>
                                 </strong></p>
                                 <p *ngIf="oferta!==editOferta">
                                     <strong>
                                         <span>{{oferta?.telefone | fone}} - </span>
-                                        <span>{{oferta?.cidade}} - </span>
-                                        <span>{{oferta?.rua}} - </span>
+                                        <span>{{oferta?.cidade | titlecase}} - </span>
+                                        <span>{{oferta?.rua | titlecase}} - </span>
                                         <span>nº{{oferta?.numero}} - </span>
-                                        <span>{{oferta?.bairro}}</span>
+                                        <span>{{oferta?.bairro | titlecase}}</span>
                                     </strong>
                                 </p><br>
-                                <button *ngIf="oferta===editOferta" (click)="update()" class="confirm btn-submit col-md-6 offset-md-3 form-control btn-dark">Feito</button>
+                                <button *ngIf="oferta===editOferta"
+                                    (click)="update()"
+                                    class="confirm btn-submit col-md-6 offset-md-3 form-control btn-dark">
+                                    Feito
+                                </button>
                                 <div *ngIf="group == 'Freelancer' || group == 'noGroupFreelancer'">
                                     <app-create-interesse *ngIf="oferta?.status==true"></app-create-interesse>
                                 </div>

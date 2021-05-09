@@ -6,7 +6,7 @@ import { EstabelecimentoService } from '../estabelecimento.service';
 
 import { Endereco } from '../../enderecos/endereco';
 import { EnderecoService } from '../../enderecos/endereco.service';
-import { AppService } from 'src/app/app.service';
+import { UserService } from 'src/app/users/user.service';
 
 @Component({
   selector: 'app-create-estabelecimento',
@@ -16,6 +16,7 @@ import { AppService } from 'src/app/app.service';
 export class CreateEstabelecimentoComponent implements OnInit {
   estabelecimento: Estabelecimento;
   endereco: Endereco;
+  group: String;
   model = {
     'nome': '',
     'cpf_cnpj': '',
@@ -47,14 +48,20 @@ export class CreateEstabelecimentoComponent implements OnInit {
 
   constructor(
     private service: EstabelecimentoService,
-    private appService: AppService,
+    private userService: UserService,
     private enderecoService: EnderecoService,
     private location: Location,
   ) { }
 
   ngOnInit(): void {
-    this.appService.getService().subscribe();
-    return;
+    this.userService.profile().subscribe(
+      (user) => {
+        this.group = user.last_name;
+        if (this.group == 'Estabelecimento' || this.group == 'Freelancer') {
+          this.goBack();
+        }
+      }
+    );
   }
 
   submit(): void {

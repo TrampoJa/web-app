@@ -22,7 +22,7 @@
                             No dia {{confirmado?.oferta_data | date:"dd/MM"}}
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
-                            <span>Freelancer: {{confirmado?.freelancer_nome}}</span> <span> {{confirmado?.freelancer_sobrenome}} </span> <br>
+                            <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span> <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span> <br>
                             <strong>Nota:</strong> {{confirmado?.avaliacao | format}}<br><br>
                             Trampos: {{confirmado?.trampos}} <a *ngIf="confirmado?.trampos != 0" class="color-link historico" [routerLink]="['/historico', confirmado?.freelancer_owner]">Ver histórico</a>
                         </div>
@@ -31,13 +31,13 @@
                     </div>
                     <a *ngIf="group === 'Freelancer'" [routerLink]="['/detalhes-do-estabelecimento', confirmado?.estabelecimento_id]">
                         <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link small stretched-link">{{confirmado?.estabelecimento}}</a>
+                            <a class="color-link small stretched-link">{{confirmado?.estabelecimento | titlecase}}</a>
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
                     <a *ngIf="group === 'Estabelecimento'" [routerLink]="['/detalhes-do-freelancer', confirmado?.freelancer]">
                         <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link small stretched-link">{{confirmado?.freelancer_nome}}</a>
+                            <a class="color-link small stretched-link">{{confirmado?.freelancer_nome | titlecase}}</a>
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>

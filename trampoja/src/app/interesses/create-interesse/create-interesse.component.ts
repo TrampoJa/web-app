@@ -4,7 +4,6 @@ import { InteresseService } from '../interesse.service';
 
 import { Interesse } from '../interesse';
 import { UserService } from 'src/app/users/user.service';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-interesse',

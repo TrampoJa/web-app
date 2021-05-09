@@ -14,7 +14,7 @@
                         <p>
                             <strong>
                                 <a class="text-light" *ngIf="oferta?.estabelecimento_id" [routerLink]="['/detalhes-do-estabelecimento', oferta?.estabelecimento_id]">
-                                    {{oferta?.estabelecimento}}
+                                    {{oferta?.estabelecimento | titlecase}}
                                 </a>
                             </strong>
                             <br><span class="small">Nota: {{oferta?.avaliacao | format}}</span>

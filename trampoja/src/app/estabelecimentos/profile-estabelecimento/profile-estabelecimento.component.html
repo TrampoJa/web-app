@@ -6,7 +6,7 @@
                     <div class="card mb-4 font bg-dark text-light shadow backgroud">
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
-                            {{estabelecimento?.nome}}
+                            {{estabelecimento?.nome | titlecase}}
                         </div>
                         <div class="card-body body text-center">
                             <div>
@@ -125,7 +125,7 @@
                                         Campo obrigatório!
                                     </div>
                                 </span>
-                                <p *ngIf="estabelecimento!==editEstabelecimento">Bairro: {{endereco?.bairro}} </p>
+                                <p *ngIf="estabelecimento!==editEstabelecimento">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
                                     <label for="bairro">*Bairro:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
@@ -140,7 +140,7 @@
                                         Campo obrigatório!
                                     </div>
                                 </span>
-                                <p *ngIf="estabelecimento!==editEstabelecimento">Rua: {{endereco?.rua}} </p>
+                                <p *ngIf="estabelecimento!==editEstabelecimento">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
                                     <label for="rua">*Rua:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
