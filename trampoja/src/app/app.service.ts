@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AppService {
 
-    public appRoot = 'http://localhost:8000/';
-    public url = 'http://localhost:8000';
+    public appRoot = 'https://app.trampoja.com:8088/';
+    public url = 'https://app.trampoja.com:8088';
 
     constructor(public http: HttpClient) { }
 
