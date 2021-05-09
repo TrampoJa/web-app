@@ -18,7 +18,7 @@ export class CreateFreelancerComponent implements OnInit {
   freelancer: Freelancer;
   endereco: Endereco;
   user: User;
-
+  group: String;
   model = {
     'nome': '',
     'sobrenome': '',
@@ -58,7 +58,14 @@ export class CreateFreelancerComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    return;
+    this.userService.profile().subscribe(
+      (user) => {
+        this.group = user.last_name;
+        if (this.group == 'Freelancer' || this.group == 'Estabelecimento') {
+          this.goBack();
+        }
+      }
+    );
   }
 
   submit(): void {

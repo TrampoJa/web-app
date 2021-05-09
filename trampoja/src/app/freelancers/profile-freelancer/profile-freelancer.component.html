@@ -6,7 +6,7 @@
                     <div class="card mb-4 font bg-dark text-light shadow backgroud">
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
-                            {{freelancer?.nome}} {{freelancer?.sobrenome}}
+                            {{freelancer?.nome | titlecase}} {{freelancer?.sobrenome | titlecase}}
                         </div>
                         <div class="card-body body text-center">
                             <div>
@@ -83,7 +83,7 @@
                                         Campo obrigatório!
                                     </div>
                                 </span>
-                                <p *ngIf="freelancer!==editFreelancer">Bio: {{freelancer?.bio}} </p>
+                                <p *ngIf="freelancer!==editFreelancer">Bio: {{freelancer?.bio | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="bio">*Bio:</label>
                                     <textarea class="col-md-6 offset-md-3 form-control inputs" name="bio"
@@ -139,7 +139,7 @@
                                         Campo obrigatório!
                                     </div>
                                 </span>
-                                <p *ngIf="freelancer!==editFreelancer">Bairro: {{endereco?.bairro}} </p>
+                                <p *ngIf="freelancer!==editFreelancer">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="bairro">*Bairro:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
@@ -154,7 +154,7 @@
                                         Campo obrigatório!
                                     </div>
                                 </span>
-                                <p *ngIf="freelancer!==editFreelancer">Rua: {{endereco?.rua}} </p>
+                                <p *ngIf="freelancer!==editFreelancer">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="rua">*Rua:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="rua"

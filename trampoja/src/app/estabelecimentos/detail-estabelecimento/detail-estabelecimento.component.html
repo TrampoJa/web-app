@@ -6,7 +6,7 @@
                     <div class="card mb-4 bg-dark text-light font shadow backgroud">
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
-                            {{estabelecimento?.nome}}
+                            {{estabelecimento?.nome | titlecase}}
                         </div>
                         <div class="card-body body text-center">
                             <img class="estabelecimento" width="250px" [src]="imageURL" alt="">
@@ -14,10 +14,10 @@
                             <p>
                                 Tipo: {{estabelecimento?.tipo}}
                             </p>
-                            <p>Telefone: {{estabelecimento?.telefone| fone}}</p>
-                            <p>Cidade: {{estabelecimento?.cidade}}</p>
-                            <p>Bairro: {{estabelecimento?.bairro}}</p>
-                            <p>Rua: {{estabelecimento?.rua}} nº{{estabelecimento?.numero}}</p>
+                            <p>Telefone: {{estabelecimento?.telefone | fone}}</p>
+                            <p>Cidade: {{estabelecimento?.cidade | titlecase}}</p>
+                            <p>Bairro: {{estabelecimento?.bairro | titlecase}}</p>
+                            <p>Rua: {{estabelecimento?.rua | titlecase}} nº{{estabelecimento?.numero}}</p>
                         </div>
                         <!--<iframe class="maps" src="https://www.google.com/maps/embed?pb=!4v1585696120600!6m8!1m7!1sueO0fPEyaRC3YNN7JTvU3A!2m2!1d-27.09325880867042!2d-52.6196593940781!3f202.82831029300146!4f-0.6925473653574414!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
                     </div>

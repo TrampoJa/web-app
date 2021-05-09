@@ -10,7 +10,7 @@
                         </div>
                         <div class="card-body body text-center">
                             <div *ngFor="let historico of historicos">
-                                <strong>{{historico?.estabelecimento}}</strong>
+                                <strong>{{historico?.estabelecimento | titlecase}}</strong>
                                 <br>
                                 {{historico?.vaga}} 
                                 <br><br><hr>

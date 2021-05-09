@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     this.service.token(this.model)
       .subscribe(
         (token) => {
+          if (Object.keys(token).length !== 0 
+            && token.constructor === Object)
           this.service.login(this.model)
             .subscribe();
         }
