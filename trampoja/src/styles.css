@@ -20,7 +20,7 @@
 }
 
 .color-link:hover {
-  color: #0D38D1 !important;
+  color: #1138F7 !important;
   text-decoration: none !important;
 }
 
@@ -72,6 +72,7 @@
 }
 
 .inputs{
+  color: white !important;
   background-color: #181a1b !important;
   border-top: #181a1b !important;
   border-left: #181a1b !important;
@@ -81,7 +82,7 @@
 
 .btn-submit{
   margin-top: 1em;
-  background-color: #0D38D1!important;
+  background-color: #1138F7!important;
   color: #EBEBEB;
   cursor: pointer;
 }
@@ -247,8 +248,8 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #0D38D1;
-  text-decoration: underline;
+  color: #1138F7;
+  text-decoration: none;
 }
 
 a:not([href]) {
@@ -3252,12 +3253,12 @@ input[type=button].btn-block {
 .dropdown-item:hover, .dropdown-item:focus {
   color: #16181b;
   text-decoration: none;
-  background-color: #0D38D1;
+  background-color: #1138F7;
 }
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #0D38D1;
+  background-color: #1138F7;
 }
 .dropdown-item.disabled, .dropdown-item:disabled {
   color: #6c757d;

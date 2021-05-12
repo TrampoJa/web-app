@@ -18,8 +18,8 @@
                         </a>
                         <div class="card-body">
                             <strong>{{confirmado?.oferta_valor | real}}</strong> por hora<br>
-                            Início às {{confirmado?.oferta_hora | time}} <br>
-                            No dia {{confirmado?.oferta_data | date:"dd/MM"}}
+                            Início às <strong>{{confirmado?.oferta_hora | time}} </strong><br>
+                            No dia <strong>{{confirmado?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span> <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span> <br>

@@ -50,6 +50,7 @@ import { CreateAvaliacaoComponent } from './avaliacoes/create-avaliacao/create-a
 import { CancelarComponent } from './cancelados/cancelar/cancelar.component';
 import { CanceladosComponent } from './cancelados/cancelados/cancelados.component';
 import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recovery-pswd.component';
+import { PlanosComponent } from './planos/planos/planos.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -97,11 +98,12 @@ import { FormatPipe } from './pipes/format/format.pipe';
     CancelarComponent,
     CanceladosComponent,
     RecoveryPswdComponent,
+    PlanosComponent,
     TimePipe,
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe
+    FormatPipe,
   ],
   providers: [
     AppService,

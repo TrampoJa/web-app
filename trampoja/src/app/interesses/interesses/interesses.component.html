@@ -20,8 +20,8 @@
                         </a>
                         <div class="card-body">
                             <strong>{{interesse?.oferta_valor| real}}</strong> por hora<br>
-                            Início às {{interesse?.oferta_hora | time}} <br>
-                            No dia {{interesse?.oferta_data | date:"dd/MM"}}
+                            Início às <strong>{{interesse?.oferta_hora | time}}</strong> <br>
+                            No dia <strong>{{interesse?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Nome: {{interesse?.freelancer_nome | titlecase}}</span> <span> {{interesse?.freelancer_sobrenome | titlecase}} </span> <br>

@@ -7,6 +7,8 @@
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
                             <h2>Simples e Fácil!</h2>
+                            <span class="span-planos">Você pode pulicar x trampos</span><br>
+                            <a class="link-planos btn-submit"[routerLink]="['/planos']">Preciso de mais</a>
                         </div>
                         <div class="card-body body text-center">
                             <form #ofertaForm="ngForm" (ngSubmit)="onSubmit()">

@@ -13,9 +13,11 @@ import * as $ from 'jquery';
 })
 @Injectable()
 export class AppComponent {
-  title = 'TrampoJá';
-  opened = false;
-  activated = true;
+  public title = 'TrampoJá';
+  public logo = '../../../assets/img/logo.svg';
+  public favicon = '../assets/img/favicon.png';
+  public opened = false;
+  public activated = true;
 
   owner = this.service.ownerValue?.owner;
   group = this.service.groupValue?.group;

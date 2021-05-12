@@ -50,7 +50,7 @@ export class EstabelecimentoService {
                 while (!this.userService.groupValue) {
                   this.userService.groupSubject.next(res[1] ['last_name']);
                 }
-                this.router.navigate(['/novo-trampo']);
+                this.router.navigate(['/planos']);
                 alert("Tudo certo com seu cadastro");
             }   
         }),
