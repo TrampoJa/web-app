@@ -20,6 +20,7 @@ import { EnderecoService } from './enderecos/endereco.service';
 import { UserService } from './users/user.service';
 import { AvalicaoService } from './avaliacoes/avaliacao.service'; 
 import { CanceladoService } from './cancelados/cancelado.service';
+import { PlanoService } from './planos/planos.service';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
@@ -116,6 +117,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     UserService,
     AvalicaoService,
     CanceladoService,
+    PlanoService,
     HttpErrorHandler,
     FormBuilder,
     httpInterceptorProviders,
