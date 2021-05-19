@@ -46,7 +46,7 @@ export class PlanoService {
                 tap(response => res = response),
                 finalize(() => {
                     if (res) {
-                        alert("Trampo criado com sucesso!");
+                        alert("Plano adquirido com sucesso!");
                     }   
                 }),
                 catchError(this.handleError<Plano>('createPlano')

@@ -9,65 +9,25 @@
                     </div>
                     <div class="card-body body">
                         <div class="row">
-                            <div class="col-lg-3 col-sm-12 planos planos-mobile text-center">
-                                <h2>Básico</h2>
+                            <div *ngFor="let plano of planos" class="col-lg-3 col-sm-12 planos planos-mobile text-center">
+                                <h2>{{plano.nome}}</h2>
                                 <hr>
-                                <strong class="preco">35<span class="small">R$</span></strong><br>
-                                <span class="small especial-font">5 reais a unidade</span>
-                                <hr>
-                                <span class="especial-font">
-                                    <strong>7 chamadas</strong><br>
-                                </span>
-                                <button class="btn-planos btn-dark btn-submit">
-                                    <a target="_blank" class="link-planos" href="https://api.whatsapp.com/send?phone=554999998270&text=Plano%20Basico">
-                                        Contratar
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 planos planos-mobile text-center">
-                                <h2>Premium</h2>
-                                <hr>
-                                <strong class="preco">75<span class="small">R$</span></strong><br>
-                                <span class="small especial-font">5 reais a unidade</span>
+                                <strong class="preco">
+                                    <span>{{plano.valor}}</span> 
+                                    <span *ngIf="!plano.especial" class="small">R$<br></span>
+                                    <span *ngIf="plano.especial" class="small">%<br></span>
+                                </strong>
+                                <span class="small especial-font">{{plano.descricao}}</span>
                                 <hr>
                                 <span class="especial-font">
-                                    <strong>15 chamadas</strong><br>
+                                    <strong *ngIf="!plano.especial">{{plano.quantidade}} chamadas<br></strong>
+                                    <strong *ngIf="plano.especial">Chamada avulsa<br></strong>
                                 </span>
-                                <button class="btn-planos btn-dark btn-submit">
-                                    <a target="_blank" class="link-planos" href="https://api.whatsapp.com/send?phone=554999998270&text=Plano%20Premium">
+                                <a target="_blank" class="link-planos" href="https://web.whatsapp.com/send?phone=554988903984&text=Plano%20{{plano.nome}}">
+                                    <button class="btn-planos btn-dark btn-submit">
                                         Contratar
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 planos planos-mobile text-center">
-                                <h2>Pró</h2>
-                                <hr>
-                                <strong class="preco">99<span class="small">R$</span></strong><br>
-                                <span class="small especial-font">5 reais a unidade</span>
-                                <hr>
-                                <span class="especial-font">
-                                    <strong>20 chamadas</strong><br>
-                                </span>
-                                <button class="btn-planos btn-dark btn-submit">
-                                    <a target="_blank" class="link-planos" href="https://api.whatsapp.com/send?phone=554999998270&text=Plano%20Pro">
-                                        Contratar
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 planos planos-mobile text-center">
-                                <h2>Especial</h2>
-                                <hr>
-                                <strong class="preco">15<span class="small">%</span></strong><br>
-                                <span class="small especial-font">+ do valor pago ao freela</span>
-                                <hr>
-                                <span class="especial-font">
-                                    <strong>Chamada avulsa</strong><br>
-                                </span>
-                                <button class="btn-planos btn-dark btn-submit">
-                                    <a target="_blank" class="link-planos" href="https://api.whatsapp.com/send?phone=554999998270&text=Especial">
-                                        Contratar
-                                    </a>
-                                </button>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
