@@ -25,15 +25,6 @@ export class PlanoService {
         );
     }
 
-    profile(): Observable<Plano[]> {
-        return this.service.http.get<Plano[]>
-            (this.service.appRoot.concat("planos/profile"))
-            .pipe(
-                catchError(this.handleError('profilePlano', [])
-            )
-        );
-    }
-
     setPlanoEstabelecimento(plano: number, estabelecimento: number): Observable<Plano> {
         let res;
         let body = {
