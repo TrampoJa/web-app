@@ -11,3 +11,11 @@
 .create-confirmado {
     margin-top: -18px;
 }
+
+.fa-star {
+    color: #ffc107 !important;
+}
+
+.nota {
+    margin-left: 5px;
+}

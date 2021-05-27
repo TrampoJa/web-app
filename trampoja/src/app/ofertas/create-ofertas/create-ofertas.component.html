@@ -8,7 +8,7 @@
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
                             <h2>Simples e Fácil!</h2>
                             <span class="span-planos">
-                                Você pode pulicar {{ofertas_para_publicar}} trampos<br>
+                                Você pode publicar {{ofertas_para_publicar}} trampos<br>
                             </span>
                             <a *ngIf="ofertas_para_publicar < 3 || !freelancersIsValid"
                                 class="link-planos btn-submit"[routerLink]="['/planos']">

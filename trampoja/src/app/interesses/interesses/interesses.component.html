@@ -26,7 +26,7 @@
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Nome: {{interesse?.freelancer_nome | titlecase}}</span> <span> {{interesse?.freelancer_sobrenome | titlecase}} </span> <br>
                             Telefone: {{interesse?.freelancer_telefone| fone}} <br>
-                            <strong>Nota:</strong> {{interesse?.avaliacao | format}}<br><br>
+                            <i *ngIf="interesse?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{interesse?.avaliacao | format}}</span><br><br>
                             Trampos: {{interesse?.trampos}} <a *ngIf="interesse?.trampos != 0" class="color-link historico" [routerLink]="['/historico', interesse?.freelancer_owner]">Ver histórico</a>
                         </div>
                     </div>

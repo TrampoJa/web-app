@@ -6,3 +6,7 @@
     position: absolute;
     right: 0.4em;
 }
+
+.fa-star {
+    color: #ffc107 !important;
+}
