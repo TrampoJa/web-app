@@ -7,8 +7,13 @@
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
                             <h2>Simples e Fácil!</h2>
-                            <span class="span-planos">Você pode pulicar x trampos</span><br>
-                            <a class="link-planos btn-submit"[routerLink]="['/planos']">Preciso de mais</a>
+                            <span class="span-planos">
+                                Você pode pulicar {{ofertas_para_publicar}} trampos<br>
+                            </span>
+                            <a *ngIf="ofertas_para_publicar < 3 || !freelancersIsValid"
+                                class="link-planos btn-submit"[routerLink]="['/planos']">
+                                Preciso de mais
+                            </a>
                         </div>
                         <div class="card-body body text-center">
                             <form #ofertaForm="ngForm" (ngSubmit)="onSubmit()">
@@ -28,6 +33,10 @@
                                     id="freelancers"
                                     type="number"
                                     required>
+                                <div *ngIf="!freelancersIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-danger">
+                                    Você não tem trampos suficientes para isso.
+                                </div>
                                 <br>
                                 <label for="valor">Quanto pretende pagar por hora?</label>
                                 <input class="col-md-6 offset-md-3 form-control inputs" name="valor"
@@ -36,14 +45,15 @@
                                     [(ngModel)]="model['valor']"
                                     #valor="ngModel"
                                     required>
-                                    <div [hidden]="valor.valid"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Valor mínimo R$10,00.
-                                    </div>
-                                    <div *ngIf="!valorIsValid"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Valor mínimo R$10,00.
-                                    </div>
+                                <div [hidden]="valor.valid"
+                                    class="col-md-6 offset-md-3 alert alert-danger">
+                                    Valor mínimo R$10,00.
+                                </div>
+                                <div *ngIf="!valorIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-danger">
+                                    Valor mínimo R$10,00.
+                                </div>
+                                <br>
                                 <label for="hora">Que horas começa?</label>
                                 <input class="col-md-6 offset-md-3 form-control inputs" name="hora"
                                     [(ngModel)]="model['time']"

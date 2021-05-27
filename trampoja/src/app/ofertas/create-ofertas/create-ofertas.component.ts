@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Oferta } from '../oferta';
 import { OfertaService } from '../oferta.service';
 import { UserService } from 'src/app/users/user.service';
+import { EstabelecimentoService } from 'src/app/estabelecimentos/estabelecimento.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class CreateOfertasComponent implements OnInit {
   oferta: Oferta;
   group: String;
+  ofertas_para_publicar: number;
   model = {
     'nome': '',
     'valor': '',
@@ -30,10 +32,12 @@ export class CreateOfertasComponent implements OnInit {
   submitted = false;
 
   valorIsValid = true;
+  freelancersIsValid = true;
 
   constructor(
     private service: OfertaService,
     private userService: UserService,
+    private estabelecimentoService: EstabelecimentoService,
     private location: Location,
     private router: Router
   ) { }
@@ -45,6 +49,7 @@ export class CreateOfertasComponent implements OnInit {
         if (this.group != 'Estabelecimento') {
           this.router.navigate(['novo-estabelecimento/']);
         }
+        this.getOfertasParaPublicar();
       }
     );
     return;
@@ -63,11 +68,22 @@ export class CreateOfertasComponent implements OnInit {
     return;
   }
 
+  getOfertasParaPublicar(): void {
+    this.estabelecimentoService.profile()
+      .subscribe(estabelecimento => 
+        this.ofertas_para_publicar = estabelecimento.ofertas_para_publicar)
+    return;
+  }
+
   validators(): boolean {
     let cont = 0;
 
     if (Number(this.model.valor) < 10) {
       this.valorIsValid = !this.valorIsValid;
+      cont++;
+    }
+    if (this.ofertas_para_publicar < Number(this.model.freelancers)) {
+      this.freelancersIsValid = !this.freelancersIsValid;
       cont++;
     }
     if (cont != 0) {

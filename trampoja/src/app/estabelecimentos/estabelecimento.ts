@@ -12,4 +12,5 @@ export interface Estabelecimento {
     rua: string;
     numero: string;
     bairro: string;
+    ofertas_para_publicar: number;
 }
