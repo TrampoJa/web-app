@@ -17,7 +17,9 @@
                                     {{oferta?.estabelecimento | titlecase}}
                                 </a>
                             </strong>
-                            <br><span class="small">Nota: {{oferta?.avaliacao | format}}</span>
+                            <br>
+                            <i *ngIf="oferta?.avaliacao" class="small fas fa-star"></i>
+                            <span> {{oferta?.avaliacao | format}}</span>
                         </p>
                         <span *ngIf="oferta?.status==true" class="status alert-success" role="alert">Disponível</span>
                         <span *ngIf="oferta?.status==false" class="status alert-danger" role="alert">Indisponível</span>

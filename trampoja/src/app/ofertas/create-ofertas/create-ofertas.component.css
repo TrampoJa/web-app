@@ -1,0 +1,14 @@
+.span-planos {
+    font-size: 14px;
+}
+
+.link-planos {
+    font-size: 12px;
+    padding: 4px !important;
+    border-radius: 5px;
+}
+
+.link-planos:hover {
+    color: white;
+}
+

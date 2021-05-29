@@ -18,12 +18,12 @@
                         </a>
                         <div class="card-body">
                             <strong>{{confirmado?.oferta_valor | real}}</strong> por hora<br>
-                            Início às {{confirmado?.oferta_hora | time}} <br>
-                            No dia {{confirmado?.oferta_data | date:"dd/MM"}}
+                            Início às <strong>{{confirmado?.oferta_hora | time}} </strong><br>
+                            No dia <strong>{{confirmado?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
-                            <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span> <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span> <br>
-                            <strong>Nota:</strong> {{confirmado?.avaliacao | format}}<br><br>
+                            <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span><span> {{confirmado?.freelancer_sobrenome | titlecase}} </span> <br>
+                            <i *ngIf="confirmado?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{confirmado?.avaliacao | format}} </span> <br><br>
                             Trampos: {{confirmado?.trampos}} <a *ngIf="confirmado?.trampos != 0" class="color-link historico" [routerLink]="['/historico', confirmado?.freelancer_owner]">Ver histórico</a>
                         </div>
                         <span *ngIf="confirmado?.oferta_closed==false" class="status alert-warning" role="alert">Aberto</span>

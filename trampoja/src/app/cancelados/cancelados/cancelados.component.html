@@ -18,7 +18,7 @@
                         </a>
                         <div class="card-body">
                             <strong>{{cancelado?.oferta_valor| real}}</strong> por hora<br>
-                            No dia {{cancelado?.oferta_data | date:"dd/MM"}}
+                            No dia <strong>{{cancelado?.oferta_data | date:"dd/MM"}}</strong>
                             <span *ngIf="group === 'Estabelecimento'">
                                 <br><br>
                                 <a [routerLink]="['/detalhes-do-freelancer', cancelado?.freelancer]">

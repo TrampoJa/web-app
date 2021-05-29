@@ -30,6 +30,7 @@ import { ConfigComponent } from './config/config/config.component';
 import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recovery-pswd.component';
 
 import { CanceladosComponent } from './cancelados/cancelados/cancelados.component';
+import { PlanosComponent } from './planos/planos/planos.component';
 
 
 const routes: Routes = [
@@ -53,17 +54,19 @@ const routes: Routes = [
   { path: 'perfil', component: ProfileFreelancerComponent },
   { path: 'historico/:id', component: HistoricoFreelancerComponent },
 
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent },
 
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'options', component: GroupsComponent},
+  { path: 'options', component: GroupsComponent },
 
   { path: 'configuracoes', component: ConfigComponent },
 
-  { path: 'recuperacao-senha', component: RecoveryPswdComponent},
+  { path: 'recuperacao-senha', component: RecoveryPswdComponent },
 
-  { path: 'cancelados', component: CanceladosComponent}
+  { path: 'cancelados', component: CanceladosComponent },
+  
+  { path: 'planos', component: PlanosComponent }
 ];
 
 @NgModule({

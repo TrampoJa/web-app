@@ -27,12 +27,16 @@ export class RegisterComponent implements OnInit {
   confirm_passwordIsValid = true;
   emailIsValid = true;
 
+  logo: String;
+
   constructor(
     private app: AppComponent,
     private service: UserService
   ) { }
 
   ngOnInit(): void {
+    this.logo = this.app.logo;
+    
     setTimeout(() => {
       this.app.out();
     });

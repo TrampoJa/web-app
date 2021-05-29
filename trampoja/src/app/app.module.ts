@@ -20,6 +20,7 @@ import { EnderecoService } from './enderecos/endereco.service';
 import { UserService } from './users/user.service';
 import { AvalicaoService } from './avaliacoes/avaliacao.service'; 
 import { CanceladoService } from './cancelados/cancelado.service';
+import { PlanoService } from './planos/planos.service';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
@@ -50,6 +51,7 @@ import { CreateAvaliacaoComponent } from './avaliacoes/create-avaliacao/create-a
 import { CancelarComponent } from './cancelados/cancelar/cancelar.component';
 import { CanceladosComponent } from './cancelados/cancelados/cancelados.component';
 import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recovery-pswd.component';
+import { PlanosComponent } from './planos/planos/planos.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -97,11 +99,12 @@ import { FormatPipe } from './pipes/format/format.pipe';
     CancelarComponent,
     CanceladosComponent,
     RecoveryPswdComponent,
+    PlanosComponent,
     TimePipe,
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe
+    FormatPipe,
   ],
   providers: [
     AppService,
@@ -114,6 +117,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     UserService,
     AvalicaoService,
     CanceladoService,
+    PlanoService,
     HttpErrorHandler,
     FormBuilder,
     httpInterceptorProviders,

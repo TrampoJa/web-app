@@ -15,12 +15,16 @@ export class LoginComponent implements OnInit {
   }
   submitted = false;
 
+  logo: String;
+
   constructor(
     private app: AppComponent,
     private service: UserService
   ) { }
 
   ngOnInit(): void {
+    this.logo = this.app.logo;
+    
     setTimeout(() => {
       this.app.opened = false;
       this.app.out();
