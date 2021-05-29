@@ -42,9 +42,14 @@ export class HttpErrorHandler {
       // TODO: better job of transforming error for user consumption
       // this.mensagemService.add(`${serviceName}: ${operation} failed: ${message}`)
       
+      console.log("status", error.status);
+
       if (operation == 'tokenUser'){
         alert("Email ou senha inválidos.") // Feito desta forma pois o token funciona
                                           // por uma lib externa e não temos controle da resposta
+      }
+      if (!error.status || (error.status >= 500)) {
+         alert("Ops algo deu errado")
       }
       else
         alert(error.error);
