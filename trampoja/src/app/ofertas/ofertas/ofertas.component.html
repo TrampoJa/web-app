@@ -18,7 +18,7 @@
                                 </a>
                             </strong>
                             <br>
-                            <i class="small fas fa-star"></i>
+                            <i *ngIf="oferta?.avaliacao" class="small fas fa-star"></i>
                             <span> {{oferta?.avaliacao | format}}</span>
                         </p>
                         <span *ngIf="oferta?.status==true" class="status alert-success" role="alert">Disponível</span>
