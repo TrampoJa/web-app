@@ -46,19 +46,18 @@ export class CreateOfertasComponent implements OnInit {
     this.userService.profile().subscribe(
       (user) => {
         this.group = user.last_name;
-        if (this.group != 'Estabelecimento') {
+        if (this.group != 'Estabelecimento')
           this.router.navigate(['novo-estabelecimento/']);
-        }
-        this.getOfertasParaPublicar();
+        else
+          this.getOfertasParaPublicar();
       }
     );
     return;
   }
 
   submit(): void {
-    if (this.validators()) {
+    if (this.validators())
       this.create();
-    }
     return;
   }
 
