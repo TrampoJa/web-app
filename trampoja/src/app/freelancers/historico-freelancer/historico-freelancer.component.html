@@ -12,7 +12,9 @@
                             <div *ngFor="let historico of historicos">
                                 <strong>{{historico?.estabelecimento | titlecase}}</strong>
                                 <br>
-                                {{historico?.vaga}} 
+                                Função: {{historico?.vaga}} 
+                                <br>
+                                Data: {{historico?.data | date:"dd/MM"}}
                                 <br><br><hr>
                             </div>
                             

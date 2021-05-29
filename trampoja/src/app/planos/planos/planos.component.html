@@ -1,0 +1,40 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-header header text-center">
+                        <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                        <h2>Escolha o seu plano</h2>
+                    </div>
+                    <div class="card-body body">
+                        <div class="row">
+                            <div *ngFor="let plano of planos" class="col-lg-3 col-sm-12 planos planos-mobile text-center">
+                                <h2>{{plano.nome}}</h2>
+                                <hr>
+                                <strong class="preco">
+                                    <span>{{plano.valor}}</span> 
+                                    <span *ngIf="!plano.especial" class="small">R$<br></span>
+                                    <span *ngIf="plano.especial" class="small">%<br></span>
+                                </strong>
+                                <span class="small especial-font">{{plano.descricao}}</span>
+                                <hr>
+                                <span class="especial-font">
+                                    <strong *ngIf="!plano.especial">{{plano.quantidade}} chamadas<br></strong>
+                                    <strong *ngIf="plano.especial">Chamada avulsa<br></strong>
+                                </span>
+                                <a target="_blank"
+                                    class="link-planos"
+                                    href="https://web.whatsapp.com/send?phone=554988903984&text=Gostaria%20de%20contratar%20o%20plano%20{{plano.nome}}">
+                                    <button class="btn-planos btn-dark btn-submit">
+                                        Contratar
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
