@@ -19,7 +19,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
   group: String;
   model = {
     'nome': '',
-    'cpf_cnpj': '',
+    'cnpj': '',
     'razao_social': '',
     'tipo': '',
     'telefone': '',

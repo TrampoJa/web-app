@@ -40,18 +40,18 @@
                                         Campo obrigatório!
                                    </div>
                                 </span>
-                                <p *ngIf="estabelecimento!==editEstabelecimento">CPF/CNPJ: {{estabelecimento?.cpf_cnpj}}</p>
+                                <p *ngIf="estabelecimento!==editEstabelecimento">CNPJ: {{estabelecimento?.cnpj}}</p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="cpf_cnpj">*CPF/CNPJ:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="cpf_cnpj"
-                                        id="cpf_cnpj"
-                                        [(ngModel)]="estabelecimento.cpf_cnpj"
-                                        value="{{estabelecimento.cpf_cnpj}}"
-                                        #cpf_cnpj="ngModel"
-                                        mask="00.000.000/0000-00 || 000.000.000-00"
+                                    <label for="cnpj">*CNPJ:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="cnpj"
+                                        id="cnpj"
+                                        [(ngModel)]="estabelecimento.cnpj"
+                                        value="{{estabelecimento.cnpj}}"
+                                        #cnpj="ngModel"
+                                        mask="00.000.000/0000-00"
                                         required>
                                     <br>
-                                    <div [hidden]="cpf_cnpj.valid || cpf_cnpj.pristine"
+                                    <div [hidden]="cnpj.valid || cnpj.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
