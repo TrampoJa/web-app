@@ -35,7 +35,7 @@ $ npm install --save-dev @angular-devkit/build-angular
 ## Run
 
 ```bash
-#Iniciando redis
-$ cd ~/www/app.trampoja.com/trampoja.com
+#Iniciando angular
+$ cd ~/www/app.trampoja.com/trampoja
 $ ng serve
 ```
