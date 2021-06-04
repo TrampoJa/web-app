@@ -23,6 +23,9 @@
 ## Setup
 
 ```bash
+# Criando o diretório e clonando o repositório
+$ mkdir -p ~/.www
+$ cd ~/.www
 $ git clone https://github.com/TrampoJa/app.trampoja.com
 
 # Instalano node e angular
@@ -36,6 +39,6 @@ $ npm install --save-dev @angular-devkit/build-angular
 
 ```bash
 #Iniciando angular
-$ cd ~/www/app.trampoja.com/trampoja
+$ cd ~/.www/app.trampoja.com/trampoja
 $ ng serve
 ```
