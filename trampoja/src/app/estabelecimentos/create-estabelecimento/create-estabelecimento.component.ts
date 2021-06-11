@@ -26,8 +26,8 @@ export class CreateEstabelecimentoComponent implements OnInit {
     'logo': ''
   };
   enderecoModel = {
-    'estado': '',
-    'cidade': '',
+    'estado': 'SC',
+    'cidade': 'Chapecó',
     'bairro': '',
     'rua': '',
     'numero': '',
@@ -74,12 +74,9 @@ export class CreateEstabelecimentoComponent implements OnInit {
     this.service.create(this.model)
       .subscribe(
         (estabelecimento) => {
-          this.estabelecimento = estabelecimento;
-          if (Object.keys(estabelecimento).length === 0 
-                && estabelecimento.constructor === Object) {
-            location.reload();
-          }
-          else {
+          if (!(Object.keys(estabelecimento).length === 0 
+                && estabelecimento.constructor === Object)) {
+            this.estabelecimento = estabelecimento;
             this.createEndereco();
           }
         });

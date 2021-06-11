@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row main">
                 <div class="col-xl-12">
-                    <div class="card bg-dark text-light mb-4 shadow font backgroud" [hidden]="submitted">
+                    <div class="card bg-dark text-light mb-4 shadow font backgroud">
                         <div class="card-header header text-center">
                             <h2>Finalize seu cadastro</h2>
                         </div>
@@ -27,14 +27,22 @@
                                     #telefone="ngModel"
                                     id="telefone"
                                     mask="(00) 0000-0000 || (00) 0 0000-0000"
-                                    required><br>      
+                                    required>
+                                <div [hidden]="telefone.valid || telefone.pristine"
+                                    class="col-md-6 offset-md-3 alert alert-primary">
+                                    Não esqueça do seu DDD 😁
+                                </div><br>  
                                 <label for="nascimento">Data de nascimento:</label>
                                 <input class="col-md-6 offset-md-3 form-control inputs" name="nascimento"
                                     [(ngModel)]="model['nascimento']"
                                     #nascimento="ngModel"
                                     id="nascimento"
                                     type="date"
-                                    required><br>
+                                    required>
+                                <div *ngIf="!nascimentoIsValid"
+                                class="col-md-6 offset-md-3 alert alert-primary">
+                                    Insira uma data válida, você precisa ter mais de 16 anos 😁
+                                </div><br>
                                 <label for="bio">Bio:</label>
                                 <textarea class="col-md-6 offset-md-3 form-control inputs" name="bio"
                                     [(ngModel)]="model['bio']"
@@ -61,7 +69,6 @@
                                     [(ngModel)]="enderecoModel['estado']"
                                     #estado="ngModel"
                                     id="estado"
-                                    value="SC"
                                     placeholder="SC"
                                     required>
                                     <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
