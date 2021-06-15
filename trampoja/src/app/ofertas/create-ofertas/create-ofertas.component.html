@@ -7,8 +7,14 @@
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
                             <h2>Simples e Fácil!</h2>
-                            <span class="span-planos">
+                            <span *ngIf="ofertas_para_publicar > 1" class="span-planos">
                                 Você pode publicar {{ofertas_para_publicar}} trampos<br>
+                            </span>
+                            <span *ngIf="ofertas_para_publicar == 1" class="span-planos">
+                                Você pode publicar {{ofertas_para_publicar}} trampo<br>
+                            </span>
+                            <span *ngIf="ofertas_para_publicar == 0" class="span-planos">
+                                Você não tem trampos para publicar<br>
                             </span>
                             <a *ngIf="ofertas_para_publicar < 3 || !freelancersIsValid"
                                 class="link-planos btn-submit"[routerLink]="['/planos']">

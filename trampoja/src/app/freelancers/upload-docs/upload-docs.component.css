@@ -1,26 +1,15 @@
-.form {
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-bottom: 1em;
-}
-
-.estabelecimento {
-    border-radius: 300px;
+.freelancer {
+    border-radius: 5px;
     width: 250px;
     height: 250px;
     background-color: #58686A;
-}
-
-.maps{
-    width: 100%;
-    margin-top: 20px;
 }
 
 input[type="file"] {
     display: none;
 }
 
-.logo {
+.foto {
     margin: 0px;
     margin-top: 5px;
     padding: 0px;

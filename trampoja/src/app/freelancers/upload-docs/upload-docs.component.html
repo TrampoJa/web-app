@@ -1,0 +1,36 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row justify-content-center main">
+                <div class="col-xl-4">
+                    <div class="card mb-4 font bg-dark text-light shadow backgroud">
+                        <div class="card-header header text-center">
+                           {{titles[steps]}}
+                        </div>
+                        <form #freelancerForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="card-body body text-center">
+                                <div>
+                                    <img class="freelancer" width="250px" [src]="imageURL" alt=""><br>
+                                    <label class="foto form-control" for="foto">
+                                        <i class="fas fa-upload"></i> &nbsp; Carregar imagem
+                                    </label>
+                                    <input (change)="loadImage($event)" class="col-md-6 offset-md-3 form-control"
+                                        name="foto"
+                                        type="file"
+                                        id="foto" required> <br>
+                                </div>
+                                <button class="form-control btn-submit shadow form-control btn-dark" 
+                                        (click)="nextSteps()"
+                                        [disabled]="!nextStepIsValid">
+                                        <span *ngIf="steps !== 2">Continuar</span> 
+                                        <span *ngIf="steps === 2">Finalizar</span> 
+                                        &nbsp;<i class="far fa-hand-point-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

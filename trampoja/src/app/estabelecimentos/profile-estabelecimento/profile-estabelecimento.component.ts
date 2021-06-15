@@ -71,7 +71,7 @@ export class ProfileEstabelecimentoComponent implements OnInit {
     const formData = new FormData();
     formData.append('logo', this.form.get('foto').value);
     this.service.upload(this.estabelecimento.id, formData).subscribe(
-      estabelecimento => location.reload()
+      estabelecimento => this.imageURL = this.appService.url+estabelecimento.logo
     );
     return;
   }
@@ -81,7 +81,7 @@ export class ProfileEstabelecimentoComponent implements OnInit {
       .subscribe(
         (estabelecimento) => {
           this.estabelecimento = estabelecimento,
-          this.imageURL = this.appService.url+this.estabelecimento.logo
+          this.imageURL = this.estabelecimento.logo ? this.appService.url+this.estabelecimento.logo : null;
         });
     return;
   }

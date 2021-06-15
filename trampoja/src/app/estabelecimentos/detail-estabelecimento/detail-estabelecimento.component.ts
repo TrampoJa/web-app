@@ -33,7 +33,7 @@ export class DetailEstabelecimentoComponent implements OnInit {
       .subscribe(
         (estabelecimento) => {
           this.estabelecimento = estabelecimento,
-          this.imageURL = this.appService.url+this.estabelecimento.logo
+          this.imageURL = this.estabelecimento.logo ? this.appService.url+this.estabelecimento.logo : null;
         });
     return;
   }

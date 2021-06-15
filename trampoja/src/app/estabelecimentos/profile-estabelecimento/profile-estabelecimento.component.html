@@ -12,7 +12,7 @@
                             <div>
                                 <img class="estabelecimento" width="250px" [src]="imageURL" alt="">
                                 <label class="logo form-control" for="logo">
-                                    <i class="fas fa-pencil-alt"></i> &nbsp; Editar foto 
+                                    <i class="fas fa-upload"></i> &nbsp; Carregar imagem
                                 </label>
                                 <input (change)="loadImage($event)" class="col-md-6 offset-md-3 form-control"
                                     name="logo"
@@ -34,11 +34,11 @@
                                         value="{{estabelecimento.nome}}"
                                         #nome="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="nome.valid || nome.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                    </div>
+                                   <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">CNPJ: {{estabelecimento?.cnpj}}</p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -50,11 +50,11 @@
                                         #cnpj="ngModel"
                                         mask="00.000.000/0000-00"
                                         required>
-                                    <br>
                                     <div [hidden]="cnpj.valid || cnpj.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Razao Social: {{estabelecimento?.razao_social}}</p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">  
@@ -65,11 +65,11 @@
                                         value="{{estabelecimento.razao_social}}"
                                         #razao_social="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="razao_social.valid || razao_social.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Telefone: {{estabelecimento?.telefone | fone}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -81,11 +81,11 @@
                                         #telefone="ngModel"
                                         mask="(00) 0000-0000 || (00) 0 0000-0000"
                                         required>
-                                    <br>
                                     <div [hidden]="telefone.valid || telefone.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <br>
                                 <hr>
@@ -102,11 +102,11 @@
                                         required>
                                         <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
                                     </select>
-                                    <br>
                                     <div [hidden]="estado.valid || estado.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Cidade: {{endereco?.cidade}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -119,11 +119,11 @@
                                         required>
                                         <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
                                     </select>
-                                    <br>
                                     <div [hidden]="cidade.valid || cidade.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -134,11 +134,11 @@
                                         value="{{endereco.bairro}}"
                                         #bairro="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="bairro.valid || bairro.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -149,11 +149,11 @@
                                         value="{{endereco.rua}}"
                                         #rua="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="rua.valid || rua.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Número: {{endereco?.numero}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
@@ -164,11 +164,11 @@
                                         value="{{endereco.numero}}"
                                         #numero="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="numero.valid || numero.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Complemento: {{endereco?.complemento}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">

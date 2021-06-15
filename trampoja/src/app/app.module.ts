@@ -41,6 +41,7 @@ import { ProfileEstabelecimentoComponent } from './estabelecimentos/profile-esta
 import { ProfileFreelancerComponent } from './freelancers/profile-freelancer/profile-freelancer.component';
 import { CreateFreelancerComponent } from './freelancers/create-freelancer/create-freelancer.component';
 import { HistoricoFreelancerComponent } from './freelancers/historico-freelancer/historico-freelancer.component';
+import { UploadDocsComponent } from './freelancers/upload-docs/upload-docs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './users/register/register/register.component';
 import { LoginComponent } from './users/login/login/login.component';
@@ -90,6 +91,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     ProfileFreelancerComponent,
     CreateFreelancerComponent,
     HistoricoFreelancerComponent,
+    UploadDocsComponent,
     RegisterComponent,
     LoginComponent,
     GroupsComponent,

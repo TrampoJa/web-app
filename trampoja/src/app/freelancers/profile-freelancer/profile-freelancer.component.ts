@@ -72,7 +72,7 @@ export class ProfileFreelancerComponent implements OnInit {
     const formData = new FormData();
     formData.append('foto', this.form.get('foto').value);
     this.service.upload(this.freelancer.id, formData).subscribe(
-      freelancer => location.reload()
+      freelancer => this.imageURL = this.appService.url+freelancer.foto
     );
     return;
   }
@@ -82,7 +82,7 @@ export class ProfileFreelancerComponent implements OnInit {
       .subscribe(
         (freelancer) => {
           this.freelancer = freelancer,
-          this.imageURL = this.appService.url+this.freelancer.foto
+          this.imageURL = this.freelancer.foto ? this.appService.url+this.freelancer.foto : null;
         });
     return;
   }
