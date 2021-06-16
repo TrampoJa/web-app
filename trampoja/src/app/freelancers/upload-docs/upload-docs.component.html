@@ -5,7 +5,7 @@
                 <div class="col-xl-4">
                     <div class="card mb-4 font bg-dark text-light shadow backgroud">
                         <div class="card-header header text-center">
-                           {{titles[steps]}}
+                           {{titles[step]}}
                         </div>
                         <form #freelancerForm="ngForm" (ngSubmit)="onSubmit()">
                             <div class="card-body body text-center">
@@ -19,13 +19,15 @@
                                         type="file"
                                         id="foto" required> <br>
                                 </div>
-                                <button class="form-control btn-submit shadow form-control btn-dark" 
-                                        (click)="nextSteps()"
-                                        [disabled]="!nextStepIsValid">
-                                        <span *ngIf="steps !== 2">Continuar</span> 
-                                        <span *ngIf="steps === 2">Finalizar</span> 
-                                        &nbsp;<i class="far fa-hand-point-right"></i>
+                                <button *ngIf="nextStepIsValid" class="form-control btn-submit shadow form-control btn-dark" 
+                                        (click)="nextStep()">
+                                        <span *ngIf="step !== 2">Continuar &nbsp; <i class="far fa-hand-point-right"></i></span> 
+                                        <span *ngIf="step === 2">Finalizar &nbsp; <i class="fas fa-check"></i></span> 
                                 </button>
+                                <div *ngIf="!imageIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-primary">
+                                    {{errorMessage}}
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -51,8 +51,7 @@ export class FreelancerService {
                 while (!this.userService.groupValue) {
                   this.userService.groupSubject.next(res[1] ['last_name']);
                 }
-                this.router.navigate(['/trampos']);
-                alert("Tudo certo com seu cadastro");
+                this.router.navigate(['/upload']);
             }   
         }),
         catchError(this.handleError<Freelancer>('createFreelancer')
@@ -86,17 +85,19 @@ export class FreelancerService {
   }
 
   upload(id: number | string, foto: any): Observable<Freelancer> {
-    let res;
     return this.service.http.post<Freelancer>
       (this.service.appRoot.concat(`freelancer/upload/${id}`), foto)
       .pipe(
-        tap(response => res = response),
-        finalize(() => {
-          if (res) {
-            alert("Sucesso");
-          }
-        }),
         catchError(this.handleError<Freelancer>('uploadFoto')
+      )
+    );
+  }
+
+  uploadDocs(step: number, foto: any): Observable<Freelancer> {
+    return this.service.http.post<Freelancer>
+      (this.service.appRoot.concat(`freelancer/upload-docs/${step}`), foto)
+      .pipe(
+        catchError(this.handleError<Freelancer>('uploadDocs')
       )
     );
   }

@@ -85,16 +85,9 @@ export class EstabelecimentoService {
   }
 
   upload(id: number | string, logo: any): Observable<Estabelecimento> {
-    let res;
     return this.service.http.post<Estabelecimento>
       (this.service.appRoot.concat(`estabelecimento/upload/${id}`), logo)
       .pipe(
-        tap(response => res = response),
-        finalize(() => {
-          if (res) {
-            alert("Sucesso");
-          }
-        }),
         catchError(this.handleError<Estabelecimento>('uploadLogo')
       )
     );

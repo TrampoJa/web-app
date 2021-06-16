@@ -48,7 +48,7 @@ export class HttpErrorHandler {
         alert("Email ou senha inválidos.") // Feito desta forma pois o token funciona
                                           // por uma lib externa e não temos controle da resposta
       }
-      if (!error.status || (error.status >= 500)) {
+      else if (!error.status || (error.status >= 500)) {
          alert("Ops algo deu errado")
       }
       else
