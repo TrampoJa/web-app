@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
 
 import { UserService } from '../../user.service';
@@ -19,12 +20,14 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private app: AppComponent,
-    private service: UserService
+    private service: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.logo = this.app.logo;
-    
+    if (this.service.tokenValue)
+      this.router.navigate(['/'])
     setTimeout(() => {
       this.app.opened = false;
       this.app.out();

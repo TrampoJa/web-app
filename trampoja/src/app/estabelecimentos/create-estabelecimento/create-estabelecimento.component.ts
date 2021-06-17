@@ -7,6 +7,7 @@ import { EstabelecimentoService } from '../estabelecimento.service';
 import { Endereco } from '../../enderecos/endereco';
 import { EnderecoService } from '../../enderecos/endereco.service';
 import { UserService } from 'src/app/users/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-estabelecimento',
@@ -51,6 +52,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
     private userService: UserService,
     private enderecoService: EnderecoService,
     private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
       (user) => {
         this.group = user.last_name;
         if (this.group == 'Estabelecimento' || this.group == 'Freelancer') {
-          this.goBack();
+          this.router.navigate(['meus-trampos/']);
         }
       }
     );

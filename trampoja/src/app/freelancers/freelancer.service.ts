@@ -19,7 +19,10 @@ export class FreelancerService {
     private userService: UserService,
     private router: Router,
     httpErrorHandler: HttpErrorHandler
-  ) { this.handleError = httpErrorHandler.createHandleError('FreelancerService'); }
+  ) { 
+    this.handleError = httpErrorHandler.createHandleError('FreelancerService');
+  }
+
 
   list(): Observable<Freelancer[]> {
     return this.service.http.get<Freelancer[]>
@@ -98,6 +101,15 @@ export class FreelancerService {
       (this.service.appRoot.concat(`freelancer/upload-docs/${step}`), foto)
       .pipe(
         catchError(this.handleError<Freelancer>('uploadDocs')
+      )
+    );
+  }
+
+  possuiDocs(): Observable<any> {
+    return this.service.http.get<any>
+      (this.service.appRoot.concat("freelancer/docs"))
+      .pipe(
+        catchError(this.handleError('DocsFreelancers')
       )
     );
   }

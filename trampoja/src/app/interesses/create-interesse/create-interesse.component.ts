@@ -4,6 +4,7 @@ import { InteresseService } from '../interesse.service';
 
 import { Interesse } from '../interesse';
 import { UserService } from 'src/app/users/user.service';
+import { FreelancerService } from 'src/app/freelancers/freelancer.service';
 
 @Component({
   selector: 'app-create-interesse',
@@ -17,6 +18,7 @@ export class CreateInteresseComponent implements OnInit {
   constructor(
     private service: InteresseService,
     private userService: UserService,
+    private freelancerService: FreelancerService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -29,15 +31,24 @@ export class CreateInteresseComponent implements OnInit {
     this.userService.profile().subscribe(
       (user) => {
         this.group = user.last_name;
+        
         if (this.group != 'Freelancer') {
           this.router.navigate(['novo-freelancer/']);
         }
+
         else if (this.group === 'Freelancer') {
-          if (confirm("Deseja mesmo demonstrar interesse nesse trampo?")){
-            let id = this.route.snapshot.paramMap.get('id');
-            this.service.create(id).subscribe();
-            return;
-          }
+          this.freelancerService.possuiDocs().subscribe((docs) => {
+            if (docs) {
+              if (confirm("Deseja mesmo demonstrar interesse nesse trampo?")){
+                let id = this.route.snapshot.paramMap.get('id');
+                this.service.create(id).subscribe();
+                return;
+              }
+            }
+
+            else 
+              this.router.navigate(['/upload'])
+          })
         }
       }
     )

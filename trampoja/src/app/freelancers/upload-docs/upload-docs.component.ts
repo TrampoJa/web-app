@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FreelancerService } from '../freelancer.service';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
+import { UserService } from 'src/app/users/user.service';
+
 
 @Component({
   selector: 'app-upload-docs',
@@ -15,7 +16,6 @@ export class UploadDocsComponent implements OnInit {
   form: FormGroup;
   imageURL: string;
   step = 0;
-  nextStepIsValid = false;
   titles = [
     'Precisamos de uma foto da frente do seu RG',
     'Agora uma foto do verso do documento',
@@ -23,32 +23,49 @@ export class UploadDocsComponent implements OnInit {
   ]
 
   submitted = false;
-
+  
+  nextStepIsValid = false;
   imageIsValid = true;
+  
   errorMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private service: FreelancerService,
     private appService: AppService,
+    private userService: UserService,
     private router: Router,
-    private app: AppComponent
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.app.opened = false;
-      this.app.out();
-    });
-    this.service.profile().subscribe();
-    this.form = this.formBuilder.group({
-      foto: ['']
-    });
+    this.userService.profile().subscribe(
+      (user) => {
+        
+        if (user.last_name === 'Freelancer'){
+          this.service.possuiDocs().subscribe(
+            (docs) => {
+              if (docs)
+                this.router.navigate(['/trampos'])
+
+              else {
+                this.form = this.formBuilder.group({
+                  foto: ['']
+                });
+              }
+          });
+        }
+
+        else if (user.last_name === 'Estabelecimento')
+          this.router.navigate(['/meus-trampos'])
+
+        else
+          this.router.navigate(['/'])
+    })
   }
 
   finalize(): void {
-    this.router.navigate(['/trampos']);
-    alert("Tudo certo com seu cadastro");
+      this.router.navigate(['/trampos']);
+      alert("Tudo certo com seu cadastro");
   }
 
   nextStep(): void {
@@ -58,8 +75,7 @@ export class UploadDocsComponent implements OnInit {
       this.imageURL = null
       this.step++;
       this.nextStepIsValid = false;
-    }
-      
+    } 
   }
 
   loadImage(event): void {

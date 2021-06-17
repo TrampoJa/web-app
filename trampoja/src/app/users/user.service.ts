@@ -213,10 +213,10 @@ export class UserService {
         );
     }
 
-    setFreelancerNoGroup():void {
+    setFreelancerNoGroup(): void {
         this.user.group="noGroupFreelancer"
         localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupFreelancer'}));
-        while (!this.groupValue) {
+        while (this.groupValue.group === "") {
             this.groupSubject.next(this.user);
         }
     }
@@ -224,7 +224,7 @@ export class UserService {
     setEstabelecimentoNoGroup(): void {
         this.user.group="noGroupEstabelecimento"
         localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupEstabelecimento'}));
-        while (!this.groupValue) {
+        while (this.groupValue.group === "") {
             this.groupSubject.next(this.user);
         }
     }

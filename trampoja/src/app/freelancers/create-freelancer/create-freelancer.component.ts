@@ -8,6 +8,7 @@ import { User } from 'src/app/users/user';
 import { Endereco } from '../../enderecos/endereco';
 import { EnderecoService } from '../../enderecos/endereco.service'; 
 import { UserService } from 'src/app/users/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-freelancer',
@@ -53,6 +54,7 @@ export class CreateFreelancerComponent implements OnInit {
     private enderecoService: EnderecoService,
     private userService: UserService,
     private lct: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class CreateFreelancerComponent implements OnInit {
         this.user = user;
         this.group = this.user.last_name;
         if (this.group == 'Freelancer' || this.group == 'Estabelecimento') {
-          this.goBack();
+          this.router.navigate(['trampos/']);
         }
         this.splitName();
       }
