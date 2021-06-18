@@ -49,6 +49,8 @@ export class CreateFreelancerComponent implements OnInit {
 
   date = new Date();
 
+  step = 0;
+
   constructor(
     private service: FreelancerService,
     private enderecoService: EnderecoService,
@@ -68,6 +70,12 @@ export class CreateFreelancerComponent implements OnInit {
         this.splitName();
       }
     );
+  }
+
+  next(): void {
+    if (this.validators())
+      this.step = 1;
+    return;
   }
 
   submit(): void {

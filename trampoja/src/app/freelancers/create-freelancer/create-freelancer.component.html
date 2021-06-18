@@ -9,108 +9,114 @@
                         </div>
                         <div class="card-body body text-center">
                             <form #freelancerForm="ngForm" (ngSubmit)="onSubmit()">
-                                <label for="nome">Nome:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
-                                    id="nome"
-                                    [(ngModel)]="model['nome']"
-                                    #nome="ngModel"                               
-                                    required><br>
-                                <label for="sobrenome">Sobrenome:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="sobrenome"
-                                    id="sobrenome"
-                                    [(ngModel)]="model['sobrenome']"
-                                    #sobrenome="ngModel"
-                                    required><br>     
-                                <label for="telefone">Telefone:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
-                                    [(ngModel)]="model['telefone']"
-                                    #telefone="ngModel"
-                                    id="telefone"
-                                    mask="(00) 0000-0000 || (00) 0 0000-0000"
-                                    required>
-                                <div [hidden]="telefone.valid || telefone.pristine"
-                                    class="col-md-6 offset-md-3 alert alert-primary">
-                                    Não esqueça do seu DDD 😁
-                                </div><br>  
-                                <label for="nascimento">Data de nascimento:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="nascimento"
-                                    [(ngModel)]="model['nascimento']"
-                                    #nascimento="ngModel"
-                                    id="nascimento"
-                                    type="date"
-                                    required>
-                                <div *ngIf="!nascimentoIsValid"
-                                    class="col-md-6 offset-md-3 alert alert-primary">
-                                    Insira uma data válida, você precisa ter mais de 16 anos 😅
-                                </div><br>
-                                <label for="bio">Bio:</label>
-                                <textarea class="col-md-6 offset-md-3 form-control inputs" name="bio"
-                                    [(ngModel)]="model['bio']"
-                                    #bio="ngModel"
-                                    rows="10" cols="40" maxlength="500"
-                                    type=""
-                                    placeholder="Escreva aqui um pouco sobre você, experiências, no que é bom... Pode te ajudar na hora de ser escolhido!"
-                                    id="bio"
-                                    required>
-                                </textarea><br>
-                                <label for="rg">RG:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="rg"
-                                    [(ngModel)]="model['rg']"
-                                    #rg="ngModel"
-                                    id="rg"
-                                    mask="0.000.000"
-                                    required><br>
-                                <br>
-                                <hr>
-                                <h2>  Endereço </h2>
-                                <br>
-                                <label for="estado">Estado:</label>
-                                <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
-                                    [(ngModel)]="enderecoModel['estado']"
-                                    #estado="ngModel"
-                                    id="estado"
-                                    placeholder="SC"
-                                    required>
-                                    <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
-                                </select><br>
-                                <label for="cidade">Cidade:</label>
-                                <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
-                                    [(ngModel)]="enderecoModel['cidade']"
-                                    #cidade="ngModel"
-                                    id="cidade"
-                                    value="Chapecó"
-                                    placeholder="Chapecó"
-                                    required>
-                                    <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
-                                </select><br>
-                                <label for="bairro">Bairro:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
-                                    [(ngModel)]="enderecoModel['bairro']"
-                                    #bairro="ngModel"
-                                    id="bairro"
-                                    required><br>
-                                <label for="rua">Rua:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
-                                    [(ngModel)]="enderecoModel['rua']"
-                                    #rua="ngModel"
-                                    id="rua"
-                                    required><br>
-                                <label for="numero">Número:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
-                                    [(ngModel)]="enderecoModel['numero']"
-                                    #numero="ngModel"
-                                    id="numero"
-                                    required><br>    
-                                <label for="complemento">Complemento:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
-                                    [(ngModel)]="enderecoModel['complemento']"
-                                    #complemento="ngModel"
-                                    id="complemento"><br>
-                                <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
-                                    (click)="submit()"
-                                    [disabled]="!freelancerForm.form.valid" >
-                                    Próximo
-                                </button>
+                                <div *ngIf="step===0">
+                                    <label for="nome">Nome:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
+                                        id="nome"
+                                        [(ngModel)]="model['nome']"
+                                        #nome="ngModel"                               
+                                        required><br>
+                                    <label for="sobrenome">Sobrenome:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="sobrenome"
+                                        id="sobrenome"
+                                        [(ngModel)]="model['sobrenome']"
+                                        #sobrenome="ngModel"
+                                        required><br>     
+                                    <label for="telefone">Telefone:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
+                                        [(ngModel)]="model['telefone']"
+                                        #telefone="ngModel"
+                                        id="telefone"
+                                        mask="(00) 0000-0000 || (00) 0 0000-0000"
+                                        required>
+                                    <div [hidden]="telefone.valid || telefone.pristine"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Não esqueça do seu DDD 😁
+                                    </div><br>  
+                                    <label for="nascimento">Data de nascimento:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="nascimento"
+                                        [(ngModel)]="model['nascimento']"
+                                        #nascimento="ngModel"
+                                        id="nascimento"
+                                        type="date"
+                                        required>
+                                    <div *ngIf="!nascimentoIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira uma data válida, você precisa ter mais de 16 anos 😅
+                                    </div><br>
+                                    <label for="bio">Bio:</label>
+                                    <textarea class="col-md-6 offset-md-3 form-control inputs" name="bio"
+                                        [(ngModel)]="model['bio']"
+                                        #bio="ngModel"
+                                        rows="10" cols="40" maxlength="500"
+                                        type=""
+                                        placeholder="Escreva aqui um pouco sobre você, experiências, no que é bom... Pode te ajudar na hora de ser escolhido!"
+                                        id="bio"
+                                        required>
+                                    </textarea><br>
+                                    <label for="rg">RG:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="rg"
+                                        [(ngModel)]="model['rg']"
+                                        #rg="ngModel"
+                                        id="rg"
+                                        mask="0.000.000"
+                                        required><br>
+                                    <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
+                                        (click)="next()"
+                                        [disabled]="!freelancerForm.form.valid" >
+                                        Próximo &nbsp; <i class="far fa-hand-point-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <div *ngIf="step===1">
+                                    <label for="estado">Estado:</label>
+                                    <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
+                                        [(ngModel)]="enderecoModel['estado']"
+                                        #estado="ngModel"
+                                        id="estado"
+                                        placeholder="SC"
+                                        required>
+                                        <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
+                                    </select><br>
+                                    <label for="cidade">Cidade:</label>
+                                    <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
+                                        [(ngModel)]="enderecoModel['cidade']"
+                                        #cidade="ngModel"
+                                        id="cidade"
+                                        value="Chapecó"
+                                        placeholder="Chapecó"
+                                        required>
+                                        <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
+                                    </select><br>
+                                    <label for="bairro">Bairro:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
+                                        [(ngModel)]="enderecoModel['bairro']"
+                                        #bairro="ngModel"
+                                        id="bairro"
+                                        required><br>
+                                    <label for="rua">Rua:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
+                                        [(ngModel)]="enderecoModel['rua']"
+                                        #rua="ngModel"
+                                        id="rua"
+                                        required><br>
+                                    <label for="numero">Número:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
+                                        [(ngModel)]="enderecoModel['numero']"
+                                        #numero="ngModel"
+                                        id="numero"
+                                        required><br>    
+                                    <label for="complemento">Complemento:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
+                                        [(ngModel)]="enderecoModel['complemento']"
+                                        #complemento="ngModel"
+                                        id="complemento"><br>
+                                    <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
+                                        (click)="submit()"
+                                        [disabled]="!freelancerForm.form.valid" >
+                                        Próximo  &nbsp; <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

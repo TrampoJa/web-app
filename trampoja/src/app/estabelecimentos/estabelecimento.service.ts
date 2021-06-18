@@ -29,6 +29,15 @@ export class EstabelecimentoService {
     );
   }
 
+  findCNPJ(cnpj:string): Observable<Object> {
+    let body = {
+      'cnpj': cnpj
+    }
+    return this.service.http.post<Object>
+      (this.service.appRoot.concat("estabelecimento/findCNPJ/"), body)
+        .pipe(catchError(this.handleError('findCNPJ')));
+  }
+
   profile(): Observable<Estabelecimento> {
     return this.service.http.get<Estabelecimento>
       (this.service.appRoot.concat("estabelecimento/profile"))
@@ -46,12 +55,12 @@ export class EstabelecimentoService {
         tap(response => res = response),
         finalize(() => {
             if (res) {
-                localStorage.setItem('GROUP', JSON.stringify({group: res[1] ['last_name']}));
-                while (!this.userService.groupValue) {
-                  this.userService.groupSubject.next(res[1] ['last_name']);
-                }
-                this.router.navigate(['/planos']);
-                alert("Tudo certo com seu cadastro");
+              localStorage.setItem('GROUP', JSON.stringify({group: res[1] ['last_name']}));
+              while (!this.userService.groupValue) {
+                this.userService.groupSubject.next(res[1] ['last_name']);
+              }
+              this.router.navigate(['/planos']);
+              alert("Tudo certo com seu cadastro");
             }   
         }),
         catchError(this.handleError<Estabelecimento>('createFreelancer')

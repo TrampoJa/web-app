@@ -137,7 +137,6 @@ export class ProfileFreelancerComponent implements OnInit {
 
   validators(): boolean {
     let cont = 0;
-    console.log(this.freelancer.numero)
 
     if (this.calculaIdade(this.freelancer.nascimento) > 60
       || this.calculaIdade(this.freelancer.nascimento) < 16) {

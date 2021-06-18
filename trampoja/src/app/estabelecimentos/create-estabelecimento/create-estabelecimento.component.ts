@@ -47,6 +47,13 @@ export class CreateEstabelecimentoComponent implements OnInit {
   ];
   submitted = false;
 
+  cnpjIsValid = true;
+  tipoIsValid = true;
+
+  errorMessage: string;
+
+  step = 0;
+
   constructor(
     private service: EstabelecimentoService,
     private userService: UserService,
@@ -66,8 +73,57 @@ export class CreateEstabelecimentoComponent implements OnInit {
     );
   }
 
+  next(): void {
+    if (this.validators())
+      this.step = 1;
+    return;
+  }
+
+  findCNPJ(): void {
+    this.service.findCNPJ(this.model['cnpj']).subscribe(
+      (data) => {
+        if (this.validatorCNPJ(data)) {
+          this.cnpjIsValid = true;
+          this.populateCampos(data);
+        }
+      })
+  }
+
+  validatorCNPJ(data: object): boolean {
+    if (data['message']) {
+      this.errorMessage = 'CNPJ inválido';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    if (data['descricao_situacao_cadastral'] != 'Ativa') {
+      this.errorMessage = 'A situação cadastral precisa constar como ativa';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    if (data['municipio'] != 'CHAPECO') {
+      this.errorMessage = 'Sua empresa precisa ser de Chapecó-SC';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    return true;
+  }
+
+  populateCampos(data: Object): void {
+    this.model['razao_social'] = data['razao_social'];
+    this.model['nome'] = data['nome_fantasia'];
+    this.model['telefone'] = data['ddd_telefone_1'].replace(/ /g,"");
+    this.enderecoModel['bairro'] = data['bairro'];
+    this.enderecoModel['rua'] = data['logradouro'];
+    this.enderecoModel['numero'] = data['numero'];
+    this.enderecoModel['complemento'] = data['complemento'];
+  }
+
   submit(): void {
-    this.create();
+    if (this.validators())
+      this.create();
     return;
   }
 
@@ -89,6 +145,15 @@ export class CreateEstabelecimentoComponent implements OnInit {
     this.enderecoService.create(this.enderecoModel)
       .subscribe(endereco => (this.endereco = endereco));
     return;
+  }
+
+  validators(): boolean {
+    if (this.model.tipo == '') {
+      this.tipoIsValid = false;
+      return false;
+    }
+
+    return true;
   }
 
   onSubmit(): void { this.submitted = true; return; }
