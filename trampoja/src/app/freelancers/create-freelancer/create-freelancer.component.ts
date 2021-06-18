@@ -109,9 +109,9 @@ export class CreateFreelancerComponent implements OnInit {
 
     if (this.calculaIdade(this.model['nascimento']) > 60
       || this.calculaIdade(this.model['nascimento']) < 16) {
-        this.nascimentoIsValid = !this.nascimentoIsValid;
+        this.nascimentoIsValid = false;
         cont++;
-      }
+    }
 
     if (cont != 0) {
       return false;

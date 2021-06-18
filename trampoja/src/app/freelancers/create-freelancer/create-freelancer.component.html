@@ -40,7 +40,7 @@
                                     type="date"
                                     required>
                                 <div *ngIf="!nascimentoIsValid"
-                                class="col-md-6 offset-md-3 alert alert-primary">
+                                    class="col-md-6 offset-md-3 alert alert-primary">
                                     Insira uma data válida, você precisa ter mais de 16 anos 😅
                                 </div><br>
                                 <label for="bio">Bio:</label>
@@ -88,7 +88,7 @@
                                     [(ngModel)]="enderecoModel['bairro']"
                                     #bairro="ngModel"
                                     id="bairro"
-                                    required><br> 
+                                    required><br>
                                 <label for="rua">Rua:</label>
                                 <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
                                     [(ngModel)]="enderecoModel['rua']"
@@ -100,7 +100,7 @@
                                     [(ngModel)]="enderecoModel['numero']"
                                     #numero="ngModel"
                                     id="numero"
-                                    required><br>       
+                                    required><br>    
                                 <label for="complemento">Complemento:</label>
                                 <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
                                     [(ngModel)]="enderecoModel['complemento']"
