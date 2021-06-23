@@ -17,8 +17,13 @@
                                 <input (change)="loadImage($event)" class="col-md-6 offset-md-3 form-control"
                                     name="logo"
                                     type="file"
-                                    id="logo"> <br>
+                                    id="logo">
                             </div>
+                            <div *ngIf="!imageIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-primary">
+                                    {{errorMessage}}
+                            </div>
+                            <br>
                             <button *ngIf="estabelecimento!==editEstabelecimento" 
                                 (click)="edit(estabelecimento)" class="pencil shadow btn-dark"><i class="fas fa-pencil-alt"></i></button>
                             <button *ngIf="estabelecimento===editEstabelecimento" 
@@ -27,7 +32,7 @@
                             <br>
                             <form #estabelecimentoForm="ngForm" class="form">
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="nome">*Nome:</label>
+                                    <label for="nome">Nome:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
                                         id="nome"
                                         [(ngModel)]="estabelecimento.nome"
@@ -42,7 +47,7 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">CNPJ: {{estabelecimento?.cnpj}}</p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="cnpj">*CNPJ:</label>
+                                    <label for="cnpj">CNPJ:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="cnpj"
                                         id="cnpj"
                                         [(ngModel)]="estabelecimento.cnpj"
@@ -58,7 +63,7 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Razao Social: {{estabelecimento?.razao_social}}</p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">  
-                                    <label for="razao_social">*Razao Social:</label>
+                                    <label for="razao_social">Razao Social:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="razao_social"
                                         id="razao_social"
                                         [(ngModel)]="estabelecimento.razao_social"
@@ -73,7 +78,7 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Telefone: {{estabelecimento?.telefone | fone}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="telefone">*Telefone:</label>
+                                    <label for="telefone">Telefone:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
                                         id="telefone"
                                         [(ngModel)]="estabelecimento.telefone"
@@ -82,8 +87,8 @@
                                         mask="(00) 0000-0000 || (00) 0 0000-0000"
                                         required>
                                     <div [hidden]="telefone.valid || telefone.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Campo obrigatório, não esqueça do DDD 😁
                                     </div>
                                     <br>
                                 </span>
@@ -93,7 +98,7 @@
                                 <h2>Seu endereço</h2><br>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Estado: {{endereco?.estado}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="estado">*Estado:</label>
+                                    <label for="estado">Estado:</label>
                                     <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
                                         id="estado"
                                         [(ngModel)]="endereco.estado"
@@ -110,7 +115,7 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Cidade: {{endereco?.cidade}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="cidade">*Cidade:</label>
+                                    <label for="cidade">Cidade:</label>
                                     <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
                                         id="cidade"
                                         [(ngModel)]="endereco.cidade"
@@ -127,52 +132,52 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="bairro">*Bairro:</label>
+                                    <label for="bairro">Bairro:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
                                         id="bairro"
                                         [(ngModel)]="endereco.bairro"
                                         value="{{endereco.bairro}}"
                                         #bairro="ngModel"
                                         required>
-                                    <div [hidden]="bairro.valid || bairro.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!bairroIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira um bairro 😅
                                     </div>
                                     <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="rua">*Rua:</label>
+                                    <label for="rua">Rua:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
                                         id="rua"
                                         [(ngModel)]="endereco.rua"
                                         value="{{endereco.rua}}"
                                         #rua="ngModel"
                                         required>
-                                    <div [hidden]="rua.valid || rua.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!ruaIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira uma rua 😅
                                     </div>
                                     <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Número: {{endereco?.numero}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="numero">*Número:</label>
+                                    <label for="numero">Número:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
                                         id="numero"
                                         [(ngModel)]="endereco.numero"
                                         value="{{endereco.numero}}"
                                         #numero="ngModel"
                                         required>
-                                    <div [hidden]="numero.valid || numero.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!numeroIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira um número 😅
                                     </div>
                                     <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Complemento: {{endereco?.complemento}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="complemento">*Complemento:</label>
+                                    <label for="complemento">Complemento:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
                                         id="complemento"
                                         [(ngModel)]="endereco.complemento"
@@ -182,7 +187,7 @@
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Logradouro: {{endereco?.logradouro}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="logradouro">*Logradouro:</label>
+                                    <label for="logradouro">Logradouro:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="logradouro"
                                         id="logradouro"
                                         [(ngModel)]="endereco.logradouro"
