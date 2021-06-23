@@ -147,7 +147,7 @@
                                 <p *ngIf="freelancer!==editFreelancer">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="bairro">Bairro:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="bairro"
                                         id="bairro"
                                         [(ngModel)]="endereco.bairro"
                                         value="{{endereco.bairro}}"
@@ -162,7 +162,7 @@
                                 <p *ngIf="freelancer!==editFreelancer">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="rua">Rua:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="rua"
                                         id="rua"
                                         [(ngModel)]="endereco.rua"
                                         value="{{endereco.rua}}"
@@ -176,8 +176,8 @@
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Número: {{endereco?.numero}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="numero">Número:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
+                                    <label  for="numero">Número:</label>
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="numero"
                                         id="numero"
                                         [(ngModel)]="endereco.numero"
                                         value="{{endereco.numero}}"

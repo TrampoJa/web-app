@@ -152,6 +152,8 @@ export class CreateEstabelecimentoComponent implements OnInit {
       this.tipoIsValid = false;
       return false;
     }
+    else
+      this.tipoIsValid = true;
 
     return true;
   }

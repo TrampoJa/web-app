@@ -137,16 +137,22 @@ export class ProfileEstabelecimentoComponent implements OnInit {
       this.bairroIsValid = false;
       cont++;
     }
+    else
+      this.bairroIsValid = true;
 
     if (this.endereco.rua.length === 0) {
       this.ruaIsValid = false;
       cont++;
     }
+    else
+      this.ruaIsValid= true;
 
     if (this.endereco.numero.length === 0) {
       this.numeroIsValid = false;
       cont++;
     }
+    else
+      this.numeroIsValid = true;
 
     if (cont != 0) {
       return false;

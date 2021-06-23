@@ -138,26 +138,36 @@ export class ProfileFreelancerComponent implements OnInit {
   validators(): boolean {
     let cont = 0;
 
+    console.log(this.endereco.numero)
+
     if (this.calculaIdade(this.freelancer.nascimento) > 60
       || this.calculaIdade(this.freelancer.nascimento) < 16) {
         this.nascimentoIsValid = false;
         cont++;
     }
+    else
+      this.nascimentoIsValid = true;
 
     if (this.endereco.bairro.length === 0) {
       this.bairroIsValid = false;
       cont++;
     }
+    else
+      this.bairroIsValid = true;
 
     if (this.endereco.rua.length === 0) {
       this.ruaIsValid = false;
       cont++;
     }
+    else
+      this.ruaIsValid = true;
 
     if (this.endereco.numero.length === 0) {
       this.numeroIsValid = false;
       cont++;
     }
+    else
+      this.numeroIsValid = true;
 
     if (cont != 0) {
       return false;

@@ -33,6 +33,7 @@ export class CreateOfertasComponent implements OnInit {
 
   valorIsValid = true;
   freelancersIsValid = true;
+  dateIsValid = true;
 
   constructor(
     private service: OfertaService,
@@ -77,18 +78,52 @@ export class CreateOfertasComponent implements OnInit {
   validators(): boolean {
     let cont = 0;
 
+    if (this.dataOfertaMenorDataAtual(this.model.date_inicial, this.model.time)) {
+      this.dateIsValid = false;
+      cont++
+    }
+    else
+      this.dateIsValid = true;
+
     if (Number(this.model.valor) < 10) {
-      this.valorIsValid = !this.valorIsValid;
+      this.valorIsValid = false;
       cont++;
     }
+    else
+      this.valorIsValid = true;
+
     if (this.ofertas_para_publicar < Number(this.model.freelancers)) {
-      this.freelancersIsValid = !this.freelancersIsValid;
+      this.freelancersIsValid = false;
       cont++;
     }
+    else
+      this.freelancersIsValid = true;
+    
     if (cont != 0) {
       return false;
     }
+
     return true;
+  }
+
+  dataOfertaMenorDataAtual(dateForm: string, timeForm: string): boolean {
+    let splitDate = dateForm.split("-");
+    let splitTime = timeForm.split(":");
+
+    let ofertaDate = new Date(
+      Number(splitDate[0]), Number(splitDate[1])-1, Number(splitDate[2]), 
+      Number(splitTime[0]), Number(splitTime[1])
+    );
+
+    let date = new Date();
+
+    console.log("date: ", date);
+    console.log("ofertaDate: ", ofertaDate);
+
+    if (ofertaDate < date)
+      return true
+
+    return false;
   }
 
   onSubmit(): void { this.submitted = true; return; }
