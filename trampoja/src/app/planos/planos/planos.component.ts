@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PlanoService } from '../planos.service';
 import { Plano } from '../plano';
+import { UserService } from 'src/app/users/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-planos',
@@ -13,12 +15,20 @@ export class PlanosComponent implements OnInit {
 
   constructor(
     private service: PlanoService,
-    private location: Location
+    private userService: UserService,
+    private location: Location,
+    private router: Router
   )  { }
 
   ngOnInit(): void {
-    this.service.list()
-      .subscribe(planos => this.planos = planos);
+    this.userService.profile().subscribe(
+      (user) => {
+        if (user && user.last_name != 'Estabelecimento')
+          this.router.navigate(['/'])
+        else
+          this.service.list().subscribe(planos => this.planos = planos);
+      }
+    );
     return;
   }
 
