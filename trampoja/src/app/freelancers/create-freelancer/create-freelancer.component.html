@@ -5,7 +5,13 @@
                 <div class="col-xl-12">
                     <div class="card bg-dark text-light mb-4 shadow font backgroud">
                         <div class="card-header header text-center">
-                            <h2>Finalize seu cadastro</h2>
+                            <h4>Finalize seu cadastro</h4>
+                            <button
+                                *ngIf="step===1"
+                                (click)="goBack()"
+                                class="back shadow btn-dark">
+                                <i class=" fas fa-arrow-circle-left"></i>
+                            </button>
                         </div>
                         <div class="card-body body text-center">
                             <form #freelancerForm="ngForm" (ngSubmit)="onSubmit()">

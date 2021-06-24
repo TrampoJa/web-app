@@ -52,6 +52,8 @@ export class CreateEstabelecimentoComponent implements OnInit {
 
   errorMessage: string;
 
+  cnpjInfos = {};
+
   step = 0;
 
   constructor(
@@ -74,7 +76,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
   }
 
   next(): void {
-    if (this.validators())
+    if (this.validatorCNPJ(this.cnpjInfos) && this.validators())
       this.step = 1;
     return;
   }
@@ -82,27 +84,28 @@ export class CreateEstabelecimentoComponent implements OnInit {
   findCNPJ(): void {
     this.service.findCNPJ(this.model['cnpj']).subscribe(
       (data) => {
-        if (this.validatorCNPJ(data)) {
+        this.cnpjInfos = data
+        if (this.validatorCNPJ(this.cnpjInfos)) {
           this.cnpjIsValid = true;
-          this.populateCampos(data);
+          this.populateCampos(this.cnpjInfos);
         }
       })
   }
 
-  validatorCNPJ(data: object): boolean {
-    if (data['message']) {
+  validatorCNPJ(cnpjInfos: object): boolean {
+    if (cnpjInfos['message']) {
       this.errorMessage = 'CNPJ inválido';
       this.cnpjIsValid = false;
       return false;
     }
 
-    if (data['descricao_situacao_cadastral'] != 'Ativa') {
+    if (cnpjInfos['descricao_situacao_cadastral'] != 'Ativa') {
       this.errorMessage = 'A situação cadastral precisa constar como ativa';
       this.cnpjIsValid = false;
       return false;
     }
 
-    if (data['municipio'] != 'CHAPECO') {
+    if (cnpjInfos['municipio'] != 'CHAPECO') {
       this.errorMessage = 'Sua empresa precisa ser de Chapecó-SC';
       this.cnpjIsValid = false;
       return false;
@@ -111,14 +114,14 @@ export class CreateEstabelecimentoComponent implements OnInit {
     return true;
   }
 
-  populateCampos(data: Object): void {
-    this.model['razao_social'] = data['razao_social'];
-    this.model['nome'] = data['nome_fantasia'];
-    this.model['telefone'] = data['ddd_telefone_1'].replace(/ /g,"");
-    this.enderecoModel['bairro'] = data['bairro'];
-    this.enderecoModel['rua'] = data['logradouro'];
-    this.enderecoModel['numero'] = data['numero'];
-    this.enderecoModel['complemento'] = data['complemento'];
+  populateCampos(cnpjInfos: Object): void {
+    this.model['razao_social'] = cnpjInfos['razao_social'];
+    this.model['nome'] = cnpjInfos['nome_fantasia'];
+    this.model['telefone'] = cnpjInfos['ddd_telefone_1'].replace(/ /g,"");
+    this.enderecoModel['bairro'] = cnpjInfos['bairro'];
+    this.enderecoModel['rua'] = cnpjInfos['logradouro'];
+    this.enderecoModel['numero'] = cnpjInfos['numero'];
+    this.enderecoModel['complemento'] = cnpjInfos['complemento'];
   }
 
   submit(): void {
@@ -161,7 +164,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
   onSubmit(): void { this.submitted = true; return; }
 
   goBack(): void {
-    this.location.back();
+    this.step = 0;
     return;
   } 
 }

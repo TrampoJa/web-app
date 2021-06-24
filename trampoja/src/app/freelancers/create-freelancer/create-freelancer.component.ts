@@ -157,7 +157,7 @@ export class CreateFreelancerComponent implements OnInit {
   onSubmit(): void { this.submitted = true; return; }
 
   goBack(): void {
-    this.lct.back();
+    this.step = 0;
     return;
   }
 

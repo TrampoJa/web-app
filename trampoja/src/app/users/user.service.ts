@@ -57,8 +57,17 @@ export class UserService {
                 tap(response => res = response),
                 finalize(() => {
                     if (res) {
-                        this.router.navigate(['/login']);
                         alert("Cadastro realizado com sucesso!");
+                        let model = {
+                            'username': user.email,
+                            'password': user.password
+                        }
+                        this.token(model).subscribe((token) => {
+                            if (Object.keys(token).length !== 0 
+                                && token.constructor === Object)
+                            this.login(model).subscribe();
+                            }
+                        );
                     }
                 }),
                 catchError(this.handleError<User>('createUser')
@@ -213,19 +222,21 @@ export class UserService {
         );
     }
 
-    setFreelancerNoGroup(): void {
+    setFreelancerNoGroup(done: Function): Function {
         this.user.group="noGroupFreelancer"
         localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupFreelancer'}));
         while (this.groupValue.group === "") {
             this.groupSubject.next(this.user);
         }
+        return done();
     }
 
-    setEstabelecimentoNoGroup(): void {
+    setEstabelecimentoNoGroup(done: Function): Function {
         this.user.group="noGroupEstabelecimento"
         localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupEstabelecimento'}));
         while (this.groupValue.group === "") {
             this.groupSubject.next(this.user);
         }
+        return done();
     }
 }

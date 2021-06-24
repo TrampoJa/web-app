@@ -1,7 +1,14 @@
-.freelancer a{
-    color: #0D38D1;
+.image {
+    width: 200px;
+    padding: 10px;
 }
 
-.estabelecimento a{
-    color: #0D38D1;
+@media (max-width: 1024px){
+    .image {
+        width: 80px;
+        padding: 10px;
+    }
+    .font-mobile {
+        font-size: 12px;
+    }  
 }
