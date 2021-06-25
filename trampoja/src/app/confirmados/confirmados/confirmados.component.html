@@ -50,18 +50,39 @@
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
-                    <a *ngIf="group === 'Freelancer'" (click)="avaliar(confirmado?.oferta, confirmado?.estabelecimento_owner)" class="avaliar">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link">Avaliar</a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
-                    <a *ngIf="group === 'Estabelecimento'" (click)="avaliar(confirmado?.oferta, confirmado?.freelancer_owner)" class="avaliar">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link">Avaliar</a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
+
+                    <div *ngIf="!confirmado?.estabelecimento_avaliacao">
+                        <a *ngIf="group === 'Estabelecimento'" (click)="avaliar(confirmado?.oferta, confirmado?.freelancer_owner)" class="avaliar">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a class="color-link">Avaliar</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div *ngIf="confirmado?.estabelecimento_avaliacao"> 
+                        <a *ngIf="group === 'Estabelecimento'">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <span class="color-link">Você avaliou com uma nota {{confirmado?.estabelecimento_avaliacao}}</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div *ngIf="!confirmado?.freelancer_avaliacao">
+                        <a *ngIf="group === 'Freelancer'" (click)="avaliar(confirmado?.oferta, confirmado?.estabelecimento_owner)" class="avaliar">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a class="color-link">Avaliar</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div *ngIf="confirmado?.freelancer_avaliacao">
+                        <a *ngIf="group === 'Freelancer'">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <span class="color-link">Você avaliou com uma nota {{confirmado?.freelancer_avaliacao}}</span>
+                            </div>
+                        </a>
+                    </div>
+                    
                     <div>
                         <button
                             *ngIf="confirmado?.oferta_closed === false"

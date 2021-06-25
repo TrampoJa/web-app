@@ -45,19 +45,21 @@
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
-                    <a *ngIf="group === 'Freelancer'" href="#">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a href="#" class="color-link small stretched-link">Visualizar termo</a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
                     <span *ngIf="group === 'Estabelecimento'">
-                    <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link stretched-link">Ver perfil</a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
+                        <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a class="color-link stretched-link">Ver perfil</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
+                    </span>
+                    <span>
+                        <a *ngIf="group === 'Freelancer'" href="#">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="color-link small stretched-link">Visualizar termo</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
                     </span>
                     <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false" class="create-confirmado"
                         (mouseover)="confirm(interesse?.oferta, interesse?.freelancer)">
