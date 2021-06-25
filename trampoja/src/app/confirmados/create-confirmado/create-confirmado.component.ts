@@ -21,11 +21,8 @@ export class CreateConfirmadoComponent implements OnInit {
   }
 
   create(): void {
-    if (!confirm("Deseja mesmo confirmar este trampo?")){}
-    else {
-      this.service.create(this.oferta, this.freelancer)
-        .subscribe();
-      return;
-    }
+    if (confirm("Deseja mesmo confirmar este trampo?"))
+      this.service.create(this.oferta, this.freelancer).subscribe();
+    return;
   }
 }

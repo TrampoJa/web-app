@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 
 import { AvalicaoService } from '../avaliacao.service'
@@ -16,8 +16,12 @@ export class CreateAvaliacaoComponent implements OnInit {
 
   @Input() oferta: number;
   @Input() owner: number;
+  @Input() habilitarAvaliacao: boolean;
+  @Output() habilitarAvaliacaoChange = new EventEmitter<boolean>();
   
-  constructor(private service: AvalicaoService) { }
+  constructor(
+    private service: AvalicaoService,
+  ) { }
 
   ngOnInit(): void {
     return;
@@ -27,12 +31,28 @@ export class CreateAvaliacaoComponent implements OnInit {
     this.service.create(this.owner, this.oferta, nota)
       .subscribe(
         (avaliacao) => {
-          location.reload();
-        });
+          if (!(Object.keys(avaliacao).length === 0 
+                && avaliacao.constructor === Object))
+            location.reload();
+          
+          else
+            this.goBack();
+        }
+      );
+  }
+
+  color(id: string, flag: string): void {
+    let star = document.getElementById(id);
+
+    if (flag == 'add')
+      star.style.color = 'yellow';
+    else
+      star.style.color = null;
   }
 
   goBack(): void {
-    location.reload();
+    this.habilitarAvaliacao = false;
+    this.habilitarAvaliacaoChange.emit(this.habilitarAvaliacao)
     return;
   }
 }

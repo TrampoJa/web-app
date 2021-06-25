@@ -80,11 +80,13 @@
 <app-create-avaliacao
     [oferta]="oferta"
     [owner]="owner"
+    [(habilitarAvaliacao)]="habilitarAvaliacao"
     *ngIf="habilitarAvaliacao==true">
 </app-create-avaliacao>
 <app-cancelar
     [oferta]="oferta"
     [freelancer]="freelancer"
     [confirmado]="confirmado"
+    [(habilitarCancelamento)]="habilitarCancelamento"
     *ngIf="habilitarCancelamento==true">
 </app-cancelar>
