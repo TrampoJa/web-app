@@ -3,99 +3,121 @@
         <div class="container-fluid">
             <div class="row main">
                 <div class="col-xl-12">
-                    <div class="card bg-dark text-light mb-4 shadow font backgroud" [hidden]="submitted">
+                    <div class="card bg-dark text-light mb-4 shadow font backgroud">
                         <div class="card-header header text-center">
-                            <h2>Finalize seu cadastro</h2>
+                            <h4>Finalize seu cadastro</h4>
+                            <button
+                                *ngIf="step===1"
+                                (click)="goBack()"
+                                class="back shadow btn-dark">
+                                <i class=" fas fa-arrow-circle-left"></i>
+                            </button>
                         </div>
                         <div class="card-body body text-center">
                             <form #estabelecimentoForm="ngForm" (ngSubmit)="onSubmit()">
-                                <label for="nome">Nome do estalecimento:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
-                                    id="nome"
-                                    [(ngModel)]="model['nome']"
-                                    #nome="ngModel"                               
-                                    required><br>
-                                <label for="cnpj">CNPJ:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="cnpj"
-                                    id="cnpj"
-                                    [(ngModel)]="model['cnpj']"
-                                    #cnpj="ngModel"
-                                    mask="00.000.000/0000-00"
-                                    required><br>
-                                <label for="razao_social">Razão Social:</label>
+                                <div *ngIf="step===0">
+                                    <label for="cnpj">CNPJ:</label>
+                                    <input (change)="findCNPJ()" class="col-md-6 offset-md-3 form-control inputs" name="cnpj"
+                                        id="cnpj"
+                                        [(ngModel)]="model['cnpj']"
+                                        #cnpj="ngModel"
+                                        mask="00.000.000/0000-00"
+                                        required>
+                                    <div *ngIf="!cnpjIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        {{errorMessage}}
+                                    </div><br>
+                                    <label for="nome">Nome da empresa:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
+                                        id="nome"
+                                        [(ngModel)]="model['nome']"
+                                        #nome="ngModel"                               
+                                        required><br>
+                                    <label for="razao_social">Razão Social:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="razao_social"
                                         id="razao_social"
                                         [(ngModel)]="model['razao_social']"
                                         #razao_social="ngModel"
                                         required><br>
-                                <label for="tipo">Tipo:</label>
+                                    <label for="tipo">Tipo:</label>
                                     <select class="col-md-6 offset-md-3 form-control inputs" name="tipo"
                                         id="tipo"
                                         [(ngModel)]="model['tipo']"
-                                        #tipo="ngModel"                               
-                                        required>
+                                        #tipo="ngModel">
                                         <option *ngFor="let tp of tipos" [value]="tp">{{tp}}</option>
+                                    </select>
+                                    <div *ngIf="!tipoIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Não esqueça do tipo 😁
+                                    </div><br>
+                                    <label for="telefone">Telefone:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
+                                        [(ngModel)]="model['telefone']"
+                                        #telefone="ngModel"
+                                        id="telefone"
+                                        mask="(00) 0000-0000 || (00) 0 0000-0000"
+                                        required>
+                                    <div [hidden]="telefone.valid || telefone.pristine"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Não esqueça do seu DDD 😁
+                                    </div><br>
+                                    <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
+                                        (click)="next()"
+                                        [disabled]="!estabelecimentoForm.form.valid" >
+                                        Próximo &nbsp; <i class="far fa-hand-point-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <div *ngIf="step===1">
+                                    <label for="estado">Estado:</label>
+                                    <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
+                                        [(ngModel)]="enderecoModel['estado']"
+                                        #estado="ngModel"
+                                        id="estado"
+                                        value="SC"
+                                        placeholder="SC"
+                                        required>
+                                        <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
                                     </select><br>
-                                <label for="telefone">Telefone:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
-                                    [(ngModel)]="model['telefone']"
-                                    #telefone="ngModel"
-                                    id="telefone"
-                                    mask="(00) 0000-0000 || (00) 0 0000-0000"
-                                    required><br>
-                                <br>
-                                <br>
-                                <hr>
-                                <h2>  Endereço </h2>
-                                <br>
-                                <label for="estado">Estado:</label>
-                                <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
-                                    [(ngModel)]="enderecoModel['estado']"
-                                    #estado="ngModel"
-                                    id="estado"
-                                    value="SC"
-                                    placeholder="SC"
-                                    required>
-                                    <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
-                                </select><br>
-                                <label for="cidade">Cidade:</label>
-                                <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
-                                    [(ngModel)]="enderecoModel['cidade']"
-                                    #cidade="ngModel"
-                                    id="cidade"
-                                    value="Chapecó"
-                                    placeholder="Chapecó"
-                                    required>
-                                    <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
-                                </select><br>
-                                <label for="bairro">Bairro:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
-                                    [(ngModel)]="enderecoModel['bairro']"
-                                    #bairro="ngModel"
-                                    id="bairro"
-                                    required><br>
-                                <label for="rua">Rua:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
-                                    [(ngModel)]="enderecoModel['rua']"
-                                    #rua="ngModel"
-                                    id="rua"
-                                    required><br>
-                                <label for="numero">Número:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
-                                    [(ngModel)]="enderecoModel['numero']"
-                                    #numero="ngModel"
-                                    id="numero"
-                                    required><br>
-                                <label for="complemento">Complemento:</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
-                                    [(ngModel)]="enderecoModel['complemento']"
-                                    #complemento="ngModel"
-                                    id="complemento"><br> 
-                                <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
-                                    (click)="submit()"
-                                    [disabled]="!estabelecimentoForm.form.valid" >
-                                    Pronto
-                                </button>
+                                    <label for="cidade">Cidade:</label>
+                                    <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
+                                        [(ngModel)]="enderecoModel['cidade']"
+                                        #cidade="ngModel"
+                                        id="cidade"
+                                        value="Chapecó"
+                                        placeholder="Chapecó"
+                                        required>
+                                        <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
+                                    </select><br>
+                                    <label for="bairro">Bairro:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
+                                        [(ngModel)]="enderecoModel['bairro']"
+                                        #bairro="ngModel"
+                                        id="bairro"
+                                        required><br>
+                                    <label for="rua">Rua:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
+                                        [(ngModel)]="enderecoModel['rua']"
+                                        #rua="ngModel"
+                                        id="rua"
+                                        required><br>
+                                    <label for="numero">Número:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
+                                        [(ngModel)]="enderecoModel['numero']"
+                                        #numero="ngModel"
+                                        id="numero"
+                                        required><br>
+                                    <label for="complemento">Complemento:</label>
+                                    <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
+                                        [(ngModel)]="enderecoModel['complemento']"
+                                        #complemento="ngModel"
+                                        id="complemento"><br> 
+                                    <button class="btn-submit shadow col-md-6 offset-md-3 form-control btn-dark"
+                                        (click)="submit()"
+                                        [disabled]="!estabelecimentoForm.form.valid" >
+                                        Pronto &nbsp; <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

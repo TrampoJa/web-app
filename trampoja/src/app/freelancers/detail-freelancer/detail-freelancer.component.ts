@@ -33,7 +33,7 @@ export class DetailFreelancerComponent implements OnInit {
       .subscribe(
         (freelancer) => {
           this.freelancer = freelancer,
-          this.imageURL = this.appService.url+this.freelancer.foto
+          this.imageURL = this.freelancer.foto ? this.appService.url+this.freelancer.foto : null;
         });
     return;
   }

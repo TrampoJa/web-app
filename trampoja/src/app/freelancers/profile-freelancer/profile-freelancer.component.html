@@ -12,13 +12,18 @@
                             <div>
                                 <img class="freelancer" width="250px" [src]="imageURL" alt=""><br>
                                 <label class="foto form-control" for="foto">
-                                    <i class="fas fa-pencil-alt"></i> &nbsp; Editar foto
+                                    <i class="fas fa-upload"></i> &nbsp; Carregar imagem
                                 </label>
                                 <input (change)="loadImage($event)" class="col-md-6 offset-md-3 form-control"
                                     name="foto"
                                     type="file"
                                     id="foto"> <br>
                             </div>
+                            <div *ngIf="!imageIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-primary">
+                                    {{errorMessage}}
+                            </div>
+                            <br>
                             <button *ngIf="freelancer!==editFreelancer"
                                 (click)="edit(freelancer)" class="pencil shadow btn-dark"><i class="fas fa-pencil-alt"></i></button>
                             <button *ngIf="freelancer===editFreelancer" 
@@ -26,30 +31,30 @@
                             <h2>Seus dados</h2><br>
                             <form #freelancerForm="ngForm" class="form">
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="nome">*Nome:</label>
+                                    <label for="nome">Nome:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="nome"
                                         id="nome"
                                         [(ngModel)]="freelancer.nome"
                                         value="{{freelancer.nome}}"
                                         #nome="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="nome.valid || nome.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                    </div>
-                                   <label for="nome">*Sobrenome:</label>
+                                   <br>
+                                   <label for="nome">Sobrenome:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="sobrenome"
                                         id="sobrenome"
                                         [(ngModel)]="freelancer.sobrenome"
                                         value="{{freelancer.sobrenome}}"
                                         #sobrenome="ngModel"
                                         required>
-                                    <br>
                                     <div [hidden]="sobrenome.valid || sobrenome.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Telefone: {{freelancer?.telefone | fone}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
@@ -61,15 +66,15 @@
                                         #telefone="ngModel"
                                         mask="(00) 0000-0000 || (00) 0 0000-0000"
                                         required>
-                                    <br>
                                     <div [hidden]="telefone.valid || telefone.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Campo obrigatório, não esqueça do DDD 😁
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Data de nascimento: {{freelancer?.nascimento | date:"dd/MM/yyyy"}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="nascimento">*Data de nascimento:</label>
+                                    <label for="nascimento">Data de nascimento:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="nascimento"
                                         id="nascimento"
                                         type="date"
@@ -77,15 +82,15 @@
                                         value="{{freelancer.nascimento}}"
                                         #nascimento="ngModel"
                                         required>
+                                    <div *ngIf="!nascimentoIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira uma data válida, você precisa ter mais de 16 anos 😅
+                                    </div><br>
                                     <br>
-                                    <div [hidden]="nascimento.valid || nascimento.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
-                                    </div>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Bio: {{freelancer?.bio | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="bio">*Bio:</label>
+                                    <label for="bio">Bio:</label>
                                     <textarea class="col-md-6 offset-md-3 form-control inputs" name="bio"
                                         id="bio"
                                         rows="10" cols="40" maxlength="500"
@@ -93,12 +98,12 @@
                                         value="{{freelancer.bio}}"
                                         #bio="ngModel"
                                         required>
-                                    <br>
                                     </textarea>
                                     <div [hidden]="bio.valid || bio.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <br>
                                 <hr>
@@ -107,7 +112,7 @@
                                 <br>
                                 <p *ngIf="freelancer!==editFreelancer">Estado: {{endereco?.estado}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="estado">*Estado:</label>
+                                    <label for="estado">Estado:</label>
                                     <select class="col-md-6 offset-md-3 form-control inputs" name="estado"
                                         id="estado"
                                         [(ngModel)]="endereco.estado"
@@ -116,15 +121,15 @@
                                         required>
                                         <option *ngFor="let op of estadoOptions" [value]="op">{{op}}</option>
                                     </select>
-                                    <br>
                                     <div [hidden]="estado.valid || estado.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Cidade: {{endereco?.cidade}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="cidade">*Cidade:</label>
+                                    <label for="cidade">Cidade:</label>
                                     <select class="col-md-6 offset-md-3 form-control inputs" name="cidade"
                                         id="cidade"
                                         [(ngModel)]="endereco.cidade"
@@ -133,60 +138,60 @@
                                         required>
                                         <option *ngFor="let op of cidadeOptions" [value]="op">{{op}}</option>
                                     </select>
-                                    <br>
                                     <div [hidden]="cidade.valid || cidade.pristine"
                                         class="col-md-6 offset-md-3 alert alert-danger">
                                         Campo obrigatório!
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Bairro: {{endereco?.bairro | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="bairro">*Bairro:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="bairro"
+                                    <label for="bairro">Bairro:</label>
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="bairro"
                                         id="bairro"
                                         [(ngModel)]="endereco.bairro"
                                         value="{{endereco.bairro}}"
                                         #bairro="ngModel"
                                         required>
-                                    <br>
-                                    <div [hidden]="bairro.valid || bairro.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!bairroIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira um bairro 😅
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Rua: {{endereco?.rua | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="rua">*Rua:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="rua"
+                                    <label for="rua">Rua:</label>
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="rua"
                                         id="rua"
                                         [(ngModel)]="endereco.rua"
                                         value="{{endereco.rua}}"
                                         #rua="ngModel"
                                         required>
-                                    <br>
-                                    <div [hidden]="rua.valid || rua.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!ruaIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira uma rua 😅
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Número: {{endereco?.numero}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="numero">*Número:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="numero"
+                                    <label  for="numero">Número:</label>
+                                    <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="numero"
                                         id="numero"
                                         [(ngModel)]="endereco.numero"
                                         value="{{endereco.numero}}"
                                         #numero="ngModel"
                                         required>
-                                    <br>
-                                    <div [hidden]="numero.valid || numero.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
+                                    <div *ngIf="!numeroIsValid"
+                                        class="col-md-6 offset-md-3 alert alert-primary">
+                                        Insira um número 😅
                                     </div>
+                                    <br>
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Complemento: {{endereco?.complemento}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="complemento">*Complemento:</label>
+                                    <label for="complemento">Complemento:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="complemento"
                                         id="complemento"
                                         [(ngModel)]="endereco.complemento"
@@ -196,7 +201,7 @@
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Logradouro: {{endereco?.logradouro}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="logradouro">*Logradouro:</label>
+                                    <label for="logradouro">Logradouro:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="logradouro"
                                         id="logradouro"
                                         [(ngModel)]="endereco.logradouro"
