@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
 
 import { User } from '../../user';
@@ -31,12 +32,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private app: AppComponent,
-    private service: UserService
+    private service: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.logo = this.app.logo;
-    
+    if (this.service.tokenValue)
+      this.router.navigate(['/'])
     setTimeout(() => {
       this.app.out();
     });
