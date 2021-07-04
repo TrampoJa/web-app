@@ -7,8 +7,14 @@
                         <div class="card-header header text-center">
                             <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
                             <h2>Simples e Fácil!</h2>
-                            <span class="span-planos">
+                            <span *ngIf="ofertas_para_publicar > 1" class="span-planos">
                                 Você pode publicar {{ofertas_para_publicar}} trampos<br>
+                            </span>
+                            <span *ngIf="ofertas_para_publicar == 1" class="span-planos">
+                                Você pode publicar {{ofertas_para_publicar}} trampo<br>
+                            </span>
+                            <span *ngIf="ofertas_para_publicar == 0" class="span-planos">
+                                Você não tem trampos para publicar<br>
                             </span>
                             <a *ngIf="ofertas_para_publicar < 3 || !freelancersIsValid"
                                 class="link-planos btn-submit"[routerLink]="['/planos']">
@@ -27,7 +33,7 @@
                                 </select>
                                 <br>
                                 <label for="freelancers">Quantas pessoas vai precisar?</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="freelancers"
+                                <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="freelancers"
                                     [(ngModel)]="model['freelancers']"
                                     #freelancers="ngModel"
                                     id="freelancers"
@@ -39,17 +45,17 @@
                                 </div>
                                 <br>
                                 <label for="valor">Quanto pretende pagar por hora?</label>
-                                <input class="col-md-6 offset-md-3 form-control inputs" name="valor"
+                                <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="valor"
                                     type="number"
                                     id="valor"
                                     [(ngModel)]="model['valor']"
                                     #valor="ngModel"
                                     required>
                                 <div [hidden]="valor.valid"
-                                    class="col-md-6 offset-md-3 alert alert-danger">
+                                    class="col-md-6 offset-md-3 alert alert-warning">
                                     Valor mínimo R$10,00.
                                 </div>
-                                <div *ngIf="!valorIsValid"
+                                <div *ngIf="!valorIsValid && valor.valid"
                                     class="col-md-6 offset-md-3 alert alert-danger">
                                     Valor mínimo R$10,00.
                                 </div>
@@ -76,6 +82,10 @@
                                     id="data"
                                     type="date"
                                     required>
+                                <div *ngIf="!dateIsValid"
+                                    class="col-md-6 offset-md-3 alert alert-primary">
+                                    Essa data já passou 😅 <br> Não esqueça de conferir a hora de ínicio 👊
+                                </div>
                                 <br>
                                 <label for="obs">Observações:</label>
                                 <textarea class="col-md-6 offset-md-3 form-control inputs" name="obs"

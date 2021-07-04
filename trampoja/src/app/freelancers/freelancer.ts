@@ -6,7 +6,6 @@ export interface Freelancer {
     nascimento: string;
     foto: string;
     rg: string;
-    foto_doc: string;
     bio: string;
     create: string;
     owner: string;

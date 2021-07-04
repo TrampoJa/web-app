@@ -36,15 +36,6 @@ export class OfertaService {
         );
     }
 
-    getOfertasContratadas(): Observable<any> {
-        return this.service.http.get<Oferta>
-            (this.service.appRoot.concat("ofertas/contratadas"))
-            .pipe(
-                catchError(this.handleError('profileOfertas')
-            )
-        );
-    }
-
     create(oferta: any): Observable<Oferta> {
         let res;
         return this.service.http.post<Oferta>

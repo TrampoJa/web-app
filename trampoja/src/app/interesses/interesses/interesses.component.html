@@ -6,7 +6,7 @@
             <h2 *ngIf="group === ''">Interesses</h2>
         </div>
         <div *ngIf="!interesses?.length" class="text-center" style="margin-top: 10em;">
-            <h1 class="color-link">Você não possui nenhum interesse</h1>
+            <h1 class="color-link">Você não tem interesses</h1>
         </div>
         <div class="row">
             <div class="col-xl-3 col-md-6" *ngFor="let interesse of interesses">
@@ -27,37 +27,40 @@
                             <span>Nome: {{interesse?.freelancer_nome | titlecase}}</span> <span> {{interesse?.freelancer_sobrenome | titlecase}} </span> <br>
                             Telefone: {{interesse?.freelancer_telefone| fone}} <br>
                             <i *ngIf="interesse?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{interesse?.avaliacao | format}}</span><br><br>
-                            Trampos: {{interesse?.trampos}} <a *ngIf="interesse?.trampos != 0" class="color-link historico" [routerLink]="['/historico', interesse?.freelancer_owner]">Ver histórico</a>
+                            <span *ngIf="interesse?.trampos != 0">
+                                Trampos: {{interesse?.trampos}} 
+                                <a class="color-link historico"
+                                    [routerLink]="['/historico', interesse?.freelancer_owner]">
+                                    Ver histórico
+                                </a>
+                            </span>
+                            <span *ngIf="interesse?.trampos == 0">
+                                Nenhum trampo finalizado
+                            </span>
                         </div>
                     </div>
                     <a *ngIf="group === 'Freelancer'" [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">
                         <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link small stretched-link"
-                                *ngIf="interesse?.estabelecimento_id"
-                                [routerLink]="['/detalhes-do-estabelecimento', interesse?.estabelecimento_id]">
-                                {{interesse?.estabelecimento | titlecase}}
-                            </a>
+                            <a class="color-link small stretched-link">{{interesse?.estabelecimento | titlecase}}</a>
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
                     <span *ngIf="group === 'Estabelecimento'">
-                    <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a class="color-link stretched-link"
-                                *ngIf="interesse?.freelancer"
-                                [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
-                                Ver perfil
-                            </a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
+                        <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a class="color-link stretched-link">Ver perfil</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
                     </span>
-                    <a *ngIf="group === 'Freelancer'" href="#">
-                        <div class="card-footer footer d-flex align-items-center justify-content-between">
-                            <a href="#" class="color-link small stretched-link">Visualizar termo</a>
-                            <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </a>
+                    <span>
+                        <a *ngIf="group === 'Freelancer'" href="#">
+                            <div class="card-footer footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="color-link small stretched-link">Visualizar termo</a>
+                                <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </a>
+                    </span>
                     <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false" class="create-confirmado"
                         (mouseover)="confirm(interesse?.oferta, interesse?.freelancer)">
                         <app-create-confirmado

@@ -7,6 +7,7 @@ import { EstabelecimentoService } from '../estabelecimento.service';
 import { Endereco } from '../../enderecos/endereco';
 import { EnderecoService } from '../../enderecos/endereco.service';
 import { UserService } from 'src/app/users/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-estabelecimento',
@@ -19,15 +20,15 @@ export class CreateEstabelecimentoComponent implements OnInit {
   group: String;
   model = {
     'nome': '',
-    'cpf_cnpj': '',
+    'cnpj': '',
     'razao_social': '',
     'tipo': '',
     'telefone': '',
     'logo': ''
   };
   enderecoModel = {
-    'estado': '',
-    'cidade': '',
+    'estado': 'SC',
+    'cidade': 'Chapecó',
     'bairro': '',
     'rua': '',
     'numero': '',
@@ -46,11 +47,21 @@ export class CreateEstabelecimentoComponent implements OnInit {
   ];
   submitted = false;
 
+  cnpjIsValid = true;
+  tipoIsValid = true;
+
+  errorMessage: string;
+
+  cnpjInfos = {};
+
+  step = 0;
+
   constructor(
     private service: EstabelecimentoService,
     private userService: UserService,
     private enderecoService: EnderecoService,
     private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -58,14 +69,64 @@ export class CreateEstabelecimentoComponent implements OnInit {
       (user) => {
         this.group = user.last_name;
         if (this.group == 'Estabelecimento' || this.group == 'Freelancer') {
-          this.goBack();
+          this.router.navigate(['meus-trampos/']);
         }
       }
     );
   }
 
+  next(): void {
+    if (this.validatorCNPJ(this.cnpjInfos) && this.validators())
+      this.step = 1;
+    return;
+  }
+
+  findCNPJ(): void {
+    this.service.findCNPJ(this.model['cnpj']).subscribe(
+      (data) => {
+        this.cnpjInfos = data
+        if (this.validatorCNPJ(this.cnpjInfos)) {
+          this.cnpjIsValid = true;
+          this.populateCampos(this.cnpjInfos);
+        }
+      })
+  }
+
+  validatorCNPJ(cnpjInfos: object): boolean {
+    if (cnpjInfos['message']) {
+      this.errorMessage = 'CNPJ inválido';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    if (cnpjInfos['descricao_situacao_cadastral'] != 'Ativa') {
+      this.errorMessage = 'A situação cadastral precisa constar como ativa';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    if (cnpjInfos['municipio'] != 'CHAPECO') {
+      this.errorMessage = 'Sua empresa precisa ser de Chapecó-SC';
+      this.cnpjIsValid = false;
+      return false;
+    }
+
+    return true;
+  }
+
+  populateCampos(cnpjInfos: Object): void {
+    this.model['razao_social'] = cnpjInfos['razao_social'];
+    this.model['nome'] = cnpjInfos['nome_fantasia'];
+    this.model['telefone'] = cnpjInfos['ddd_telefone_1'].replace(/ /g,"");
+    this.enderecoModel['bairro'] = cnpjInfos['bairro'];
+    this.enderecoModel['rua'] = cnpjInfos['logradouro'];
+    this.enderecoModel['numero'] = cnpjInfos['numero'];
+    this.enderecoModel['complemento'] = cnpjInfos['complemento'];
+  }
+
   submit(): void {
-    this.create();
+    if (this.validators())
+      this.create();
     return;
   }
 
@@ -74,12 +135,9 @@ export class CreateEstabelecimentoComponent implements OnInit {
     this.service.create(this.model)
       .subscribe(
         (estabelecimento) => {
-          this.estabelecimento = estabelecimento;
-          if (Object.keys(estabelecimento).length === 0 
-                && estabelecimento.constructor === Object) {
-            location.reload();
-          }
-          else {
+          if (!(Object.keys(estabelecimento).length === 0 
+                && estabelecimento.constructor === Object)) {
+            this.estabelecimento = estabelecimento;
             this.createEndereco();
           }
         });
@@ -92,10 +150,21 @@ export class CreateEstabelecimentoComponent implements OnInit {
     return;
   }
 
+  validators(): boolean {
+    if (this.model.tipo == '') {
+      this.tipoIsValid = false;
+      return false;
+    }
+    else
+      this.tipoIsValid = true;
+
+    return true;
+  }
+
   onSubmit(): void { this.submitted = true; return; }
 
   goBack(): void {
-    this.location.back();
+    this.step = 0;
     return;
   } 
 }

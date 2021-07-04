@@ -18,6 +18,7 @@ import { DetailFreelancerComponent } from './freelancers/detail-freelancer/detai
 import { CreateFreelancerComponent } from './freelancers/create-freelancer/create-freelancer.component';
 import { ProfileFreelancerComponent } from './freelancers/profile-freelancer/profile-freelancer.component';
 import { HistoricoFreelancerComponent } from './freelancers/historico-freelancer/historico-freelancer.component';
+import { UploadDocsComponent } from './freelancers/upload-docs/upload-docs.component';
 
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'novo-freelancer', component: CreateFreelancerComponent },
   { path: 'perfil', component: ProfileFreelancerComponent },
   { path: 'historico/:id', component: HistoricoFreelancerComponent },
+  { path: 'upload', component: UploadDocsComponent },
 
   { path: 'dashboard', component: DashboardComponent },
 

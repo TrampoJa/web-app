@@ -1,7 +1,7 @@
 export interface Estabelecimento {
     id: number;
     nome: string;
-    cpf_cnpj: string;
+    cnpj: string;
     razao_social: string;
     tipo: string;
     telefone: string;

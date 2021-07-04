@@ -18,6 +18,9 @@ export class DetailOfertasComponent implements OnInit {
   owner = this.userService.ownerValue?.owner;
   group = this.userService.groupValue?.group;
 
+  dateIsValid = true;
+  valorIsValid = true;
+
   constructor(
     private route: ActivatedRoute,
     public userService: UserService,
@@ -40,10 +43,11 @@ export class DetailOfertasComponent implements OnInit {
   update(): void {
     if (this.editOferta) {
       let id = this.route.snapshot.paramMap.get('id');
-      this.service
-        .update(id, this.editOferta)
-        .subscribe(oferta => (this.oferta = oferta));
-      this.cancelEdit();
+      if (this.validators()) {
+        this.service.update(id, this.editOferta)
+          .subscribe(oferta => (this.oferta = oferta));
+        this.cancelEdit();
+      } 
     }
     return;
   }
@@ -69,6 +73,47 @@ export class DetailOfertasComponent implements OnInit {
     this.editOferta = null;
     this.detail();
     return;
+  }
+
+  validators(): boolean {
+    let cont = 0;
+
+    if (this.dataOfertaMenorDataAtual(this.oferta.date_inicial, this.oferta.time)) {
+      this.dateIsValid = false;
+      cont++
+    }
+    else
+      this.dateIsValid = true;
+
+    if (Number(this.oferta.valor) < 10) {
+      this.valorIsValid = false;
+      cont++;
+    }
+    else
+      this.valorIsValid = true;
+    
+    if (cont != 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+  dataOfertaMenorDataAtual(dateForm: string, timeForm: string): boolean {
+    let splitDate = dateForm.split("-");
+    let splitTime = timeForm.split(":");
+
+    let ofertaDate = new Date(
+      Number(splitDate[0]), Number(splitDate[1])-1, Number(splitDate[2]), 
+      Number(splitTime[0]), Number(splitTime[1])
+    );
+
+    let date = new Date();
+
+    if (ofertaDate < date)
+      return true
+
+    return false;
   }
 
   goBack(): void {

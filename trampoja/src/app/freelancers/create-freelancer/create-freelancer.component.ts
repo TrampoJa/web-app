@@ -8,6 +8,7 @@ import { User } from 'src/app/users/user';
 import { Endereco } from '../../enderecos/endereco';
 import { EnderecoService } from '../../enderecos/endereco.service'; 
 import { UserService } from 'src/app/users/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-freelancer',
@@ -29,8 +30,8 @@ export class CreateFreelancerComponent implements OnInit {
     'foto': ''
   };
   enderecoModel = {
-    'estado': '',
-    'cidade': '',
+    'estado': 'SC',
+    'cidade': 'Chapecó',
     'bairro': '',
     'rua': '',
     'numero': '',
@@ -44,32 +45,42 @@ export class CreateFreelancerComponent implements OnInit {
   ];
   submitted = false;
 
+  nascimentoIsValid = true;
+
+  date = new Date();
+
+  step = 0;
+
   constructor(
     private service: FreelancerService,
     private enderecoService: EnderecoService,
     private userService: UserService,
     private lct: Location,
-  ) {
-      this.userService.profile().subscribe(
-        (user) => {
-          this.user = user;
-          this.splitName();
-      });
-    }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        this.group = user.last_name;
+        this.user = user;
+        this.group = this.user.last_name;
         if (this.group == 'Freelancer' || this.group == 'Estabelecimento') {
-          this.goBack();
+          this.router.navigate(['trampos/']);
         }
+        this.splitName();
       }
     );
   }
 
+  next(): void {
+    if (this.validators())
+      this.step = 1;
+    return;
+  }
+
   submit(): void {
-    this.create();
+    if (this.validators())
+      this.create();
     return;
   }
 
@@ -78,16 +89,12 @@ export class CreateFreelancerComponent implements OnInit {
     this.service.create(this.model)
       .subscribe(
         (freelancer) => {
-          this.freelancer = freelancer;
-          if (Object.keys(freelancer).length === 0 
-                && freelancer.constructor === Object) {
-            location.reload();
-          }
-          else {
+          if (!(Object.keys(freelancer).length === 0 
+                && freelancer.constructor === Object)) {
+            this.freelancer = freelancer;
             this.createEndereco();
           }
-        }
-      );
+        });
     return;
   }
 
@@ -105,10 +112,52 @@ export class CreateFreelancerComponent implements OnInit {
     }
   }
 
+  validators(): boolean {
+    let cont = 0;
+
+    if (this.calculaIdade(this.model['nascimento']) > 60
+      || this.calculaIdade(this.model['nascimento']) < 16) {
+        this.nascimentoIsValid = false;
+        cont++;
+        console.log(this.calculaIdade(this.model.nascimento))
+    }
+    else
+      this.nascimentoIsValid = true;
+
+    if (cont != 0) {
+      return false;
+    }
+    return true;
+  }
+
+  calculaIdade(nascimentoForm: string): Number {
+    let nascimento = nascimentoForm.split("-");
+    let date = new Date(Number(nascimento[0]), Number(nascimento[1]), Number(nascimento[2]));
+
+    let diaNascimento = date.getDay();
+    let mesNascimento = date.getMonth();
+    let anoNascimento = date.getFullYear();
+    
+    let diaAtual = this.date.getDay();
+    let mesAtual = this.date.getMonth()+1;
+    let anoAtual = this.date.getFullYear();
+
+    var resultDay = (diaAtual - diaNascimento);
+    var resultMonth = (mesAtual - mesNascimento);
+    var resultYear = (anoAtual - anoNascimento);
+
+    if (resultMonth < 0) resultYear --;
+    if (resultMonth == 0) {
+      if (resultDay < 0) resultYear --;
+    }
+
+    return Number(resultYear);
+  }
+
   onSubmit(): void { this.submitted = true; return; }
 
   goBack(): void {
-    this.lct.back();
+    this.step = 0;
     return;
   }
 

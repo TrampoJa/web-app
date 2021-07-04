@@ -9,13 +9,17 @@ export class LoginInterceptor implements HttpInterceptor {
 
     constructor(
         private service: UserService,
-        private router: Router
+        private router: Router,
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         const token = this.service.tokenValue;
+        console.log(location.pathname);
         if (!token) {
-            this.router.navigate(['login/']);
+            if (location.pathname == '/register')
+                this.router.navigate(['register/'])
+            else
+                this.router.navigate(['login/']);
         }
         return next.handle(req);
     }
