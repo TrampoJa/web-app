@@ -10,13 +10,10 @@
                     <div class="card-body body text-center">
                         <ul class="estrelas">
                             <li *ngFor="let nota of notas">
-                                <img
-                                    (click)="confirm(nota)"
-                                    class="estrela"
-                                    width="50px"
-                                    src="../../../assets/img/estrela.svg"
-                                    alt=""
-                                >
+                                <a (mouseover)="color(nota, 'add')" (mouseout)="color(nota, 'remove')"
+                                   (click)="confirm(nota)">
+                                    <i [id]="nota" class="estrela far fa-star"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>

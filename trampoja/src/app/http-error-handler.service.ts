@@ -44,13 +44,15 @@ export class HttpErrorHandler {
       
       console.log("status", error.status);
 
-      if (operation == 'tokenUser'){
+      if (operation == 'tokenUser')
         alert("Email ou senha inválidos.") // Feito desta forma pois o token funciona
                                           // por uma lib externa e não temos controle da resposta
-      }
-      if (!error.status || (error.status >= 500)) {
-         alert("Ops algo deu errado")
-      }
+      else if (operation == 'findCNPJ')
+        return;
+      
+      else if (!error.status || (error.status >= 500))
+        alert("Ops algo deu errado")
+
       else
         alert(error.error);
 

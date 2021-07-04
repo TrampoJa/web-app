@@ -19,17 +19,17 @@
                                 <p>
                                     <strong *ngIf="oferta!==editOferta">  {{oferta?.valor | real}} por hora</strong>
                                     <span *ngIf="oferta===editOferta">
-                                        <label for="valor">*Valor:</label>
-                                        <input class="col-md-6 offset-md-3 form-control inputs" name="valor"
+                                        <label for="valor">Valor:</label>
+                                        <input (change)="validators()" class="col-md-6 offset-md-3 form-control inputs" name="valor"
                                             id="valor"
                                             [(ngModel)]="oferta.valor"
                                             value="{{oferta.valor}}"
                                             #valor="ngModel"
                                             required>
-                                        <div [hidden]="valor.valid || valor.pristine"
+                                        <div *ngIf="!valorIsValid"
                                             class="col-md-6 offset-md-3 alert alert-danger">
-                                            Campo obrigatório, valor mínimo R$10,00.
-                                       </div>
+                                            Valor mínimo R$10,00.
+                                        </div>
                                     </span>
                                     <span *ngIf="oferta?.edit===true">
                                         <span *ngIf="owner == oferta?.owner">
@@ -45,7 +45,7 @@
                                     <br>
                                     <span *ngIf="oferta!==editOferta">Início às {{oferta?.time | time}} </span>
                                     <span *ngIf="oferta===editOferta">
-                                        <label for="hora">*Que horas começa?:</label>
+                                        <label for="hora">Que horas começa?:</label>
                                         <input class="col-md-6 offset-md-3 form-control inputs" name="hora"
                                             id="hora"
                                             [(ngModel)]="oferta.time"
@@ -61,7 +61,7 @@
                                     <br>
                                     <span *ngIf="oferta!==editOferta">Pode ir até às {{oferta?.time_final | time}} </span>
                                     <span *ngIf="oferta===editOferta">
-                                        <label for="hora">*Até que horas pode ir?:</label>
+                                        <label for="hora">Até que horas pode ir?:</label>
                                         <input class="col-md-6 offset-md-3 form-control inputs" name="horaf"
                                             id="horaf"
                                             [(ngModel)]="oferta.time_final"
@@ -73,7 +73,7 @@
                                     <br>
                                     <span *ngIf="oferta!==editOferta">No dia {{oferta?.date_inicial | date:"dd/MM"}}</span>
                                     <span *ngIf="oferta===editOferta">
-                                        <label for="data">*Data:</label>
+                                        <label for="data">Data:</label>
                                         <input class="col-md-6 offset-md-3 form-control inputs" name="data"
                                             id="data"
                                             [(ngModel)]="oferta.date_inicial"
@@ -81,10 +81,11 @@
                                             #data="ngModel"
                                             type="date"
                                             required>
-                                        <div [hidden]="data.valid || data.pristine"
-                                            class="col-md-6 offset-md-3 alert alert-danger">
-                                            Campo obrigatório!
-                                       </div>
+                                        <div *ngIf="!dateIsValid"
+                                            class="col-md-6 offset-md-3 alert alert-primary">
+                                            Essa data já passou 😅 <br> Não esqueça de conferir a hora de ínicio 👊
+                                        </div>
+                                        <br>
                                     </span>
                                 </p>
                                 <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs | titlecase}}</p>

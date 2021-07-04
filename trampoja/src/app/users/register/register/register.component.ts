@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
 
 import { User } from '../../user';
@@ -31,12 +32,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private app: AppComponent,
-    private service: UserService
+    private service: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.logo = this.app.logo;
-    
+    if (this.service.tokenValue)
+      this.router.navigate(['/'])
     setTimeout(() => {
       this.app.out();
     });
@@ -59,23 +62,23 @@ export class RegisterComponent implements OnInit {
   validators(): boolean {
     let cont = 0;
     if (this.model['first_name'].length <= 1) {
-      this.firt_nameIsValid = !this.firt_nameIsValid;
+      this.firt_nameIsValid = false;
       cont ++;
     }
     if (this.model['last_name'].length <= 1) {
-      this.last_nameIsValid = !this.last_nameIsValid;
+      this.last_nameIsValid = false;
       cont ++;
     }
     if (this.model['password'].length < 6) {
-      this.passwordIsValid = !this.passwordIsValid;
+      this.passwordIsValid = false;
       cont ++;
     }
     if (this.model['password'] !== this.model['confirm_password']) {
-      this.confirm_passwordIsValid = !this.confirm_passwordIsValid;
+      this.confirm_passwordIsValid = false;
       cont ++;
     }
     if (!this.model['email'].match(/@/) || !this.model['email'].match(/.com/)) {
-      this.emailIsValid = !this.emailIsValid;
+      this.emailIsValid = false;
       cont ++;
     }
     this.model['username'] = this.model['email'];

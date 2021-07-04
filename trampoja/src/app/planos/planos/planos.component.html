@@ -8,7 +8,7 @@
                         <h2>Escolha o seu plano</h2>
                     </div>
                     <div class="card-body body">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div *ngFor="let plano of planos" class="col-lg-3 col-sm-12 planos planos-mobile text-center">
                                 <h2>{{plano.nome}}</h2>
                                 <hr>
@@ -24,8 +24,15 @@
                                     <strong *ngIf="plano.especial">Chamada avulsa<br></strong>
                                 </span>
                                 <a target="_blank"
-                                    class="link-planos"
+                                    class="link-planos wpp"
                                     href="https://web.whatsapp.com/send?phone=554988903984&text=Gostaria%20de%20contratar%20o%20plano%20{{plano.nome}}">
+                                    <button class="btn-planos btn-dark btn-submit">
+                                        Contratar
+                                    </button>
+                                </a>
+                                <a target="_blank"
+                                    class="link-planos mobile-wpp"
+                                    href="https://api.whatsapp.com/send?phone=554988903984&text=Gostaria%20de%20contratar%20o%20plano%20{{plano.nome}}">
                                     <button class="btn-planos btn-dark btn-submit">
                                         Contratar
                                     </button>

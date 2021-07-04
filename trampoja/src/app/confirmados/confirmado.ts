@@ -18,5 +18,7 @@ export interface Confirmado {
     freelancer_bio: string;
     estabelecimento: string;
     avaliacao: number;
+    freelancer_avaliacao: number;
+    estabelecimento_avaliacao: number;
     trampos: number;
 }

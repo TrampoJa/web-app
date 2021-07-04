@@ -6,6 +6,9 @@
 
 .freelancer {
     border-radius: 300px;
+    width: 250px;
+    height: 250px;
+    background-color: #58686A;
 }
 
 .maps{

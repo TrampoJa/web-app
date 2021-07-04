@@ -31,7 +31,7 @@ $ git clone https://github.com/TrampoJa/app.trampoja.com
 # Instalano node e angular
 $ cd ~/.www/app.trampoja.com
 $ curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-$ npm install -g @angular/cli
+$ npm install -g @angular/cli@11.0.1
 $ npm install --save-dev @angular-devkit/build-angular
 ```
 

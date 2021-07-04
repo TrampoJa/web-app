@@ -12,6 +12,23 @@
     }
   }
 
+.mobile-wpp {
+    display: none;
+}
+
+.wpp {
+    display: block;
+}
+
+  @media (max-width: 450px){
+    .mobile-wpp {
+        display: block;
+    }
+    .wpp {
+        display: none;
+    }
+  }
+
 .btn-planos {
     height: 60px;
     width: 100%;
