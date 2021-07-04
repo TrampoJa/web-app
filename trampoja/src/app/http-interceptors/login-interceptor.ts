@@ -14,7 +14,6 @@ export class LoginInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         const token = this.service.tokenValue;
-        console.log(location.pathname);
         if (!token) {
             if (location.pathname == '/register')
                 this.router.navigate(['register/'])
