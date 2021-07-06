@@ -60,14 +60,13 @@ export class CreateEstabelecimentoComponent implements OnInit {
     private service: EstabelecimentoService,
     private userService: UserService,
     private enderecoService: EnderecoService,
-    private location: Location,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        this.group = user.last_name;
+        this.group = user.group;
         if (this.group == 'Estabelecimento' || this.group == 'Freelancer') {
           this.router.navigate(['meus-trampos/']);
         }

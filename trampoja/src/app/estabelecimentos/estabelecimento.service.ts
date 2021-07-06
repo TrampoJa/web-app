@@ -55,9 +55,9 @@ export class EstabelecimentoService {
         tap(response => res = response),
         finalize(() => {
             if (res) {
-              localStorage.setItem('GROUP', JSON.stringify({group: res[1] ['last_name']}));
+              localStorage.setItem('GROUP', JSON.stringify({group: res[1] ['group']}));
               while (!this.userService.groupValue) {
-                this.userService.groupSubject.next(res[1] ['last_name']);
+                this.userService.groupSubject.next(res[1] ['group']);
               }
               this.router.navigate(['/planos']);
               alert("Tudo certo com seu cadastro");
