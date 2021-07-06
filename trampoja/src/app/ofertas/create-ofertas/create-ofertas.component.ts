@@ -46,7 +46,7 @@ export class CreateOfertasComponent implements OnInit {
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        this.group = user.last_name;
+        this.group = user.group;
         if (this.group != 'Estabelecimento')
           this.router.navigate(['novo-estabelecimento/']);
         else
