@@ -29,6 +29,10 @@ export class DetailOfertasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userService.profile().subscribe(
+      (user) => {
+        this.group = user.group ? user.group : this.group;
+      }); 
     this.detail();
     return;
   }

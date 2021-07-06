@@ -63,11 +63,12 @@ export class CreateFreelancerComponent implements OnInit {
     this.userService.profile().subscribe(
       (user) => {
         this.user = user;
-        this.group = this.user.last_name;
-        if (this.group == 'Freelancer' || this.group == 'Estabelecimento') {
+        this.group = this.user.group;
+
+        if (this.group == 'Freelancer' || this.group == 'Estabelecimento')
           this.router.navigate(['trampos/']);
-        }
-        this.splitName();
+
+        this.populateCampos();
       }
     );
   }
@@ -104,11 +105,10 @@ export class CreateFreelancerComponent implements OnInit {
     return;
   }
 
-  splitName(): void {
+  populateCampos(): void {
     if (this.user){
-      var split = this.user.first_name.split(" ");
-      this.model['nome'] = split[0];
-      this.model['sobrenome'] = split[1];
+      this.model['nome'] = this.user.first_name
+      this.model['sobrenome'] = this.user.last_name;
     }
   }
 

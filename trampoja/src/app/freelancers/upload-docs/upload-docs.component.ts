@@ -41,7 +41,7 @@ export class UploadDocsComponent implements OnInit {
     this.userService.profile().subscribe(
       (user) => {
         
-        if (user.last_name === 'Freelancer'){
+        if (user.group === 'Freelancer'){
           this.service.possuiDocs().subscribe(
             (docs) => {
               if (docs)
@@ -55,7 +55,7 @@ export class UploadDocsComponent implements OnInit {
           });
         }
 
-        else if (user.last_name === 'Estabelecimento')
+        else if (user.group === 'Estabelecimento')
           this.router.navigate(['/meus-trampos'])
 
         else

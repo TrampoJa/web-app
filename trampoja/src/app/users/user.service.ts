@@ -51,6 +51,7 @@ export class UserService {
 
     create(user: any): Observable<User> {
         let res;
+        
         return this.service.http.post<User>
             (this.service.appRoot.concat('auth/register'), user)
             .pipe(
@@ -65,9 +66,9 @@ export class UserService {
                         this.token(model).subscribe((token) => {
                             if (Object.keys(token).length !== 0 
                                 && token.constructor === Object)
-                            this.login(model).subscribe();
-                            }
-                        );
+                                
+                                this.login(model).subscribe();
+                        });
                     }
                 }),
                 catchError(this.handleError<User>('createUser')
@@ -86,6 +87,7 @@ export class UserService {
 
     update_email(email: any): Observable<User> {
         let res;
+
         return this.service.http.put<User>
             (this.service.appRoot.concat('auth/set-email'), email)
             .pipe(
@@ -102,6 +104,7 @@ export class UserService {
 
     update_password(password: any): Observable<User> {
         let res;
+
         return this.service.http.put<User>
             (this.service.appRoot.concat('auth/set-password'), password)
             .pipe(
@@ -122,6 +125,7 @@ export class UserService {
 
     login(user: any): Observable<User> {
         let res;
+
         return this.service.http.post<User>
             (this.service.appRoot.concat('login/'), user)
             .pipe(
@@ -129,17 +133,20 @@ export class UserService {
                 finalize(() => {
                     if (res) {
                         localStorage.setItem('OWNER', JSON.stringify({owner: res['id']}));
-                        localStorage.setItem('GROUP', JSON.stringify({group: res['last_name']}));
-                        this.ownerSubject.next(res['id'])
-                        this.groupSubject.next(res['last_name'])
-                        if (res['last_name'] == "Freelancer") {
-                            this.router.navigate(['/trampos']);
-                        }
-                        else if (res['last_name'] == "Estabelecimento") {
-                            this.router.navigate(['/meus-trampos']);
-                        }
+                        this.ownerSubject.next(res['id']);
+
+                        if (res['group'] !== "Freelancer" && res['group'] !== "Estabelecimento")
+                            this.router.navigate(['/options']);
+                        
                         else {
-                            this.router.navigate(['/']);
+                            localStorage.setItem('GROUP', JSON.stringify({group: res['group']}));
+                            this.groupSubject.next(res['group']);
+
+                            if (res['group'] == "Freelancer")
+                                this.router.navigate(['/trampos']);
+                            
+                            else if (res['group'] == "Estabelecimento")
+                                this.router.navigate(['/meus-trampos']);
                         }
 
                         return user;
@@ -222,21 +229,21 @@ export class UserService {
         );
     }
 
-    setFreelancerNoGroup(done: Function): Function {
-        this.user.group="noGroupFreelancer"
-        localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupFreelancer'}));
-        while (this.groupValue.group === "") {
-            this.groupSubject.next(this.user);
-        }
-        return done();
-    }
+    setGroup(group: string): Observable<User> {
+        let res;
+        this.user.group=group;
 
-    setEstabelecimentoNoGroup(done: Function): Function {
-        this.user.group="noGroupEstabelecimento"
-        localStorage.setItem('GROUP', JSON.stringify({group: 'noGroupEstabelecimento'}));
-        while (this.groupValue.group === "") {
-            this.groupSubject.next(this.user);
-        }
-        return done();
+        return this.service.http.post<User>
+            (this.service.appRoot.concat('auth/set-group'), this.user)
+            .pipe(
+                tap(response => res = response),
+                finalize(() => {
+                    if (res) {
+                        localStorage.setItem('GROUP', JSON.stringify({group: res['group']}));
+                        return this.groupSubject.next(this.user);
+                    }
+                }
+            )
+        );
     }
 }

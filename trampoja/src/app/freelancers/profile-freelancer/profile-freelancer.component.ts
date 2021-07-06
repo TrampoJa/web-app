@@ -54,7 +54,7 @@ export class ProfileFreelancerComponent implements OnInit {
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        this.group = user.last_name;
+        this.group = user.group;
         if (this.group != 'Freelancer') {
           this.router.navigate(['novo-freelancer/']);
         }

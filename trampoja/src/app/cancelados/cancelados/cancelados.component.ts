@@ -20,7 +20,7 @@ export class CanceladosComponent implements OnInit {
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        this.group = user.last_name;
+        this.group = user.group ? user.group : this.group;
         if (this.group == "Freelancer") {
           this.listF();
         }

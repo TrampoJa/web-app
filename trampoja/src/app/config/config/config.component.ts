@@ -43,7 +43,7 @@ export class ConfigComponent implements OnInit {
   email_validator(): boolean {
     let cont = 0;
     if (!this.email.match(/@/) || !this.email.match(/.com/)) {
-      this.emailIsValid = !this.emailIsValid;
+      this.emailIsValid = false;
       cont ++;
     }
     if (cont !== 0){
@@ -55,11 +55,11 @@ export class ConfigComponent implements OnInit {
   password_validator(): boolean {
     let cont = 0;
     if (this.password.length < 6) {
-      this.passwordIsValid = !this.passwordIsValid;
+      this.passwordIsValid = false;
       cont ++;
     }
     if (this.password !== this.confirm_password){
-      this.confirm_passwordIsValid = !this.confirm_passwordIsValid;
+      this.confirm_passwordIsValid = false;
       cont ++;
     }
     if (cont !== 0){

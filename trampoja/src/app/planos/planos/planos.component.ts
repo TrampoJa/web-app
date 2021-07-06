@@ -23,7 +23,7 @@ export class PlanosComponent implements OnInit {
   ngOnInit(): void {
     this.userService.profile().subscribe(
       (user) => {
-        if (user && user.last_name != 'Estabelecimento')
+        if (user && user.group != 'Estabelecimento')
           this.router.navigate(['/'])
         else
           this.service.list().subscribe(planos => this.planos = planos);
