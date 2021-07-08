@@ -3,6 +3,7 @@ import { AppService } from 'src/app/app.service';
 import { AppComponent } from '../../../app.component';
 import { UserService } from '../../user.service';
 import { Location  } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -18,7 +19,8 @@ export class GroupsComponent implements OnInit {
     private app: AppComponent,
     private appService: AppService,
     private service: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class GroupsComponent implements OnInit {
     this.service.setGroup("noGroupFreelancer").subscribe(
       (user) => {
         this.app.group = user.group;
+        this.router.navigate(['trampos/']);
       }
     )
     return;
@@ -50,6 +53,7 @@ export class GroupsComponent implements OnInit {
     this.service.setGroup("noGroupEstabelecimento").subscribe(
       (user) => {
         this.app.group = user.group;
+        this.router.navigate(['meus-trampos/']);
       }
     )
     return;
