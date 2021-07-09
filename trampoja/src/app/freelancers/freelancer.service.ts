@@ -54,7 +54,8 @@ export class FreelancerService {
                 while (!this.userService.groupValue) {
                   this.userService.groupSubject.next(res[1] ['group']);
                 }
-                this.router.navigate(['/upload']);
+                alert("Tudo certo com seu cadastro");
+                this.router.navigate(['/trampos']);
             }   
         }),
         catchError(this.handleError<Freelancer>('createFreelancer')

@@ -37,18 +37,11 @@ export class CreateInteresseComponent implements OnInit {
         }
 
         else if (this.group === 'Freelancer') {
-          this.freelancerService.possuiDocs().subscribe((docs) => {
-            if (docs) {
-              if (confirm("Deseja mesmo demonstrar interesse nesse trampo?")){
-                let id = this.route.snapshot.paramMap.get('id');
-                this.service.create(id).subscribe();
-                return;
-              }
-            }
-
-            else 
-              this.router.navigate(['/upload'])
-          })
+          if (confirm("Deseja mesmo demonstrar interesse nesse trampo?")){
+            let id = this.route.snapshot.paramMap.get('id');
+            this.service.create(id).subscribe();
+            return;
+          }
         }
       }
     )
