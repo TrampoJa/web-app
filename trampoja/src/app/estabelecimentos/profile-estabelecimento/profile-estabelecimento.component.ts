@@ -161,9 +161,9 @@ export class ProfileEstabelecimentoComponent implements OnInit {
   }
 
   imageValidator(file: any): boolean {
-    if (file.size > 3000000){
+    if (file.size > 10000000){
       this.imageIsValid = false;
-      this.errorMessage = "Imagem muito grande, tente uma com no máximo 3MB 😅"
+      this.errorMessage = "Imagem muito grande, tente uma com no máximo 10MB 😅"
       return false
     }
 
