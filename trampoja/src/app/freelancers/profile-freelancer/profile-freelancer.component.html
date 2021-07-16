@@ -58,7 +58,7 @@
                                 </span>
                                 <p *ngIf="freelancer!==editFreelancer">Telefone: {{freelancer?.telefone | fone}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
-                                    <label for="telefone">*Telefone:</label>
+                                    <label for="telefone">Telefone:</label>
                                     <input class="col-md-6 offset-md-3 form-control inputs" name="telefone"
                                         id="telefone"
                                         [(ngModel)]="freelancer.telefone"
@@ -72,22 +72,8 @@
                                     </div>
                                     <br>
                                 </span>
-                                <p *ngIf="freelancer!==editFreelancer">Data de nascimento: {{freelancer?.nascimento | date:"dd/MM/yyyy"}} </p>
-                                <span *ngIf="freelancer===editFreelancer">
-                                    <label for="nascimento">Data de nascimento:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="nascimento"
-                                        id="nascimento"
-                                        type="date"
-                                        [(ngModel)]="freelancer.nascimento"
-                                        value="{{freelancer.nascimento}}"
-                                        #nascimento="ngModel"
-                                        required>
-                                    <div *ngIf="!nascimentoIsValid"
-                                        class="col-md-6 offset-md-3 alert alert-primary">
-                                        Insira uma data válida, você precisa ter mais de 16 anos 😅
-                                    </div><br>
-                                    <br>
-                                </span>
+                                <p *ngIf="freelancer!==editFreelancer">{{freelancer?.nascimento | age}} anos</p>
+
                                 <p *ngIf="freelancer!==editFreelancer">Bio: {{freelancer?.bio | titlecase}} </p>
                                 <span *ngIf="freelancer===editFreelancer">
                                     <label for="bio">Bio:</label>
