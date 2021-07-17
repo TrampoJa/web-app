@@ -20,6 +20,7 @@
                             <br>
                             <i *ngIf="oferta?.avaliacao" class="small fas fa-star"></i>
                             <span> {{oferta?.avaliacao | format}}</span>
+                            <span *ngIf="!oferta?.avaliacao" class="small" style="color: #58686A;">Ainda não possui avaliações</span>
                         </p>
                         <span *ngIf="oferta?.status==true" class="status alert-success" role="alert">Disponível</span>
                         <span *ngIf="oferta?.status==false" class="status alert-danger" role="alert">Indisponível</span>

@@ -30,7 +30,6 @@ export class ProfileFreelancerComponent implements OnInit {
     'Chapecó'
   ];
 
-  nascimentoIsValid = true;
   bairroIsValid = true;
   ruaIsValid = true;
   numeroIsValid = true;
@@ -138,16 +137,6 @@ export class ProfileFreelancerComponent implements OnInit {
   validators(): boolean {
     let cont = 0;
 
-    console.log(this.endereco.numero)
-
-    if (this.calculaIdade(this.freelancer.nascimento) > 60
-      || this.calculaIdade(this.freelancer.nascimento) < 16) {
-        this.nascimentoIsValid = false;
-        cont++;
-    }
-    else
-      this.nascimentoIsValid = true;
-
     if (this.endereco.bairro.length === 0) {
       this.bairroIsValid = false;
       cont++;
@@ -173,30 +162,6 @@ export class ProfileFreelancerComponent implements OnInit {
       return false;
     }
     return true;
-  }
-
-  calculaIdade(nascimentoForm: string): Number {
-    let nascimento = nascimentoForm.split("-");
-    let date = new Date(Number(nascimento[0]), Number(nascimento[1]), Number(nascimento[2]));
-
-    let diaNascimento = date.getDay();
-    let mesNascimento = date.getMonth();
-    let anoNascimento = date.getFullYear();
-    
-    let diaAtual = this.date.getDay();
-    let mesAtual = this.date.getMonth()+1;
-    let anoAtual = this.date.getFullYear();
-
-    var resultDay = (diaAtual - diaNascimento);
-    var resultMonth = (mesAtual - mesNascimento);
-    var resultYear = (anoAtual - anoNascimento);
-
-    if (resultMonth < 0) resultYear --;
-    if (resultMonth == 0) {
-      if (resultDay < 0) resultYear --;
-    }
-
-    return Number(resultYear);
   }
 
   imageValidator(file: any): boolean {
