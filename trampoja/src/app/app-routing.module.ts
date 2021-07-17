@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: 'novo-freelancer', component: CreateFreelancerComponent },
   { path: 'perfil', component: ProfileFreelancerComponent },
   { path: 'historico/:id', component: HistoricoFreelancerComponent },
-  { path: 'upload', component: UploadDocsComponent },
+  // { path: 'upload', component: UploadDocsComponent },
 
   { path: 'dashboard', component: DashboardComponent },
 

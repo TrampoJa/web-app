@@ -102,8 +102,9 @@ export class ProfileEstabelecimentoComponent implements OnInit {
 
   update(id: number | string): void {
     if (this.editEstabelecimento) {
-      delete this.editEstabelecimento.logo;
       if (this.validators()) {
+        delete this.editEstabelecimento.logo;
+
         this.service.update(id, this.editEstabelecimento)
           .subscribe(estabelecimento => (this.estabelecimento = estabelecimento));
         this.update_address();

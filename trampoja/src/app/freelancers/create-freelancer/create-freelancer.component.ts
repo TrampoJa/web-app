@@ -109,6 +109,7 @@ export class CreateFreelancerComponent implements OnInit {
     if (this.user){
       this.model['nome'] = this.user.first_name
       this.model['sobrenome'] = this.user.last_name;
+      this.model['telefone'] = this.user.telefone;
     }
   }
 

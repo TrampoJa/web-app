@@ -46,36 +46,7 @@
                                    <br>
                                 </span>
                                 <p *ngIf="estabelecimento!==editEstabelecimento">CNPJ: {{estabelecimento?.cnpj}}</p>
-                                <span *ngIf="estabelecimento===editEstabelecimento">
-                                    <label for="cnpj">CNPJ:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="cnpj"
-                                        id="cnpj"
-                                        [(ngModel)]="estabelecimento.cnpj"
-                                        value="{{estabelecimento.cnpj}}"
-                                        #cnpj="ngModel"
-                                        mask="00.000.000/0000-00"
-                                        required>
-                                    <div [hidden]="cnpj.valid || cnpj.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
-                                    </div>
-                                    <br>
-                                </span>
-                                <p *ngIf="estabelecimento!==editEstabelecimento">Razao Social: {{estabelecimento?.razao_social}}</p>
-                                <span *ngIf="estabelecimento===editEstabelecimento">  
-                                    <label for="razao_social">Razao Social:</label>
-                                    <input class="col-md-6 offset-md-3 form-control inputs" name="razao_social"
-                                        id="razao_social"
-                                        [(ngModel)]="estabelecimento.razao_social"
-                                        value="{{estabelecimento.razao_social}}"
-                                        #razao_social="ngModel"
-                                        required>
-                                    <div [hidden]="razao_social.valid || razao_social.pristine"
-                                        class="col-md-6 offset-md-3 alert alert-danger">
-                                        Campo obrigatório!
-                                    </div>
-                                    <br>
-                                </span>
+
                                 <p *ngIf="estabelecimento!==editEstabelecimento">Telefone: {{estabelecimento?.telefone | fone}} </p>
                                 <span *ngIf="estabelecimento===editEstabelecimento">
                                     <label for="telefone">Telefone:</label>
