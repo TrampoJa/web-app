@@ -8,9 +8,11 @@ import { UserService } from '../../users/user.service';
   styleUrls: ['./config.component.css']
 })
 export class ConfigComponent implements OnInit {
-  email: string;
-  password: string;
-  confirm_password: string;
+  model = {
+    'email': '',
+    'password': '',
+    'confirm_password': ''
+  }
 
   passwordIsValid = true;
   confirm_passwordIsValid = true;
@@ -20,21 +22,28 @@ export class ConfigComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.profile()
-      .subscribe(email => (this.email = email['email']));
+      .subscribe(email => (this.model['email'] = email['email']));
     return;
   }
 
-  update(email: string): void {
+  submit() {
+    if (this.model['email'] && !this.model['password'])
+      this.update_email()
+    if (this.model['password'])
+      this.set_password()
+  }
+
+  update_email(): void {
     if (this.email_validator()) {
-      this.service.update_email({'email': email}).
+      this.service.update_email({'email': this.model['email']}).
         subscribe();
     }
     return;
   }
 
-  set_password(password: string): void {
+  set_password(): void {
     if (this.password_validator()) {
-      this.service.update_password({'password': password}).
+      this.service.update_password({'password': this.model['password']}).
         subscribe();
     }
     return;
@@ -42,7 +51,7 @@ export class ConfigComponent implements OnInit {
 
   email_validator(): boolean {
     let cont = 0;
-    if (!this.email.match(/@/) || !this.email.match(/.com/)) {
+    if (!this.model['email'].match(/@/) || !this.model['email'].match(/.com/)) {
       this.emailIsValid = false;
       cont ++;
     }
@@ -54,11 +63,11 @@ export class ConfigComponent implements OnInit {
 
   password_validator(): boolean {
     let cont = 0;
-    if (this.password.length < 6) {
+    if (this.model['password'].length < 6) {
       this.passwordIsValid = false;
       cont ++;
     }
-    if (this.password !== this.confirm_password){
+    if (this.model['password'] !== this.model['confirm_password']){
       this.confirm_passwordIsValid = false;
       cont ++;
     }

@@ -4,35 +4,26 @@
             <div class="col-lg-5 col-xs-12">
                 <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
                     <div class="card-header header text-center bg-outline-danger">
-                        <div class="alert alert-danger" role="alert">
-                            Zona de perigo!
+                        <div class="alert alert-primary" role="alert">
+                            Configuraçãoes
                           </div>
                     </div>
                     <div class="card-body body">
-                        <form #userEmailForm="ngForm">
+                        <form #userConfigForm="ngForm">
                             <div class="form-group">
                                 <label class="small mb-1" for="email">Email</label>
                                 <input class="form-control py-4 inputs" 
                                     id="email"
-                                    [(ngModel)]="email"
+                                    [(ngModel)]="model['email']"
                                     name="email"
                                     type="email" 
                                     aria-describedby="emailHelp"
-                                    value="{{ email }}">
+                                    value="{{ model['email'] }}">
                                     <div *ngIf="!emailIsValid" 
                                         class="alert alert-danger">
                                         Insira um endereço de email valido!
                                     </div>
                             </div>
-                            <div>
-                                <button class="btn-submit form-control btn-dark"
-                                    (click)="update(email)">
-                                    Atualizar
-                                </button>
-                            </div>
-                        </form>
-                        <br>
-                        <form #userPasswordForm="ngForm">
                             <div class="form-group">
                                 <label class="small mb-1" for="password">Nova senha</label>
                                 <input class="form-control py-4 inputs" 
@@ -40,7 +31,7 @@
                                     name="password"
                                     type="password" 
                                     placeholder="Entre com sua senha"
-                                    [(ngModel)]="password">
+                                    [(ngModel)]="model['password']">
                                     <div *ngIf="!passwordIsValid" 
                                         class="alert alert-danger">
                                         Sua senha precisa conter pelo menos 6 caracteres!
@@ -53,7 +44,7 @@
                                     name="confirm_password"
                                     type="password" 
                                     placeholder="Entre com sua senha"
-                                    [(ngModel)]="confirm_password"
+                                    [(ngModel)]="model['confirm_password']"
                                     required>
                                     <div *ngIf="!confirm_passwordIsValid" 
                                         class="alert alert-danger">
@@ -62,8 +53,8 @@
                             </div>
                             <div>
                                 <button class="btn-submit form-control btn-dark"
-                                    (click)="set_password(password)">
-                                    Atualizar
+                                    (click)="submit()">
+                                    Salvar &nbsp; <i class="fas fa-check"></i>
                                 </button>
                             </div>
                         </form>
