@@ -17,6 +17,13 @@ export class LoginInterceptor implements HttpInterceptor {
         if (!token) {
             if (location.pathname == '/register')
                 this.router.navigate(['register/'])
+            
+            else if (location.pathname == '/termos-servico')
+                this.router.navigate(['termos-servico/'])
+
+            else if (location.pathname == '/politica-privacidade')
+                this.router.navigate(['politica-privacidade/'])
+            
             else
                 this.router.navigate(['login/']);
         }

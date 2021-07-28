@@ -53,6 +53,8 @@ import { CancelarComponent } from './cancelados/cancelar/cancelar.component';
 import { CanceladosComponent } from './cancelados/cancelados/cancelados.component';
 import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recovery-pswd.component';
 import { PlanosComponent } from './planos/planos/planos.component';
+import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
+import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -102,11 +104,13 @@ import { FormatPipe } from './pipes/format/format.pipe';
     CanceladosComponent,
     RecoveryPswdComponent,
     PlanosComponent,
+    TermosServicoComponent,
+    PoliticaPrivacidadeComponent,
     TimePipe,
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe,
+    FormatPipe
   ],
   providers: [
     AppService,
