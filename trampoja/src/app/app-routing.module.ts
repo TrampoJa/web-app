@@ -32,6 +32,8 @@ import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recov
 
 import { CanceladosComponent } from './cancelados/cancelados/cancelados.component';
 import { PlanosComponent } from './planos/planos/planos.component';
+import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
+import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
 
 
 const routes: Routes = [
@@ -68,7 +70,10 @@ const routes: Routes = [
 
   { path: 'cancelados', component: CanceladosComponent },
   
-  { path: 'planos', component: PlanosComponent }
+  { path: 'planos', component: PlanosComponent },
+
+  { path: 'termos-servico', component: TermosServicoComponent},
+  { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent}
 ];
 
 @NgModule({
