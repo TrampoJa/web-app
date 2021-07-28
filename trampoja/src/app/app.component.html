@@ -1,6 +1,6 @@
     <div class="sb-nav-fixed">
         <mat-toolbar *ngIf="activated==true" class="color-nav-1 sb-topnav navbar navbar-expand navbar-dark">
-            <button
+            <button *ngIf="menu"
                 (click)="sidenav.toggle()"
                 class="btn btn-link btn-dark btn-sm" id="sidebarToggle">
                 <i class="fas fa-list-ul"></i>
@@ -12,20 +12,23 @@
                 [src]="favicon" alt="">
             </a>
             <!-- Navbar-->
-            <ul class="navbar-nav d-md-inline-block ml-auto">
-                <li class="nav-item dropdown color-nav-1">
-                    <a style="border-radius: 5px;" class="nav-link" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="config" src="../assets/img/config.png" alt="" width="34px" style="margin-right: -12px;">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right body-list" aria-labelledby="userDropdown">
-                        <a *ngIf='group == "Estabelecimento" || group == "noGroupEstabelecimento"' class="dropdown-item" (click)="opened=false" routerLink="/profile">Minha conta</a>
-                        <a *ngIf='group == "Freelancer" || group == "noGroupFreelancer"' class="dropdown-item" (click)="opened=false" routerLink="/perfil">Minha conta</a>
-                        <a class="dropdown-item" (click)="opened=false" routerLink="/configuracoes" href="#">Configurações</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" (click)="logout()" routerLink="/login">Sair</a>
-                    </div>
-                </li>
-            </ul>
+            <div *ngIf="config">
+                <ul class="navbar-nav d-md-inline-block ml-auto">
+                    <li class="nav-item dropdown color-nav-1">
+                        <a style="border-radius: 5px;" class="nav-link" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="config" src="../assets/img/config.png" alt="" width="34px" style="margin-right: -12px;">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right body-list" aria-labelledby="userDropdown">
+                            <a *ngIf='group == "Estabelecimento" || group == "noGroupEstabelecimento"' class="dropdown-item" (click)="opened=false" routerLink="/profile">Minha conta</a>
+                            <a *ngIf='group == "Freelancer" || group == "noGroupFreelancer"' class="dropdown-item" (click)="opened=false" routerLink="/perfil">Minha conta</a>
+                            <a class="dropdown-item" (click)="opened=false" routerLink="/configuracoes" href="#">Configurações</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logout()" routerLink="/login">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
         </mat-toolbar>
         <mat-sidenav-container id="layoutSidenav">
             <mat-sidenav #sidenav mode="over" [(opened)]="opened" id="layoutSidenav_nav">
@@ -64,11 +67,6 @@
                         <div class="container-fluid">
                             <div class="side-footer d-flex align-items-center justify-content-between small">
                                 <div class="text-muted">Copyright &copy; TrampoJá 2020</div>
-                                <div>
-                                    <a href="#">Privacy Policy</a>
-                                    &middot;
-                                    <a href="#">Terms &amp; Conditions</a>
-                                </div>
                             </div>
                         </div>
                     </div>

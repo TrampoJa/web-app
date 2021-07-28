@@ -25,11 +25,15 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.app.in();
+      this.app.menu = true;
+      this.app.config = true;
     })
+
     this.serviceAvaliacao.get().subscribe(avaliacao => (this.avaliacao = avaliacao));
-    if (this.group == "Freelancer"){
+    
+    if (this.group == "Freelancer")
       this.serviceFreelancer.countOfertas().subscribe(trampos => (this.trampos = trampos));
-    }
+    
     return;
   }
 }

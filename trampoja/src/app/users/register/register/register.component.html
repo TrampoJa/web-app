@@ -110,10 +110,15 @@
                                 </div>
                             </div>
                             <div class="form-group mt-4 mb-0">
+                                <div class="div-policy text-center">
+                                    Ao se cadastrar, você confirma que leu e aceitou nossos 
+                                    <a routerLink="/termos-servico" target="_blank">Termos de serviço</a> e nossa
+                                    <a routerLink="/politica-privacidade" target="_blank">Política de privacidade.</a>
+                                </div><br>
                                 <button class="btn-submit form-control btn-dark"
                                     (click)="submit()"
                                     [disabled]="!userForm.form.valid">
-                                    Pronto
+                                    Pronto &nbsp; <i class="fas fa-check"></i>
                                 </button>
                             </div>
                         </form>

@@ -18,6 +18,8 @@ export class AppComponent {
   public favicon = '../assets/img/favicon.png';
   public opened = false;
   public activated = true;
+  public menu = true;
+  public config = true;
 
   owner = this.service.ownerValue?.owner;
   group = this.service.groupValue?.group;
