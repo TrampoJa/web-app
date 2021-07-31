@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmadoService } from '../confirmado.service';
 
 @Component({
@@ -9,20 +9,11 @@ import { ConfirmadoService } from '../confirmado.service';
 })
 @Injectable()
 export class CreateConfirmadoComponent implements OnInit {
-  @Input() oferta: number;
-  @Input() freelancer: number;
-
   constructor(
     private service: ConfirmadoService
   ) { }
 
   ngOnInit(): void {
-    return;
-  }
-
-  create(): void {
-    if (confirm("Deseja mesmo confirmar este trampo?"))
-      this.service.create(this.oferta, this.freelancer).subscribe();
     return;
   }
 }

@@ -1,7 +1,7 @@
 # <img src="https://avatars.githubusercontent.com/u/82920648?v=4" width="50" height="50"> trampoja.com
 > Status: Developing
 
-[![NPM](https://img.shields.io/badge/license-proprietary-red)](https://github.com/TrampoJa/api.trampoja.com/LICENSE)
+[![NPM](https://img.shields.io/badge/license-proprietary-red)](https://github.com/TrampoJa/web-app/LICENSE)
 
 ## Indice:
 - [Sobre](#-sobre)
@@ -26,7 +26,7 @@
 # Criando o diretório e clonando o repositório
 $ mkdir -p ~/.www
 $ cd ~/.www
-$ git clone https://github.com/TrampoJa/app.trampoja.com
+$ git clone https://github.com/TrampoJa/web-app.git
 
 # Instalano node e angular
 $ cd ~/.www/app.trampoja.com
@@ -39,6 +39,6 @@ $ npm install --save-dev @angular-devkit/build-angular
 
 ```bash
 #Iniciando angular
-$ cd ~/.www/app.trampoja.com/trampoja
+$ cd ~/.www/web-app/trampoja
 $ ng serve
 ```
