@@ -55,6 +55,7 @@ import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recov
 import { PlanosComponent } from './planos/planos/planos.component';
 import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
 import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
+import { ReportarComponent } from './reportes/reportar/reportar.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -106,6 +107,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     PlanosComponent,
     TermosServicoComponent,
     PoliticaPrivacidadeComponent,
+    ReportarComponent,
     TimePipe,
     RealPipe,
     FonePipe,
