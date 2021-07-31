@@ -117,9 +117,6 @@ export class CreateOfertasComponent implements OnInit {
 
     let date = new Date();
 
-    console.log("date: ", date);
-    console.log("ofertaDate: ", ofertaDate);
-
     if (ofertaDate < date)
       return true
 
