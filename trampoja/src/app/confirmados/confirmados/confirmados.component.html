@@ -24,7 +24,7 @@
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
                             <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
-                            <i title="Reportar freelancer" class="fas fa-exclamation-triangle report"></i>
+                            <!-- <i title="Reportar freelancer" class="fas fa-exclamation-triangle report"></i> -->
                             <br>
                             <i *ngIf="confirmado?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{confirmado?.avaliacao | format}} </span> <br><br>
                             <span *ngIf="confirmado?.trampos != 0">
