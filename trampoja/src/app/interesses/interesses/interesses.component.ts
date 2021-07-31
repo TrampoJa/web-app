@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Interesse } from '../interesse';
 import { InteresseService } from '../interesse.service';
+import { ConfirmadoService } from '../../confirmados/confirmado.service';
 
 import { UserService } from 'src/app/users/user.service';
 
@@ -18,6 +19,7 @@ export class InteressesComponent implements OnInit {
   constructor(
     public userService: UserService,
     private service: InteresseService,
+    private confirmadoService: ConfirmadoService,
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +50,8 @@ export class InteressesComponent implements OnInit {
   }
   
   confirm(oferta, freelancer): void {
-    this.oferta = oferta;
-    this.freelancer = freelancer;
+    if (confirm("Deseja mesmo confirmar este trampo?"))
+      this.confirmadoService.create(oferta, freelancer).subscribe();
     return;
   }
 }
