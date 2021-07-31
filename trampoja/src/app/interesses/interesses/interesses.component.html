@@ -62,11 +62,9 @@
                         </a>
                     </span>
                     <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false" class="create-confirmado"
-                        (mouseover)="confirm(interesse?.oferta, interesse?.freelancer)">
+                        (click)="confirm(interesse?.oferta, interesse?.freelancer)">
                         <app-create-confirmado
-                            *ngIf="interesse?.oferta_status==true"
-                            [oferta]="oferta"
-                            [freelancer]="freelancer">
+                            *ngIf="interesse?.oferta_status==true">
                         </app-create-confirmado>
                     </div>
                 </div>
