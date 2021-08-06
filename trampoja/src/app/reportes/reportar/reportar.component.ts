@@ -8,6 +8,17 @@ import { Freelancer } from 'src/app/freelancers/freelancer';
 })
 @Injectable()
 export class ReportarComponent implements OnInit {
+  model = {
+    descricao: ''
+  }
+  options = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  }
+
   @Input() freelancer: Freelancer;
   @Input() habilitarReporte: boolean;
   @Output() habilitarReporteChange = new EventEmitter<boolean>();
@@ -21,7 +32,8 @@ export class ReportarComponent implements OnInit {
   }
 
   create(): void {
-
+      console.log(this.options);
+      console.log(this.model)
   }
 
   onSubmit(): void { this.submitted = true; return; }

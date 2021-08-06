@@ -1,4 +1,4 @@
-<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false">
+<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false && habilitarReporte==false">
     <div class="container-fluid font">
         <div class="text-center text-light">
             <h2>Confirmados</h2>
@@ -24,12 +24,9 @@
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
                             <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
-                            <span (click)="reportar(confirmado?.freelancer)"
+                            <span (click)="reportar(confirmado?.freelancer)"  
                                     class="report">
-                                <i 
-                                    title="Reportar freelancer"
-                                    class="fas fa-exclamation-triangle">
-                                </i>
+                                <i title="Reportar freelancer" class="far fa-flag"></i>
                             </span>
                             <br>
                             <i *ngIf="confirmado?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{confirmado?.avaliacao | format}} </span> <br><br>

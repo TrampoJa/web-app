@@ -21,7 +21,6 @@ export class CancelarComponent implements OnInit {
 
   constructor(
     private service: CanceladoService,
-    private confirmadoComponent: ConfirmadosComponent
   ) { }
 
   ngOnInit(): void {
