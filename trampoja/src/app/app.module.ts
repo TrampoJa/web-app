@@ -21,6 +21,7 @@ import { UserService } from './users/user.service';
 import { AvalicaoService } from './avaliacoes/avaliacao.service'; 
 import { CanceladoService } from './cancelados/cancelado.service';
 import { PlanoService } from './planos/planos.service';
+import { ReporteService } from './reportes/reporte.service';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
@@ -126,6 +127,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     AvalicaoService,
     CanceladoService,
     PlanoService,
+    ReporteService,
     HttpErrorHandler,
     FormBuilder,
     httpInterceptorProviders,

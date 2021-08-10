@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
-import { Freelancer } from 'src/app/freelancers/freelancer';
+import { ReporteService } from '../reporte.service';
 
 @Component({
   selector: 'app-reportar',
@@ -11,7 +11,7 @@ export class ReportarComponent implements OnInit {
   model = {
     descricao: ''
   }
-  options = {
+  motivos = {
     1: false,
     2: false,
     3: false,
@@ -19,21 +19,30 @@ export class ReportarComponent implements OnInit {
     5: false
   }
 
-  @Input() freelancer: Freelancer;
+  @Input() freelancer: number;
   @Input() habilitarReporte: boolean;
   @Output() habilitarReporteChange = new EventEmitter<boolean>();
 
   submitted = false;
 
-  constructor() { }
+  constructor(private service: ReporteService) { }
 
   ngOnInit(): void {
-    console.log(this.freelancer);
+    return;
   }
 
   create(): void {
-      console.log(this.options);
-      console.log(this.model)
+    this.service.reportar(this.freelancer, this.model['descricao'], this.motivos)
+    .subscribe(
+      (reporte) => {
+        if (!(Object.keys(reporte).length === 0 
+              && reporte.constructor === Object))
+          location.reload();
+        
+        else
+          this.goBack();
+      }
+    );
   }
 
   onSubmit(): void { this.submitted = true; return; }
