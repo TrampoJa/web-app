@@ -49,7 +49,7 @@ export class InteresseService {
         finalize(() => {
           if (res) {
             this.router.navigate(['/interesses']);
-            alert("Interesse confirmado com sucesso!");
+            alert("Tudo certo, você se candidatou para a vaga! Agora é só aguardar pela confirmação.");
           }    
         }),
         catchError(this.handleError<Interesse>('createInteresse')
