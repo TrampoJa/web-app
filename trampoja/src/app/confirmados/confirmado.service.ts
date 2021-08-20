@@ -50,7 +50,7 @@ export class ConfirmadoService {
         finalize(() => {
           if (res) {
             this.router.navigate(['/confirmados']);
-            alert("Trampo confirmado com sucesso!");
+            alert("Trampo confirmado com sucesso! Agora é só aguardar, o freelancer chegara ai no horário combinado.");
           }
         }),
         catchError(this.handleError<Confirmado>('createConfirmado')

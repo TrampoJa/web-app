@@ -37,7 +37,7 @@ export class CreateInteresseComponent implements OnInit {
         }
 
         else if (this.group === 'Freelancer') {
-          if (confirm("Deseja mesmo demonstrar interesse nesse trampo?")){
+          if (confirm("Deseja mesmo se candidatar para esta vaga?")) {
             let id = this.route.snapshot.paramMap.get('id');
             this.service.create(id).subscribe();
             return;
