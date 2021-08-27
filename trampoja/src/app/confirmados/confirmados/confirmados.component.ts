@@ -64,8 +64,9 @@ export class ConfirmadosComponent implements OnInit {
     this.confirmado = confirmado;
   }
 
-  reportar(freelancer: number): void {
+  reportar(freelancer: number, oferta: number): void {
     this.habilitarReporte = true;
     this.freelancer = freelancer;
+    this.oferta = oferta;
   }
 }

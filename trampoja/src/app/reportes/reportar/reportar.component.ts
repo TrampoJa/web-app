@@ -20,6 +20,7 @@ export class ReportarComponent implements OnInit {
   }
 
   @Input() freelancer: number;
+  @Input() oferta: number;
   @Input() habilitarReporte: boolean;
   @Output() habilitarReporteChange = new EventEmitter<boolean>();
 
@@ -32,15 +33,15 @@ export class ReportarComponent implements OnInit {
   }
 
   create(): void {
-    this.service.reportar(this.freelancer, this.model['descricao'], this.motivos)
+    this.service.reportar(this.freelancer, this.oferta, this.model['descricao'], this.motivos)
     .subscribe(
       (reporte) => {
-        if (!(Object.keys(reporte).length === 0 
-              && reporte.constructor === Object))
-          location.reload();
+        // if (!(Object.keys(reporte).length === 0 
+        //       && reporte.constructor === Object))
+        //   location.reload();
         
-        else
-          this.goBack();
+        // else
+        //   this.goBack();
       }
     );
   }

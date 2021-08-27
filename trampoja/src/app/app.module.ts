@@ -57,6 +57,7 @@ import { PlanosComponent } from './planos/planos/planos.component';
 import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
 import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
 import { ReportarComponent } from './reportes/reportar/reportar.component';
+import { ReportesComponent } from './reportes/reportes/reportes.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -113,7 +114,8 @@ import { FormatPipe } from './pipes/format/format.pipe';
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe
+    FormatPipe,
+    ReportesComponent
   ],
   providers: [
     AppService,

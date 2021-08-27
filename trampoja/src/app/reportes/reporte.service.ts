@@ -19,10 +19,11 @@ export class ReporteService {
         this.handleError = httpErrorHandler.createHandleError("ReporteService");
     }
 
-    reportar(freelancer: number, descricao: string, motivos: {}): Observable<Reporte> {
+    reportar(freelancer: number, oferta: number, descricao: string, motivos: {}): Observable<Reporte> {
         let res;
         this.body = {
           'freelancer': freelancer,
+          'oferta': oferta,
           'descricao': descricao,
           'motivos': motivos,
         }
@@ -40,7 +41,12 @@ export class ReporteService {
         );
     }
 
-    reportes(freelancer: number): Observable<Reporte[]> {
-        return;
+    reportes(freelancer: number | string): Observable<Reporte[]> {
+      return this.service.http.get<Reporte[]>
+          (this.service.appRoot.concat(`reportes/${freelancer}`))
+          .pipe(
+            catchError(this.handleError<Reporte[]>('Reportes')
+          )
+        );
     }
 }

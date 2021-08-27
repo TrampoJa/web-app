@@ -35,6 +35,8 @@ import { PlanosComponent } from './planos/planos/planos.component';
 import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
 import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
 
+import { ReportesComponent } from './reportes/reportes/reportes.component';
+
 
 const routes: Routes = [
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
@@ -71,6 +73,8 @@ const routes: Routes = [
   { path: 'cancelados', component: CanceladosComponent },
   
   { path: 'planos', component: PlanosComponent },
+
+  { path: 'reportes/:id', component: ReportesComponent },
 
   { path: 'termos-servico', component: TermosServicoComponent},
   { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent}
