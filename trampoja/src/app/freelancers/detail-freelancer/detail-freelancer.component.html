@@ -19,9 +19,9 @@
                             <p>Bairro: {{freelancer?.bairro | titlecase}}</p>
                             <p>Rua: {{freelancer?.rua | titlecase}} nº{{freelancer?.numero}}</p>
 
-                            <div class="reportes">
+                            <div *ngIf="freelancer?.reportes" class="reportes">
                                 <a class="text-light" [routerLink]="['/reportes', freelancer?.id]">
-                                    <strong> Esse freela já foi reportado x vezes </strong>
+                                    <strong> Esse freela já foi reportado {{freelancer?.reportes}} vezes </strong>
                                     <div class="color-link small stretched-link"> > ver detalhes</div>
                                 </a>
                             </div>

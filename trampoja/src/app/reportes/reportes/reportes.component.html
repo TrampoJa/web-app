@@ -9,14 +9,22 @@
                             Reportes
                         </div>
                         <div class="card-body body text-center">
-                            <div>
-                                <strong>Motivos: </strong>
+                            <div *ngFor="let reporte of reportes">
+                                <div class="text-warning">Reporte realizado no dia {{reporte.created}}</div>
                                 <br>
-                                1 
-                                <br>
-                                2
-                                <br><br>
-                                <strong>Descrição</strong>
+                                <div class="text-left">
+                                    <div *ngIf="reporte.motivos.length">
+                                        <strong>Motivos: </strong><br><br>
+
+                                        <ul *ngFor="let motivo of reporte.motivos">
+                                            <li>{{motivo.nome}}</li>
+                                        </ul>
+                                        <br>
+                                    </div>
+    
+                                    <strong>Descrição: </strong>{{reporte.descricao}}
+                                    <br><br><br>
+                                </div>
                                 <hr>
                             </div>
                             

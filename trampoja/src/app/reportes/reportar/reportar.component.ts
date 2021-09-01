@@ -36,12 +36,12 @@ export class ReportarComponent implements OnInit {
     this.service.reportar(this.freelancer, this.oferta, this.model['descricao'], this.motivos)
     .subscribe(
       (reporte) => {
-        // if (!(Object.keys(reporte).length === 0 
-        //       && reporte.constructor === Object))
-        //   location.reload();
+        if (!(Object.keys(reporte).length === 0 
+              && reporte.constructor === Object))
+          location.reload();
         
-        // else
-        //   this.goBack();
+        else
+          this.goBack();
       }
     );
   }

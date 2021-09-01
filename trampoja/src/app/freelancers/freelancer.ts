@@ -13,4 +13,5 @@ export interface Freelancer {
     rua: string;
     numero: string;
     bairro: string;
+    reportes: number
 }

@@ -24,7 +24,7 @@
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
                             <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
-                            <span (click)="reportar(confirmado?.freelancer, confirmado?.oferta)"  
+                            <span *ngIf="confirmado?.oferta_closed" (click)="reportar(confirmado?.freelancer, confirmado?.oferta)"  
                                     class="report">
                                 <i title="Reportar freelancer" class="far fa-flag"></i>
                             </span>

@@ -20,8 +20,16 @@ export class ReportesComponent implements OnInit {
 
   ngOnInit(): void {
     let freelancer = this.route.snapshot.paramMap.get('id');
+    
     this.service.reportes(freelancer)
-      .subscribe(reportes => (this.reportes = reportes));
+      .subscribe(reportes => {
+        this.reportes = reportes;
+
+        for (let reporte of reportes)
+          reporte.created = new Date(reporte.created).toLocaleDateString();
+          
+      });
+    
     return;
   }
 
