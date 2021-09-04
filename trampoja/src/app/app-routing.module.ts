@@ -35,6 +35,8 @@ import { PlanosComponent } from './planos/planos/planos.component';
 import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
 import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
 
+import { ReportesComponent } from './reportes/reportes/reportes.component';
+
 
 const routes: Routes = [
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
@@ -72,12 +74,19 @@ const routes: Routes = [
   
   { path: 'planos', component: PlanosComponent },
 
+  { path: 'reportes/:id', component: ReportesComponent },
+
   { path: 'termos-servico', component: TermosServicoComponent},
   { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { 
+    relativeLinkResolution: 'legacy',
+    scrollPositionRestoration: "enabled",
+    scrollOffset: [0, 0],
+    anchorScrolling: "enabled",
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

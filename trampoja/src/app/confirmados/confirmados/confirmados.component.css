@@ -14,6 +14,10 @@
     margin-left: 5px;
 }
 
+.font-info-freela {
+    font-size: 14px;
+}
+
 .detail{
     position: absolute;
     right: 10px;

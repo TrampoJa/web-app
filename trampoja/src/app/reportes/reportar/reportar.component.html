@@ -1,0 +1,63 @@
+<main class="reporte">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
+                    <div class="card-header header text-center">
+                        <button (click)="close()" class="back shadow btn-dark"><i class="fas fa-window-close"></i></button>
+                        <h4>Reportar freelancer </h4>
+                    </div>
+                    <div class="card-body body body-reportes">
+                        <form  #reporteForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label class="form-group">Faltou o trampo </label>
+                                            <input class="checkbox" type="checkbox"  [(ngModel)]="motivos['1']" name="1"
+                                            #1="ngModel" class="form-group"><br><hr>
+
+                                            <label class="form-group">Faltou com o respeito <br class="br">com algum cliente </label>
+                                            <input class="checkbox" type="checkbox" [(ngModel)]="motivos['2']" name="2"
+                                            #2="ngModel" class="form-group"><br><hr>
+
+                                            <label class="form-group">Faltou com o respeito     <br class="br">com algum funcionário </label>
+                                            <input class="checkbox" type="checkbox" [(ngModel)]="motivos['3']" name="3"
+                                            #3="ngModel" class="form-group"><br><hr>
+                                            
+                                            <label class="form-group">Não cumpriu as <br class="br">exigências da vaga </label>
+                                            <input class="checkbox" type="checkbox" [(ngModel)]="motivos['4']" name="4"
+                                            #4="ngModel" class="form-group"><br><hr>
+
+                                            <label class="form-group">Chegou atrasado </label>
+                                            <input class="checkbox" type="checkbox" [(ngModel)]="motivos['5']" name="5"
+                                            #5="ngModel" class="form-group"><br><hr>
+
+                                            <textarea class="form-control inputs" name="descricao"
+                                                rows="7" cols="40" maxlength="500"
+                                                value=""
+                                                [(ngModel)]="model['descricao']"
+                                                #descricao="ngModel"
+                                                placeholder="Aqui você pode descrever um pouco melhor o ocorrido"
+                                                type=""
+                                                required>
+                                            </textarea>
+                                            <div class="form-group mt-4 mb-0">
+                                                <button
+                                                    [disabled]="!reporteForm.form.valid"
+                                                    (click)="create()"
+                                                    class="btn-warning btn-reportar btn-block shadow form-control">
+                                                    Reportar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,4 +1,26 @@
-<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false">
+<app-create-avaliacao
+    [oferta]="oferta"
+    [owner]="owner"
+    [(habilitarAvaliacao)]="habilitarAvaliacao"
+    *ngIf="habilitarAvaliacao==true">
+</app-create-avaliacao>
+
+<app-cancelar
+    [oferta]="oferta"
+    [freelancer]="freelancer"
+    [confirmado]="confirmado"
+    [(habilitarCancelamento)]="habilitarCancelamento"
+    *ngIf="habilitarCancelamento==true">
+</app-cancelar>
+
+<app-reportar
+    [freelancer]="freelancer"
+    [oferta]="oferta"
+    [(habilitarReporte)]="habilitarReporte"
+    *ngIf="habilitarReporte==true">
+</app-reportar>
+
+<main id="container-confirmados" *ngIf="habilitarReporte==false">
     <div class="container-fluid font">
         <div class="text-center text-light">
             <h2>Confirmados</h2>
@@ -21,11 +43,15 @@
                             Início às <strong>{{confirmado?.oferta_hora | time}} </strong><br>
                             No dia <strong>{{confirmado?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
-                        <div *ngIf="group === 'Estabelecimento'" class="card-body">
-                            <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
-                            <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
-                            <i title="Reportar freelancer" class="fas fa-exclamation-triangle report"></i>
-                            <br>
+                        <div *ngIf="group === 'Estabelecimento'" class="card-body font-info-freela">
+                            <div>
+                                <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
+                                <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
+                            </div>
+                            <span *ngIf="confirmado?.oferta_closed" (click)="reportar(confirmado?.freelancer, confirmado?.oferta)"  
+                                    class="report">
+                                <i title="Reportar freelancer" class="far fa-flag"></i>
+                            </span>
                             <i *ngIf="confirmado?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{confirmado?.avaliacao | format}} </span> <br><br>
                             <span *ngIf="confirmado?.trampos != 0">
                                 Trampos: {{confirmado?.trampos}} 
@@ -90,7 +116,7 @@
                         <button
                             *ngIf="confirmado?.oferta_closed === false"
                             (click)="cancelar(confirmado?.oferta, confirmado?.freelancer, confirmado?.id)"
-                            class="btn btn-cancelar btn-danger font">
+                            class="btn-danger btn-cancelar font">
                             <div class="footer-cancelar card-footer d-flex align-items-center justify-content-between">
                                 <span class="text-center cancelar">Cancelar</span>
                             </div>
@@ -101,16 +127,3 @@
         </div>         
     </div>
 </main>
-<app-create-avaliacao
-    [oferta]="oferta"
-    [owner]="owner"
-    [(habilitarAvaliacao)]="habilitarAvaliacao"
-    *ngIf="habilitarAvaliacao==true">
-</app-create-avaliacao>
-<app-cancelar
-    [oferta]="oferta"
-    [freelancer]="freelancer"
-    [confirmado]="confirmado"
-    [(habilitarCancelamento)]="habilitarCancelamento"
-    *ngIf="habilitarCancelamento==true">
-</app-cancelar>
