@@ -21,6 +21,7 @@ import { UserService } from './users/user.service';
 import { AvalicaoService } from './avaliacoes/avaliacao.service'; 
 import { CanceladoService } from './cancelados/cancelado.service';
 import { PlanoService } from './planos/planos.service';
+import { ReporteService } from './reportes/reporte.service';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
@@ -55,6 +56,8 @@ import { RecoveryPswdComponent } from './users/recovery-pswd/recovery-pswd/recov
 import { PlanosComponent } from './planos/planos/planos.component';
 import { TermosServicoComponent } from './documentos/termos-servico/termos-servico.component';
 import { PoliticaPrivacidadeComponent } from './documentos/politica-privacidade/politica-privacidade.component';
+import { ReportarComponent } from './reportes/reportar/reportar.component';
+import { ReportesComponent } from './reportes/reportes/reportes.component';
 
 import { TimePipe } from './pipes/time/time.pipe';
 import { RealPipe } from './pipes/real/real.pipe';
@@ -106,11 +109,13 @@ import { FormatPipe } from './pipes/format/format.pipe';
     PlanosComponent,
     TermosServicoComponent,
     PoliticaPrivacidadeComponent,
+    ReportarComponent,
     TimePipe,
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe
+    FormatPipe,
+    ReportesComponent
   ],
   providers: [
     AppService,
@@ -124,6 +129,7 @@ import { FormatPipe } from './pipes/format/format.pipe';
     AvalicaoService,
     CanceladoService,
     PlanoService,
+    ReporteService,
     HttpErrorHandler,
     FormBuilder,
     httpInterceptorProviders,

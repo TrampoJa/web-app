@@ -1,0 +1,37 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="row main">
+                <div class="col-xl-12">
+                    <div class="card bg-dark text-light mb-4 font shadow backgroud">
+                        <div class="card-header header text-center">
+                            <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                            Reportes
+                        </div>
+                        <div class="card-body body text-center">
+                            <div *ngFor="let reporte of reportes">
+                                <div class="text-warning">Reporte realizado no dia {{reporte.created}}</div>
+                                <br>
+                                <div class="text-left">
+                                    <div *ngIf="reporte.motivos.length">
+                                        <strong>Motivos: </strong><br><br>
+
+                                        <ul *ngFor="let motivo of reporte.motivos">
+                                            <li>{{motivo.nome}}</li>
+                                        </ul>
+                                        <br>
+                                    </div>
+    
+                                    <strong>Descrição: </strong>{{reporte.descricao}}
+                                    <br><br><br>
+                                </div>
+                                <hr>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

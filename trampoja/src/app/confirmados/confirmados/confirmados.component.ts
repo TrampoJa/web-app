@@ -17,6 +17,7 @@ export class ConfirmadosComponent implements OnInit {
   group  = this.userService.groupValue?.group;
   habilitarAvaliacao = false;
   habilitarCancelamento = false;
+  habilitarReporte = false;
 
   constructor(
     private userService: UserService,
@@ -61,5 +62,11 @@ export class ConfirmadosComponent implements OnInit {
     this.oferta = oferta;
     this.freelancer = freelancer;
     this.confirmado = confirmado;
+  }
+
+  reportar(freelancer: number, oferta: number): void {
+    this.habilitarReporte = true;
+    this.freelancer = freelancer;
+    this.oferta = oferta;
   }
 }

@@ -10,11 +10,11 @@
                         </div>
                         <div class="card-body body text-center">
                             <div *ngFor="let historico of historicos">
-                                <strong>{{historico?.estabelecimento | titlecase}}</strong>
+                                <strong class="text-primary">{{historico?.estabelecimento | titlecase}}</strong>
                                 <br>
                                 Função: {{historico?.vaga}} 
                                 <br>
-                                Data: {{historico?.data | date:"dd/MM"}}
+                                Data: {{historico?.data | date:"dd/MM/YYYY"}}
                                 <br><br><hr>
                             </div>
                             

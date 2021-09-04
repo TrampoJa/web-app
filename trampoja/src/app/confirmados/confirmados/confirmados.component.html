@@ -1,4 +1,4 @@
-<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false">
+<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false && habilitarReporte==false">
     <div class="container-fluid font">
         <div class="text-center text-light">
             <h2>Confirmados</h2>
@@ -24,7 +24,10 @@
                         <div *ngIf="group === 'Estabelecimento'" class="card-body">
                             <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
                             <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
-                            <i title="Reportar freelancer" class="fas fa-exclamation-triangle report"></i>
+                            <span *ngIf="confirmado?.oferta_closed" (click)="reportar(confirmado?.freelancer, confirmado?.oferta)"  
+                                    class="report">
+                                <i title="Reportar freelancer" class="far fa-flag"></i>
+                            </span>
                             <br>
                             <i *ngIf="confirmado?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{confirmado?.avaliacao | format}} </span> <br><br>
                             <span *ngIf="confirmado?.trampos != 0">
@@ -90,7 +93,7 @@
                         <button
                             *ngIf="confirmado?.oferta_closed === false"
                             (click)="cancelar(confirmado?.oferta, confirmado?.freelancer, confirmado?.id)"
-                            class="btn btn-cancelar btn-danger font">
+                            class="btn-danger btn-cancelar font">
                             <div class="footer-cancelar card-footer d-flex align-items-center justify-content-between">
                                 <span class="text-center cancelar">Cancelar</span>
                             </div>
@@ -114,3 +117,9 @@
     [(habilitarCancelamento)]="habilitarCancelamento"
     *ngIf="habilitarCancelamento==true">
 </app-cancelar>
+<app-reportar
+    [freelancer]="freelancer"
+    [oferta]="oferta"
+    [(habilitarReporte)]="habilitarReporte"
+    *ngIf="habilitarReporte==true">
+</app-reportar>

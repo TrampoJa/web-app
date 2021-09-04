@@ -1,7 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { CanceladoService } from '../cancelado.service';
 import { Cancelado } from '../cancelado';
-import { ConfirmadosComponent } from 'src/app/confirmados/confirmados/confirmados.component';
 
 @Component({
   selector: 'app-cancelar',
@@ -21,7 +20,6 @@ export class CancelarComponent implements OnInit {
 
   constructor(
     private service: CanceladoService,
-    private confirmadoComponent: ConfirmadosComponent
   ) { }
 
   ngOnInit(): void {

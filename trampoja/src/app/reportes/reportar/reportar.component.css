@@ -1,0 +1,26 @@
+.form {
+    width: 100%;
+}
+
+.btn-reportar {
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+}
+
+.checkbox input[type="radio"], input[type="checkbox"] {
+    position: absolute;
+    right: 5px;
+    width: 50px ;
+    height: 30px;
+}
+
+.br {
+    display: none !important;
+}
+
+@media (max-width: 768px){
+    .br {
+        display: inline !important;
+    }
+  }
