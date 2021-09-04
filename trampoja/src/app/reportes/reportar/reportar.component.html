@@ -1,13 +1,13 @@
-<main>
+<main class="reporte">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <div class="card bg-dark text-light shadow-lg border-0 rounded-lg mt-5 font main">
                     <div class="card-header header text-center">
-                        <button (click)="goBack()" class="back shadow btn-dark"><i class=" fas fa-arrow-circle-left"></i></button>
+                        <button (click)="close()" class="back shadow btn-dark"><i class="fas fa-window-close"></i></button>
                         <h4>Reportar freelancer </h4>
                     </div>
-                    <div class="card-body body">
+                    <div class="card-body body body-reportes">
                         <form  #reporteForm="ngForm" (ngSubmit)="onSubmit()">
                             <div class="form-row">
                                 <div class="form">
@@ -34,7 +34,7 @@
                                             #5="ngModel" class="form-group"><br><hr>
 
                                             <textarea class="form-control inputs" name="descricao"
-                                                rows="10" cols="40" maxlength="500"
+                                                rows="7" cols="40" maxlength="500"
                                                 value=""
                                                 [(ngModel)]="model['descricao']"
                                                 #descricao="ngModel"

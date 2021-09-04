@@ -7,3 +7,15 @@
     width: 100%;
     color: white;
 }
+
+.cancelar {
+    position: fixed;
+    top: 50px;
+    margin-left: 2%;
+    width: 96%;
+    z-index: 9999;
+}
+
+.body-canceleado {
+    padding-bottom: 0px;
+}

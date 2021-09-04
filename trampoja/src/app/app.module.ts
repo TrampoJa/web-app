@@ -33,7 +33,6 @@ import { CreateOfertasComponent } from './ofertas/create-ofertas/create-ofertas.
 import { ProfileOfertasComponent } from './ofertas/profile-ofertas/profile-ofertas.component';
 import { InteressesComponent } from './interesses/interesses/interesses.component';
 import { CreateInteresseComponent } from './interesses/create-interesse/create-interesse.component';
-import { CreateConfirmadoComponent } from './confirmados/create-confirmado/create-confirmado.component';
 import { ConfirmadosComponent } from './confirmados/confirmados/confirmados.component';
 import { DetailEstabelecimentoComponent } from './estabelecimentos/detail-estabelecimento/detail-estabelecimento.component';
 import { DetailFreelancerComponent } from './freelancers/detail-freelancer/detail-freelancer.component';
@@ -87,7 +86,6 @@ import { FormatPipe } from './pipes/format/format.pipe';
     ProfileOfertasComponent,
     InteressesComponent,
     CreateInteresseComponent,
-    CreateConfirmadoComponent,
     ConfirmadosComponent,
     DetailEstabelecimentoComponent,
     DetailFreelancerComponent,

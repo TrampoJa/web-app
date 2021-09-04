@@ -36,7 +36,7 @@ export class CreateAvaliacaoComponent implements OnInit {
             location.reload();
           
           else
-            this.goBack();
+            this.close();
         }
       );
   }
@@ -50,7 +50,10 @@ export class CreateAvaliacaoComponent implements OnInit {
       star.style.color = null;
   }
 
-  goBack(): void {
+  close(): void {
+    let container = document.getElementById('container-confirmados');
+    container.style.opacity = '1';
+
     this.habilitarAvaliacao = false;
     this.habilitarAvaliacaoChange.emit(this.habilitarAvaliacao)
     return;

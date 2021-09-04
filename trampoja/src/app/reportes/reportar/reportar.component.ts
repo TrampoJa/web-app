@@ -29,6 +29,7 @@ export class ReportarComponent implements OnInit {
   constructor(private service: ReporteService) { }
 
   ngOnInit(): void {
+    window.scroll(0,0);
     return;
   }
 
@@ -41,14 +42,14 @@ export class ReportarComponent implements OnInit {
           location.reload();
         
         else
-          this.goBack();
+          this.close();
       }
     );
   }
 
   onSubmit(): void { this.submitted = true; return; }
 
-  goBack(): void {
+  close(): void {
     this.habilitarReporte = false;
     this.habilitarReporteChange.emit(this.habilitarReporte)
     return;

@@ -1,4 +1,26 @@
-<main *ngIf="habilitarAvaliacao==false && habilitarCancelamento==false && habilitarReporte==false">
+<app-create-avaliacao
+    [oferta]="oferta"
+    [owner]="owner"
+    [(habilitarAvaliacao)]="habilitarAvaliacao"
+    *ngIf="habilitarAvaliacao==true">
+</app-create-avaliacao>
+
+<app-cancelar
+    [oferta]="oferta"
+    [freelancer]="freelancer"
+    [confirmado]="confirmado"
+    [(habilitarCancelamento)]="habilitarCancelamento"
+    *ngIf="habilitarCancelamento==true">
+</app-cancelar>
+
+<app-reportar
+    [freelancer]="freelancer"
+    [oferta]="oferta"
+    [(habilitarReporte)]="habilitarReporte"
+    *ngIf="habilitarReporte==true">
+</app-reportar>
+
+<main id="container-confirmados" *ngIf="habilitarReporte==false">
     <div class="container-fluid font">
         <div class="text-center text-light">
             <h2>Confirmados</h2>
@@ -105,22 +127,3 @@
         </div>         
     </div>
 </main>
-<app-create-avaliacao
-    [oferta]="oferta"
-    [owner]="owner"
-    [(habilitarAvaliacao)]="habilitarAvaliacao"
-    *ngIf="habilitarAvaliacao==true">
-</app-create-avaliacao>
-<app-cancelar
-    [oferta]="oferta"
-    [freelancer]="freelancer"
-    [confirmado]="confirmado"
-    [(habilitarCancelamento)]="habilitarCancelamento"
-    *ngIf="habilitarCancelamento==true">
-</app-cancelar>
-<app-reportar
-    [freelancer]="freelancer"
-    [oferta]="oferta"
-    [(habilitarReporte)]="habilitarReporte"
-    *ngIf="habilitarReporte==true">
-</app-reportar>

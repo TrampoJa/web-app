@@ -35,14 +35,17 @@ export class CancelarComponent implements OnInit {
             location.reload();
           
           else
-            this.goBack();
+            this.close();
         }
       );
   }
 
   onSubmit(): void { this.submitted = true; return; }
 
-  goBack(): void {
+  close(): void {
+    let container = document.getElementById('container-confirmados');
+    container.style.opacity = '1';
+
     this.habilitarCancelamento = false;
     this.habilitarCancelamentoChange.emit(this.habilitarCancelamento)
     return;

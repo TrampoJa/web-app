@@ -8,9 +8,25 @@
     right: 10px;
 }
 
-.create-confirmado {
-    margin-top: -18px;
+.btn-confirmar {
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+    padding: 0px;
 }
+
+.confirmar{ 
+    position: absolute;
+    right: 35%;
+    left: 35%;
+}
+
+.footer-confirmar {
+    padding: 15px;
+    color: #fff;
+    background-color: #1138F7;
+    border-color: #1138F7;
+  }
 
 .fa-star {
     color: #ffc107 !important;

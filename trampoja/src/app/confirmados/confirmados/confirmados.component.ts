@@ -55,6 +55,8 @@ export class ConfirmadosComponent implements OnInit {
     this.habilitarAvaliacao = true;
     this.oferta = oferta;
     this.owner = owner;
+
+    this.escurecer();
   }
 
   cancelar(oferta: number, freelancer: number, confirmado: number): void {
@@ -62,11 +64,20 @@ export class ConfirmadosComponent implements OnInit {
     this.oferta = oferta;
     this.freelancer = freelancer;
     this.confirmado = confirmado;
+
+    this.escurecer();
   }
 
   reportar(freelancer: number, oferta: number): void {
     this.habilitarReporte = true;
     this.freelancer = freelancer;
     this.oferta = oferta;
+
+    this.escurecer();
+  }
+
+  escurecer() {
+    let container = document.getElementById('container-confirmados');
+    container.style.opacity = '0.2';
   }
 }

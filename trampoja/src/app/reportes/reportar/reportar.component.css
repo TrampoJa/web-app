@@ -11,8 +11,8 @@
 .checkbox input[type="radio"], input[type="checkbox"] {
     position: absolute;
     right: 5px;
-    width: 50px ;
-    height: 30px;
+    width: 45px ;
+    height: 25px;
 }
 
 .br {
@@ -24,3 +24,12 @@
         display: inline !important;
     }
   }
+
+.reporte {
+    position: relative;
+    top: -10px;
+}
+
+.body-reportes {
+    font-size: 15px
+}

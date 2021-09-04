@@ -45,28 +45,33 @@
                             <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </a>
-                    <span *ngIf="group === 'Estabelecimento'">
+                    <div *ngIf="group === 'Estabelecimento'">
                         <a *ngIf="interesse?.freelancer" [routerLink]="['/detalhes-do-freelancer', interesse?.freelancer]">
                             <div class="card-footer footer d-flex align-items-center justify-content-between">
                                 <a class="color-link stretched-link">Ver perfil</a>
                                 <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </a>
-                    </span>
-                    <span>
+                    </div>
+                    <div>
                         <a *ngIf="group === 'Freelancer'" href="#">
                             <div class="card-footer footer d-flex align-items-center justify-content-between">
                                 <a href="#" class="color-link small stretched-link">Visualizar termo</a>
                                 <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </a>
-                    </span>
-                    <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false" class="create-confirmado"
-                        (click)="confirm(interesse?.oferta, interesse?.freelancer)">
-                        <app-create-confirmado
-                            *ngIf="interesse?.oferta_status==true">
-                        </app-create-confirmado>
                     </div>
+                    <div *ngIf="group === 'Estabelecimento' && interesse?.oferta_canceled == false">
+                        <button
+                        *ngIf="interesse?.oferta_status==true"
+                        (click)="confirm(interesse?.oferta, interesse?.freelancer)"
+                        class="btn btn-confirmar font">
+                        <div class="footer-confirmar card-footer d-flex align-items-center justify-content-between">
+                            <span class="text-center confirmar">Confirmar</span>
+                        </div>
+                    </button>
+                    </div>
+                    
                 </div>
             </div>
         </div>       
