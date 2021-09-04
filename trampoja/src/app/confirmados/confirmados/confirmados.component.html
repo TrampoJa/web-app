@@ -22,8 +22,10 @@
                             No dia <strong>{{confirmado?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
                         <div *ngIf="group === 'Estabelecimento'" class="card-body font-info-freela">
-                            <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
-                            <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
+                            <div>
+                                <span>Freelancer: {{confirmado?.freelancer_nome | titlecase}}</span>
+                                <span> {{confirmado?.freelancer_sobrenome | titlecase}} </span>
+                            </div>
                             <span *ngIf="confirmado?.oferta_closed" (click)="reportar(confirmado?.freelancer, confirmado?.oferta)"  
                                     class="report">
                                 <i title="Reportar freelancer" class="far fa-flag"></i>
