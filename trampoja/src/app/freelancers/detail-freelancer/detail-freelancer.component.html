@@ -14,12 +14,17 @@
                             <p>
                                 Bio: {{freelancer?.bio | titlecase}}
                             </p>
-                            <p>Telefone: {{freelancer?.telefone | fone}}</p>
-                            <p>Data de nascimento: {{freelancer?.nascimento | date:"dd/MM/yyyy"}}</p>
                             <p>Idade: {{freelancer?.nascimento | age}}</p>
                             <p>Cidade: {{freelancer?.cidade | titlecase}}</p>
                             <p>Bairro: {{freelancer?.bairro | titlecase}}</p>
                             <p>Rua: {{freelancer?.rua | titlecase}} nº{{freelancer?.numero}}</p>
+
+                            <div *ngIf="freelancer?.reportes" class="reportes">
+                                <a class="text-light" [routerLink]="['/reportes', freelancer?.id]">
+                                    <strong> Esse freela já foi reportado {{freelancer?.reportes}} vezes </strong>
+                                    <div class="color-link small stretched-link"> > ver detalhes</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

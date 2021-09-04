@@ -6,10 +6,18 @@
 .estrelas li{
     list-style: none;
     display: inline;
-    font-size: 38px;
 }
 
 .estrela{
     cursor: pointer;
     padding: 4px;
+    font-size: 30px;
+}
+
+.avaliacao {
+    position: fixed;
+    top: 150px;
+    margin-left: 2%;
+    width: 96%;
+    z-index: 9999;
 }

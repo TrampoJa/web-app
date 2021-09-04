@@ -1,7 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { CanceladoService } from '../cancelado.service';
 import { Cancelado } from '../cancelado';
-import { ConfirmadosComponent } from 'src/app/confirmados/confirmados/confirmados.component';
 
 @Component({
   selector: 'app-cancelar',
@@ -21,7 +20,6 @@ export class CancelarComponent implements OnInit {
 
   constructor(
     private service: CanceladoService,
-    private confirmadoComponent: ConfirmadosComponent
   ) { }
 
   ngOnInit(): void {
@@ -37,14 +35,17 @@ export class CancelarComponent implements OnInit {
             location.reload();
           
           else
-            this.goBack();
+            this.close();
         }
       );
   }
 
   onSubmit(): void { this.submitted = true; return; }
 
-  goBack(): void {
+  close(): void {
+    let container = document.getElementById('container-confirmados');
+    container.style.opacity = '1';
+
     this.habilitarCancelamento = false;
     this.habilitarCancelamentoChange.emit(this.habilitarCancelamento)
     return;
