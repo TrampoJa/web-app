@@ -23,7 +23,7 @@
                             Início às <strong>{{interesse?.oferta_hora | time}}</strong> <br>
                             No dia <strong>{{interesse?.oferta_data | date:"dd/MM"}}</strong>
                         </div>
-                        <div *ngIf="group === 'Estabelecimento'" class="card-body">
+                        <div *ngIf="group === 'Estabelecimento'" class="card-body font-info-freela">
                             <span>Nome: {{interesse?.freelancer_nome | titlecase}}</span> <span> {{interesse?.freelancer_sobrenome | titlecase}} </span> <br>
                             Telefone: {{interesse?.freelancer_telefone| fone}} <br>
                             <i *ngIf="interesse?.avaliacao" class="small fas fa-star"></i> <span class="nota">{{interesse?.avaliacao | format}}</span><br><br>
