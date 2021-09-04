@@ -110,12 +110,12 @@ import { FormatPipe } from './pipes/format/format.pipe';
     TermosServicoComponent,
     PoliticaPrivacidadeComponent,
     ReportarComponent,
+    ReportesComponent,
     TimePipe,
     RealPipe,
     FonePipe,
     AgePipe,
-    FormatPipe,
-    ReportesComponent
+    FormatPipe
   ],
   providers: [
     AppService,
