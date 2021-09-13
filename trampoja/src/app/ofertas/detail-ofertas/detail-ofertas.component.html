@@ -88,7 +88,7 @@
                                         <br>
                                     </span>
                                 </p>
-                                <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs | titlecase}}</p>
+                                <p *ngIf="oferta!==editOferta"> <strong>Observações:</strong><br> {{oferta?.obs}}</p>
                                 <span *ngIf="oferta===editOferta">
                                     <label for="obs">Observações:</label>
                                     <textarea class="col-md-6 offset-md-3 form-control inputs" name="obs"

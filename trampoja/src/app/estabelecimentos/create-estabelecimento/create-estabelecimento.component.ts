@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 import { Estabelecimento } from '../estabelecimento';
 import { EstabelecimentoService } from '../estabelecimento.service';
@@ -44,6 +43,7 @@ export class CreateEstabelecimentoComponent implements OnInit {
     'Bar',
     'Restaurante',
     'Pizzaria',
+    'Eventos'
   ];
   submitted = false;
 
