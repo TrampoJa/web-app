@@ -27,7 +27,9 @@ export class CreateOfertasComponent implements OnInit {
   };
   options = [
     'Garçom',
-    'Cozinha'
+    'Cozinha',
+    'Caixa',
+    'Auxiliar de eventos'
   ];
   submitted = false;
 
